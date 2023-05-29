@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import com.capstone.pupukdotin.MainActivity
 import com.capstone.pupukdotin.data.local.pref.UserModel
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.payload.LoginPayload
 import com.capstone.pupukdotin.databinding.ActivityLoginBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.common.BaseActivity
-import com.capstone.pupukdotin.ui.detail.DetailItemActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
@@ -39,7 +39,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                             isLogin = true
                         )
                     )
-                    DetailItemActivity.start(this@LoginActivity, 10)
+                    MainActivity.start(this@LoginActivity)
                     finish()
                 }
 
