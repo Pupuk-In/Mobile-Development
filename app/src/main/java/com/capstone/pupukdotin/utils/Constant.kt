@@ -1,7 +1,7 @@
 package com.capstone.pupukdotin.utils
 
 object Constant {
-    const val BASE_URL = "https://auth-api-ocgnabibnq-et.a.run.app"
+    const val BASE_URL = "https://pupukin-l6hx3dk4bq-de.a.run.app"
     const val AUTH_HEADER = "Authorization"
     const val ACCEPT_HEADER = "Accept"
     const val APPLICATION_JSON = "application/json"
