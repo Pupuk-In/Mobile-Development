@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/pb_loading_screen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:id="@+id/sv_detail_item"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_product_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_product_image"
+                tools:text="Koka NPK - Pupuk Khusus Kopi dan Kakao" />
+
+            <ImageView
+                android:id="@+id/iv_product_image"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:contentDescription="Gambar Produk"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                tools:src="@drawable/placeholder" />
+
+            <TextView
+                android:id="@+id/tv_product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_title"
+                tools:text="Rp18.000" />
+
+            <LinearLayout
+                android:id="@+id/ll_product_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/tv_product_price"
+                app:layout_constraintStart_toEndOf="@id/tv_product_price"
+                app:layout_constraintTop_toTopOf="@id/tv_product_price">
+
+                <ImageView
+                    android:id="@+id/iv_star"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/baseline_star_24"
+                    app:tint="@color/green" />
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:text="4.5" />
+
+                <TextView
+                    android:id="@+id/tv_product_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    tools:text="(23 rating)" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_product_sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_product_rating"
+                tools:text="Terjual 18" />
+
+            <ImageView
+                android:id="@+id/iv_product_is_wishlist"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/baseline_favorite_border_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/tv_product_sold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@id/ll_product_rating"
+                app:layout_constraintTop_toTopOf="@id/ll_product_rating" />
+
+            <View
+                android:id="@+id/wv_breakline"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_sold" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="@string/description_product"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wv_breakline"
+                tools:text="Deskripsi Product" />
+
+            <TextView
+                android:id="@+id/tv_product_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:justificationMode="inter_word"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                tools:targetApi="o"
+                tools:text="Pupuk ini baik untuk kopi \n\n\n\ndan kakao. Berat bersih 50 Kg \nxixixi" />
+
+            <View
+                android:id="@+id/wv_breakline_2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_description" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_store"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginVertical="24dp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wv_breakline_2"
+                tools:src="@drawable/placeholder" />
+
+            <TextView
+                android:id="@+id/tv_store_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/iv_store"
+                app:layout_constraintTop_toTopOf="@id/iv_store"
+                tools:text="Nama Store" />
+
+            <TextView
+                android:id="@+id/tv_store_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:ellipsize="end"
+                android:justificationMode="inter_word"
+                android:lineSpacingMultiplier="1.2"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_store_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_store_name"
+                tools:targetApi="o"
+                tools:text="Pupuk ini baik untuk kopi dan kakao." />
+
+            <LinearLayout
+                android:id="@+id/ll_store_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/iv_store"
+                app:layout_constraintStart_toStartOf="@id/tv_store_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_store_address">
+
+                <ImageView
+                    android:id="@+id/iv_store_star"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/baseline_star_24"
+                    app:tint="@color/green" />
+
+                <TextView
+                    android:id="@+id/tv_store_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:text="4.5" />
+
+                <TextView
+                    android:id="@+id/tv_store_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    tools:text="(23 rating)" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_card"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="24dp">
+
+        <TextView
+            android:id="@+id/tv_product_stock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ll_add_remove_stock"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Stok : 21" />
+
+        <LinearLayout
+            android:id="@+id/ll_add_remove_stock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_add_to_cart"
+            app:layout_constraintStart_toEndOf="@+id/tv_product_stock"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/subtract_stock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/remove_stock" />
+
+            <EditText
+                android:id="@+id/ed_stock_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="0"
+                android:maxLength="3"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                tools:text="1" />
+
+            <ImageView
+                android:id="@+id/add_stock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add_stock" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_add_to_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tambah Ke Keranjang"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ll_add_remove_stock"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
