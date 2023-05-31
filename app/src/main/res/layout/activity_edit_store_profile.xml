@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.store.EditStoreProfileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ubahProfilConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/dropdown_background"
+        android:elevation="20dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ubah_profil_store"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/edit_profile_store_picture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ubahProfilConstraintLayout" />
+
+    <EditText
+        android:id="@+id/ed_edit_nama_toko"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/button_grey_outline"
+        android:hint="Nama Toko"
+        android:padding="10dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_profile_store_picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edit_profile_store_picture"
+        app:layout_constraintTop_toTopOf="@+id/edit_profile_store_picture" />
+
+    <TextView
+        android:id="@+id/button_unggah_foto_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_grey_outline"
+        android:padding="5dp"
+        android:text="@string/unggah_foto"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_profile_store_picture"
+        app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_store_picture" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/deskripsiEditTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/ed_edit_nama_toko"
+        app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+        app:layout_constraintTop_toBottomOf="@+id/button_unggah_foto_store">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_edit_deskripsi_store"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="textLongMessage"
+            tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textviewAlamat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/alamat"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+        app:layout_constraintTop_toBottomOf="@+id/deskripsiEditTextLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/alamatEditTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="@+id/ed_edit_nama_toko"
+        app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+        app:layout_constraintTop_toBottomOf="@+id/textviewAlamat">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_edit_alamat_store"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="textLongMessage"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/pilih_alamat_dari_peta"
+        android:textColor="@color/main_green"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+        app:layout_constraintTop_toBottomOf="@+id/alamatEditTextLayout" />
+
+    <Button
+        android:id="@+id/button_selesi_edit_profil_store"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="@string/selesai"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ed_edit_nama_toko"
+        app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
