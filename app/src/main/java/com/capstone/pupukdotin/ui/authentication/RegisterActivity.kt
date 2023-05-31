@@ -107,8 +107,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                             RegisterPayload(
                                 username = username,
                                 email = email,
-                                password = password,
-                                passwordConfirmation = passwordConfirm
+                                password = password
                             )
                         )
                     }

@@ -59,6 +59,7 @@
             android:id="@+id/ed_register_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/box_rect_8dp"
             android:ems="10"
             android:inputType="textPersonName"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -92,6 +93,7 @@
             android:id="@+id/ed_register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/box_rect_8dp"
             android:ems="10"
             android:inputType="textEmailAddress"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -124,6 +126,7 @@
             android:id="@+id/ed_register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/box_rect_8dp"
             android:ems="10"
             android:inputType="textPassword"
             app:passwordToggleEnabled="true"
@@ -157,6 +160,7 @@
             android:id="@+id/ed_register_password_confirmation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/box_rect_8dp"
             android:ems="10"
             android:inputType="textPassword"
             app:passwordToggleEnabled="true"
@@ -208,9 +212,9 @@
         android:id="@+id/register_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -17,7 +17,7 @@ import com.capstone.pupukdotin.ui.common.BaseActivity
 class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
 
     private val viewModel by viewModels<DetailItemViewModel> { ViewModelFactory(this) }
-    private val idItem by lazy { intent.getIntExtra(ID_ITEM, 0) }
+    private val idItem by lazy { intent.getIntExtra(ID_ITEM, 10) }
     private var itemCount = 0
 
     override fun getViewBinding(): ActivityDetailBinding =
@@ -80,27 +80,27 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
             if (data != null) {
                 with(binding) {
                     Glide.with(baseContext)
-                        .load(data.item?.picture)
+                        .load(data.item?.get(0)?.picture)
                         .placeholder(R.drawable.placeholder)
                         .into(ivProductImage)
 
-                    tvProductTitle.text = data.item?.name ?: ""
-                    tvProductPrice.text = getString(R.string.price, data.item?.price ?: 0)
-                    tvRating.text = data.item?.rating ?: "0.0"
+                    tvProductTitle.text = data.item?.get(0)?.name ?: ""
+                    tvProductPrice.text = getString(R.string.price, data.item?.get(0)?.price ?: 0)
+                    tvRating.text = data.item?.get(0)?.rating ?: "0.0"
                     tvProductSold.text =
-                        getString(R.string.product_sold, data.item?.sold ?: 0)
+                        getString(R.string.product_sold, data.item?.get(0)?.sold ?: 0)
                     tvProductDescription.text =
-                        data.item?.description ?: "Tidak Ada Deskripsi"
+                        data.item?.get(0)?.description ?: "Tidak Ada Deskripsi"
 
-                    tvStoreName.text = data.item?.storeId?.name ?: "Tidak Ada Nama"
-                    tvStoreAddress.text = data.item?.storeId?.address ?: "Tidak Ada Alamat"
-                    tvStoreRating.text = data.item?.storeId?.rating ?: "0.0"
+                    tvStoreName.text = data.item?.get(0)?.store?.name ?: "Tidak Ada Nama"
+                    tvStoreAddress.text = data.item?.get(0)?.store?.address ?: "Tidak Ada Alamat"
+                    tvStoreRating.text = data.item?.get(0)?.store?.rating ?: "0.0"
 
                     Glide.with(baseContext)
-                        .load(data.item?.storeId?.picture)
+                        .load(data.item?.get(0)?.store?.picture)
                         .placeholder(R.drawable.placeholder)
                         .into(ivStore)
-                    tvProductStock.text = getString(R.string.product_stock, data.item?.stock ?: 0)
+                    tvProductStock.text = getString(R.string.product_stock, data.item?.get(0)?.stock ?: 0)
                 }
             }
         } else {

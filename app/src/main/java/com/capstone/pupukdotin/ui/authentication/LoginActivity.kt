@@ -74,7 +74,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
                 viewModel.login(LoginPayload(email = email, password = password))
             }
-
         }
     }
 
