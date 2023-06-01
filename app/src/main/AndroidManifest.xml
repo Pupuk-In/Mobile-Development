@@ -31,6 +31,17 @@
             android:name=".ui.detail.DetailItemActivity"
             android:exported="true">
         </activity>
+            android:name=".ui.store.EditStoreProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.store.StoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.LihatProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.detail.DetailItemActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.authentication.RegisterActivity"
             android:exported="true" />

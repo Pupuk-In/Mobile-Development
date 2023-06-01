@@ -27,7 +27,7 @@
     <string name="profile">Profil</string>
     <string name="cari_dengan_ai">Cari dengan AI</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_store">Home</string>
     <string name="price">Rp%1$d</string>
     <string name="product_sold">Terjual %1$d</string>
     <string name="description_product">Deskripsi Produk</string>
@@ -63,4 +63,16 @@
     <string name="authtab">AuthTab</string>
     <string name="pupuk_untuk">Pupuk Untuk</string>
     <string name="jagung">Jagung</string>
+    <string name="ubah_profil">Ubah Profil</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
+    <string name="alamat">Alamat</string>
+    <string name="alamat_dalam_peta">Alamat dalam Peta</string>
+    <string name="produk">Produk</string>
+    <string name="nama_store">Nama Store</string>
+    <string name="deskripsi_toko">Deskripsi</string>
+    <string name="pilih_alamat_dari_peta">Pilih Alamat dari Peta</string>
+    <string name="ubah_profil_store">Ubah Profil</string>
+    <string name="unggah_foto">+ Unggah Foto</string>
+    <string name="selesai">Selesai</string>
 </resources>
