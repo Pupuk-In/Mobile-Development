@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="@string/nama_lengkap"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -185,6 +185,14 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/alamatEditTextLayout" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/lihat_profile_map"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/alamat_map"
+        app:layout_constraintTop_toBottomOf="@+id/alamat_map" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

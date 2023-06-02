@@ -141,6 +141,15 @@
         app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
         app:layout_constraintTop_toBottomOf="@+id/alamatEditTextLayout" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/ubah_profile_store_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     <Button
         android:id="@+id/button_selesi_edit_profil_store"
         android:layout_width="0dp"
