@@ -3,6 +3,7 @@ package com.capstone.pupukdotin.data.remote.network
 import com.capstone.pupukdotin.data.remote.payload.LoginPayload
 import com.capstone.pupukdotin.data.remote.payload.RegisterPayload
 import com.capstone.pupukdotin.data.remote.response.DetailItemResponse
+import com.capstone.pupukdotin.data.remote.response.FertilizerTypeResponse
 import com.capstone.pupukdotin.data.remote.response.LoginResponse
 import com.capstone.pupukdotin.data.remote.response.RegisterResponse
 import retrofit2.Response
@@ -30,4 +31,7 @@ interface ApiServices {
     suspend fun getDetailItem(
         @Path("id") idItem: Int
     ) : Response<DetailItemResponse>
+
+    @GET("/api/home/types")
+    suspend fun getTypes() : Response<FertilizerTypeResponse>
 }
