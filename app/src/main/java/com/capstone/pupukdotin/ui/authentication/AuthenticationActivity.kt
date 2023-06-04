@@ -23,6 +23,10 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>(),
         initPager()
     }
 
+    override fun moveFragment(destination: Int) {
+        if (destination < TAB_TITLES.size && destination >= 0) viewPager.currentItem = destination
+    }
+
     private fun initPager() {
         val sectionsPagerAdapter = AuthenticationAdapter(this)
         viewPager = binding.vpAuthentication
@@ -39,6 +43,8 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>(),
         @JvmStatic
         fun start(context: Context) {
             val starter = Intent(context, AuthenticationActivity::class.java)
+            starter.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            starter.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             context.startActivity(starter)
         }
 
@@ -48,7 +54,4 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>(),
         )
     }
 
-    override fun moveFragment(destination: Int) {
-        if (destination < TAB_TITLES.size && destination >= 0) viewPager.currentItem = destination
-    }
 }

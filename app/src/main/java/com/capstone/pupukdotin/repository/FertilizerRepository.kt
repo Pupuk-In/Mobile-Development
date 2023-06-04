@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.capstone.pupukdotin.data.remote.network.ApiServices
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.response.DetailItemResponse
+import com.capstone.pupukdotin.data.remote.response.FertilizerPlantResponse
 import com.capstone.pupukdotin.data.remote.response.FertilizerTypeResponse
 
 class FertilizerRepository(
@@ -18,6 +19,10 @@ class FertilizerRepository(
     private val _types = MutableLiveData<NetworkResult<FertilizerTypeResponse>>()
     val types: LiveData<NetworkResult<FertilizerTypeResponse>> = _types
 
+    private val _plants = MutableLiveData<NetworkResult<FertilizerPlantResponse>>()
+    val plants: LiveData<NetworkResult<FertilizerPlantResponse>> = _plants
+
+
     suspend fun getTypes() {
         _types.value = NetworkResult.Loading
         try {
@@ -28,6 +33,20 @@ class FertilizerRepository(
             }
         } catch (e: Exception) {
             _types.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun getPlants() {
+        _plants.value = NetworkResult.Loading
+        try {
+            val result = apiServices.getPlants()
+            if(result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _plants.value = NetworkResult.Success(responseBody)
+            }
+        } catch (e: Exception) {
+            _plants.value = NetworkResult.Error(e.message.toString())
             Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
         }
     }

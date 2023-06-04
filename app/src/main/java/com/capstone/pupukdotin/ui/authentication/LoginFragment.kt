@@ -2,13 +2,10 @@ package com.capstone.pupukdotin.ui.authentication
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.capstone.pupukdotin.MainActivity
 import com.capstone.pupukdotin.data.local.pref.UserModel
@@ -16,21 +13,13 @@ import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.payload.LoginPayload
 import com.capstone.pupukdotin.databinding.FragmentLoginBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
+import com.capstone.pupukdotin.ui.common.BaseFragment
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
-    private var _binding: FragmentLoginBinding? = null
-    private val binding get() = _binding!!
 
-    private val viewModel by viewModels<LoginViewModel> { ViewModelFactory(requireContext()) }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private val viewModel by viewModels<LoginViewModel> { ViewModelFactory(requireActivity()) }
+    override fun getViewBinding(): FragmentLoginBinding = FragmentLoginBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,7 +53,6 @@ class LoginFragment : Fragment() {
                     MainActivity.start(requireContext())
                     activity?.finish()
                 }
-
                 is NetworkResult.Loading -> {
                     showLoading(true)
                 }
@@ -83,11 +71,6 @@ class LoginFragment : Fragment() {
     private fun showLoading(value: Boolean) {
         binding.loginButton.isInvisible = value
         binding.pbLoadingScreen.isVisible = value
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {

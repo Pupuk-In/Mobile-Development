@@ -1,5 +1,6 @@
 package com.capstone.pupukdotin.data.remote.network
 
+import android.util.Log
 import com.capstone.pupukdotin.utils.Constant
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -26,6 +27,7 @@ object ApiConfig {
             if(request.header("No-Authentication") == null) {
                 if(token.isNotEmpty()) {
                     val finalToken = "Bearer $token"
+                    Log.d("ini_log_token", finalToken)
                     request = request.newBuilder()
                         .addHeader(Constant.AUTH_HEADER, finalToken)
                         .build()
