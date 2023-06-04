@@ -15,6 +15,17 @@
         android:theme="@style/Theme.PupukInMobile"
         tools:targetApi="31">
         <activity
+            android:name=".ui.search.SearchResultActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.authentication.AuthenticationActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.detail.DetailItemActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".ui.store.EditStoreProfileActivity"
             android:exported="false" />
         <activity
@@ -23,16 +34,6 @@
         <activity
             android:name=".ui.profile.LihatProfileActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.detail.DetailItemActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.authentication.RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.authentication.LoginActivity"
-            android:exported="true"
-            android:launchMode="singleTop" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

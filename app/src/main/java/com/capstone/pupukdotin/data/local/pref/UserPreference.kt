@@ -25,7 +25,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[AUTH_KEY] = user.tokenAuth
             preferences[STATE_KEY] = user.isLogin
         }
-        ApiConfig.setToken(user.tokenAuth)
+        setToken(user.tokenAuth)
     }
 
     suspend fun logout() {

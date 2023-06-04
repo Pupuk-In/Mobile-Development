@@ -9,7 +9,9 @@ import com.capstone.pupukdotin.data.remote.network.ApiServices
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.payload.LoginPayload
 import com.capstone.pupukdotin.data.remote.payload.RegisterPayload
+import com.capstone.pupukdotin.data.remote.response.AuthenticationCheckResponse
 import com.capstone.pupukdotin.data.remote.response.BasicResponse
+import com.capstone.pupukdotin.data.remote.response.DetailProfileResponse
 import com.capstone.pupukdotin.data.remote.response.LoginResponse
 import com.capstone.pupukdotin.data.remote.response.RegisterResponse
 import com.google.gson.Gson
@@ -27,6 +29,19 @@ class AuthenticationRepository(
     private val _register = MutableLiveData<NetworkResult<RegisterResponse>>()
     val register: LiveData<NetworkResult<RegisterResponse>>
         get() = _register
+
+    private val _authCheck = MutableLiveData<NetworkResult<AuthenticationCheckResponse>>()
+    val authCheck: LiveData<NetworkResult<AuthenticationCheckResponse>>
+        get() = _authCheck
+
+    private val _profile = MutableLiveData<NetworkResult<DetailProfileResponse>>()
+    val profile: LiveData<NetworkResult<DetailProfileResponse>>
+        get() = _profile
+
+
+    private val _logout = MutableLiveData<NetworkResult<BasicResponse>>()
+    val logout: LiveData<NetworkResult<BasicResponse>>
+        get() = _logout
 
     suspend fun login(payload: LoginPayload) {
         _login.value = NetworkResult.Loading
@@ -69,7 +84,7 @@ class AuthenticationRepository(
                 if (responseBody != null) {
                     val mapper =
                         Gson().fromJson(responseBody.string(), RegisterResponse::class.java)
-                    _register.value = NetworkResult.Error(mapper)
+                    _register.value = NetworkResult.Error(mapper.message)
                     Log.e("ini_log_message", "onFailure: ${mapper.message}")
                 } else {
                     _register.value = NetworkResult.Error(result.message())
@@ -87,6 +102,83 @@ class AuthenticationRepository(
     }
 
     fun getUser(): Flow<UserModel> = userPreference.getUser()
+
+    suspend fun authCheck() {
+        _authCheck.value = NetworkResult.Loading
+        try {
+            val result = apiServices.authCheck()
+            if (result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) {
+                    _authCheck.value = NetworkResult.Success(responseBody)
+                }
+            } else {
+                _authCheck.value = NetworkResult.Error(result.message())
+                Log.e("ini_log_nullMessage", "onFailure: ${result.message()}")
+            }
+        } catch (e: Exception) {
+            _authCheck.value = NetworkResult.Error(e.message.toString())
+            Log.e("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun getProfile() {
+        _profile.value = NetworkResult.Loading
+        try {
+            val result = apiServices.getDetailProfile()
+            if (result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) {
+                    _profile.value = NetworkResult.Success(responseBody)
+                }
+            } else {
+                val responseBody = result.errorBody()
+                if (responseBody != null) {
+                    val mapper =
+                        Gson().fromJson(responseBody.string(), BasicResponse::class.java)
+                    _profile.value = NetworkResult.Error(mapper.message)
+                    Log.e("ini_log_message", "onFailure: ${mapper.message}")
+                } else {
+                    _profile.value = NetworkResult.Error(result.message())
+                    Log.e("ini_log_nullMessage", "onFailure: ${result.message()}")
+                }
+            }
+        } catch (e: Exception) {
+            _profile.value = NetworkResult.Error(e.message.toString())
+            Log.e("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun logout() {
+        _logout.value = NetworkResult.Loading
+        try {
+            val result = apiServices.authLogout()
+            if (result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) {
+                    _logout.value = NetworkResult.Success(responseBody)
+                }
+            } else {
+                val responseBody = result.errorBody()
+                if (responseBody != null) {
+                    val mapper =
+                        Gson().fromJson(responseBody.string(), BasicResponse::class.java)
+                    _logout.value = NetworkResult.Error(mapper.message)
+                    Log.e("ini_log_message", "onFailure: ${mapper.message}")
+                } else {
+                    _logout.value = NetworkResult.Error(result.message())
+                    Log.e("ini_log_nullMessage", "onFailure: ${result.message()}")
+                }
+            }
+        } catch (e: Exception) {
+            _logout.value = NetworkResult.Error(e.message.toString())
+            Log.e("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun logoutUser() {
+        userPreference.logout()
+    }
 
 
     companion object {

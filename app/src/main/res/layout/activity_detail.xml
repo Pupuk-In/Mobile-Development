@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
+                android:text="Koka NPK - Pupuk Khusus Kopi dan Kakao"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -47,9 +48,8 @@
                 android:layout_height="300dp"
                 android:contentDescription="Gambar Produk"
                 android:scaleType="centerCrop"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="0dp"
-                tools:src="@drawable/placeholder" />
+                android:src="@drawable/contoh_gambar_item"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_product_price"
@@ -58,6 +58,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/black"
+                android:text="Rp18.000"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_product_title"
@@ -79,13 +80,14 @@
                     android:layout_height="18dp"
                     android:importantForAccessibility="no"
                     android:src="@drawable/baseline_star_24"
-                    app:tint="@color/green" />
+                    app:tint="@color/green_13C193" />
 
                 <TextView
                     android:id="@+id/tv_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:text="4.5"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     tools:text="4.5" />
@@ -108,6 +110,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/black"
+                android:text="Terjual 18"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_product_rating"
@@ -119,12 +122,12 @@
                 android:layout_height="30dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/baseline_favorite_border_24"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/tv_product_sold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@id/ll_product_rating"
-                app:layout_constraintTop_toTopOf="@id/ll_product_rating" />
+                app:layout_constraintTop_toTopOf="@id/ll_product_rating"
+                app:tint="@color/black" />
 
             <View
                 android:id="@+id/wv_breakline"
@@ -146,7 +149,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/wv_breakline"
-                tools:text="Deskripsi Product" />
+                tools:text="Deskripsi Produk" />
 
             <TextView
                 android:id="@+id/tv_product_description"
@@ -158,11 +161,12 @@
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/black"
                 android:textSize="14sp"
+                android:text="Pupuk ini baik untuk kopi dan kakao. Berat bersih 50 Kg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_description"
                 tools:targetApi="o"
-                tools:text="Pupuk ini baik untuk kopi \n\n\n\ndan kakao. Berat bersih 50 Kg \nxixixi" />
+                tools:text="Pupuk ini baik untuk kopi dan kakao. Berat bersih 50 Kg" />
 
             <View
                 android:id="@+id/wv_breakline_2"
@@ -178,6 +182,7 @@
                 android:layout_height="60dp"
                 android:layout_marginVertical="24dp"
                 android:layout_marginStart="24dp"
+                android:src="@drawable/placeholder"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/wv_breakline_2"
@@ -189,6 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:textColor="@color/black"
+                android:text="VigorinStore"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/iv_store"
                 app:layout_constraintTop_toTopOf="@id/iv_store"
@@ -200,6 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:ellipsize="end"
+                android:text="Kec. Cilandak, Kota Jakarta Selatan"
                 android:justificationMode="inter_word"
                 android:lineSpacingMultiplier="1.2"
                 android:maxLines="1"
@@ -226,13 +233,14 @@
                     android:layout_height="18dp"
                     android:importantForAccessibility="no"
                     android:src="@drawable/baseline_star_24"
-                    app:tint="@color/green" />
+                    app:tint="@color/green_13C193" />
 
                 <TextView
                     android:id="@+id/tv_store_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:text="4.5"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     tools:text="4.5" />
@@ -266,6 +274,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ll_add_remove_stock"
             app:layout_constraintHorizontal_bias="0.5"
+            android:text="Stok : 21"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -285,8 +294,8 @@
 
             <ImageView
                 android:id="@+id/subtract_stock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/remove_stock" />
 
             <EditText
@@ -296,7 +305,7 @@
                 android:layout_marginHorizontal="8dp"
                 android:gravity="center"
                 android:inputType="number"
-                android:text="0"
+                android:text="1"
                 android:maxLength="3"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
@@ -305,8 +314,8 @@
 
             <ImageView
                 android:id="@+id/add_stock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/add_stock" />
         </LinearLayout>
 
