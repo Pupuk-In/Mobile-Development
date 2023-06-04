@@ -1,89 +1,110 @@
 package com.capstone.pupukdotin.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.capstone.pupukdotin.R
-import com.capstone.pupukdotin.ui.adapter.TestMenuBesarAdapter
-import com.capstone.pupukdotin.ui.adapter.TestMenuKecilAdapter
+import com.capstone.pupukdotin.data.remote.network.NetworkResult
+import com.capstone.pupukdotin.data.remote.response.FertilizerPlantResponse
+import com.capstone.pupukdotin.data.remote.response.FertilizerTypeResponse
+import com.capstone.pupukdotin.databinding.FragmentHomeBinding
+import com.capstone.pupukdotin.ui.ViewModelFactory
+import com.capstone.pupukdotin.ui.adapter.PlantFertilizerAdapter
+import com.capstone.pupukdotin.ui.adapter.TypeFertilizerAdapter
+import com.capstone.pupukdotin.ui.common.BaseFragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class HomeFragment : Fragment() {
+    private lateinit var typeAdapter: TypeFertilizerAdapter
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: TestMenuKecilAdapter
+    private lateinit var plantAdapter: PlantFertilizerAdapter
 
-    private lateinit var adapter2: TestMenuBesarAdapter
-
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+    private val viewModel by viewModels<HomeViewModel> { ViewModelFactory(requireContext()) }
+    override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupView()
+        setupViewModel()
+        setupAction()
+    }
 
-        recyclerView = view.findViewById(R.id.rv_jenis_pupuk)
-        adapter = TestMenuKecilAdapter()
+    private fun setupView() {
+        viewModel.getTypes()
+        viewModel.getPlants()
+    }
 
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
+    private fun setupAction() {
+//        TODO("Not yet implemented")
+    }
 
-        recyclerView = view.findViewById(R.id.rv_jenis_tanaman)
-        adapter2 = TestMenuBesarAdapter()
+    private fun setupViewModel() {
+        viewModel.types.observe(viewLifecycleOwner) { result ->
+            when(result) {
+                is NetworkResult.Success -> {
+                    showLoading(false)
+                    setTypesAdapter(result.data)
+                }
 
-        val layoutManager2 = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.layoutManager = layoutManager2
-        recyclerView.adapter = adapter2
+                is NetworkResult.Loading -> {
+                    showLoading(true)
+                }
 
+                is NetworkResult.Error -> {
+                    val errorResult = result.error
+                    showLoading(false)
+                    Toast.makeText(requireContext(), errorResult.toString(), Toast.LENGTH_SHORT).show()
+                    Log.d("ini_log_login", errorResult.toString())
+                }
+            }
+        }
+
+
+        viewModel.plants.observe(viewLifecycleOwner) { result ->
+            when(result) {
+                is NetworkResult.Success -> {
+                    showLoading(false)
+                    setPlantAdapter(result.data)
+                }
+
+                is NetworkResult.Loading -> {
+                    showLoading(true)
+                }
+
+                is NetworkResult.Error -> {
+                    val errorResult = result.error
+                    showLoading(false)
+                    Toast.makeText(requireContext(), errorResult.toString(), Toast.LENGTH_SHORT).show()
+//                    showToast(errorResult.toString())
+                    Log.d("ini_log_login", errorResult.toString())
+                }
+            }
+        }
+    }
+
+    private fun showLoading(value: Boolean) {
+        binding.apply {
+            pbLoadingScreen.isVisible = value
+            nsvContent.isVisible = !value
+        }
+    }
+
+    private fun setTypesAdapter(types: FertilizerTypeResponse) {
+        typeAdapter = TypeFertilizerAdapter(types.type)
+        binding.rvJenisPupuk.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = typeAdapter
+        }
+    }
+
+    private fun setPlantAdapter(plants: FertilizerPlantResponse) {
+        plantAdapter = PlantFertilizerAdapter(plants.plant)
+        binding.rvJenisTanaman.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = plantAdapter
+        }
     }
 }
