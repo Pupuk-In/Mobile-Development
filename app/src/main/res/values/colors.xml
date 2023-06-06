@@ -15,4 +15,10 @@
 
     <color name="grey_D9D9D9">#D9D9D9</color>
     <color name="green_13C193">#13C193</color>
+    <color name="grey_BBBBBB">#BBBBBB</color>
+    <color name="grey_9B9B9B">#9B9B9B</color>
+    <color name="black_1D232E">#1D232E</color>
+
+    <color name="green_154D3E">#154D3E</color>
+    <color name="red_B00020">#B00020</color>
 </resources>
