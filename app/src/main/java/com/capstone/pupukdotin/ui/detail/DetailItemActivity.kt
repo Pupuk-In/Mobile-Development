@@ -8,11 +8,16 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
+import com.capstone.pupukdotin.data.fakesource.FakeDataSource
+import com.capstone.pupukdotin.data.fakesource.FakeDetailProduct
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.response.DetailItemResponse
 import com.capstone.pupukdotin.databinding.ActivityDetailBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
+import com.capstone.pupukdotin.ui.adapter.PlantSmallAdapter
 import com.capstone.pupukdotin.ui.common.BaseActivity
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
 
 class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
 
@@ -27,14 +32,24 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.edStockCount.setText(itemCount.toString())
+        binding.topBar.tvTitleBar.text = getString(R.string.detail_produk)
 
+        binding.edStockCount.setText(itemCount.toString())
+        binding.rvListPlant.apply {
+            adapter = PlantSmallAdapter(listOf())
+            layoutManager = FlexboxLayoutManager(this@DetailItemActivity, FlexDirection.ROW)
+        }
+
+        binding.rvListPlantPart.apply {
+            adapter = PlantSmallAdapter(listOf())
+            layoutManager = FlexboxLayoutManager(this@DetailItemActivity, FlexDirection.ROW)
+        }
         setupAction()
         setupViewModel()
     }
 
     private fun setupAction() {
-        viewModel.getDetailItem(idItem)
+        setupFakeView(FakeDataSource.getFakeDetailProduct())
         
         binding.addStock.setOnClickListener {
             itemCount++
@@ -105,6 +120,36 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
             }
         } else {
             // TODO("Not yet implemented")
+        }
+    }
+
+    private fun setupFakeView(data: FakeDetailProduct) {
+        with(binding) {
+            Glide.with(baseContext)
+                .load(data.image)
+                .placeholder(R.drawable.placeholder)
+                .into(ivProductImage)
+
+            tvProductTitle.text = data.name
+            tvProductPrice.text = getString(R.string.price, data.price)
+            tvRating.text = data.rating
+            tvProductSold.text =
+                getString(R.string.product_sold, data.sold)
+            tvProductDescription.text =
+                data.description
+
+            tvStoreName.text = data.store.name
+            tvStoreAddress.text = data.store.alamat
+            tvStoreRating.text = data.store.rating
+
+            rvListPlant.adapter = PlantSmallAdapter(data.plant)
+            rvListPlantPart.adapter = PlantSmallAdapter(data.plantFor)
+
+            Glide.with(baseContext)
+                .load(data.store.image)
+                .placeholder(R.drawable.placeholder)
+                .into(ivStore)
+            tvProductStock.text = getString(R.string.product_stock, data.sold)
         }
     }
 

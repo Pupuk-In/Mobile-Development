@@ -81,4 +81,7 @@ dependencies {
 
     //Coordinator Layout
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+
+    //FlexBox
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
 }
