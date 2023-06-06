@@ -14,4 +14,17 @@
         <item name="boxCornerRadiusTopEnd">8dp</item>
         <item name="errorIconDrawable">@null</item>
     </style>
+
+    <style name="TextBold">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:letterSpacing">0.0125</item>
+    </style>
+    <style name="TextMedium">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:letterSpacing">0.0125</item>
+    </style>
+    <style name="TextRegular">
+        <item name="fontFamily">@font/inter</item>
+        <item name="android:letterSpacing">0.0125</item>
+    </style>
 </resources>
