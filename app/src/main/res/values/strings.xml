@@ -79,4 +79,6 @@
     <string name="gambar_produk">Gambar Produk</string>
     <string name="product_for">Diperuntukan bagi</string>
     <string name="detail_produk">Detail Produk</string>
+    <string name="store_about">Tentang Toko</string>
+    <string name="product_list">Daftar Produk</string>
 </resources>

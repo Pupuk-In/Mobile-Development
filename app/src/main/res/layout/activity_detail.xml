@@ -216,12 +216,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:minHeight="36dp"
                 android:orientation="horizontal"
                 app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_plant"
                 app:layout_constraintTop_toTopOf="@id/tv_plant"
-                tools:itemCount="15"
+                tools:itemCount="0"
                 tools:listitem="@layout/item_plant" />
 
             <TextView
@@ -243,6 +244,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:orientation="horizontal"
+                android:minHeight="36dp"
                 app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_plant_part"
