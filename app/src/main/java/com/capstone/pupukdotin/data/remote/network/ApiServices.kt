@@ -10,12 +10,14 @@ import com.capstone.pupukdotin.data.remote.response.FertilizerPlantResponse
 import com.capstone.pupukdotin.data.remote.response.FertilizerTypeResponse
 import com.capstone.pupukdotin.data.remote.response.LoginResponse
 import com.capstone.pupukdotin.data.remote.response.RegisterResponse
+import com.capstone.pupukdotin.data.remote.response.SearchResultResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiServices {
 
@@ -44,6 +46,12 @@ interface ApiServices {
     @Headers("No-Authentication: true")
     @GET("/api/home/plants")
     suspend fun getPlants() : Response<FertilizerPlantResponse>
+
+    @Headers("No-Authentication: true")
+    @GET("/api/search/items")
+    suspend fun getSearchResult(
+        @Query("filter[name]") name: String
+    ) : Response<SearchResultResponse>
 
     @GET("/api/index")
     suspend fun authCheck(): Response<AuthenticationCheckResponse>

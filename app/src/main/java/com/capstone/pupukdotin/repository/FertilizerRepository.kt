@@ -8,6 +8,7 @@ import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.response.DetailItemResponse
 import com.capstone.pupukdotin.data.remote.response.FertilizerPlantResponse
 import com.capstone.pupukdotin.data.remote.response.FertilizerTypeResponse
+import com.capstone.pupukdotin.data.remote.response.SearchResultResponse
 
 class FertilizerRepository(
     private val apiServices: ApiServices
@@ -21,6 +22,9 @@ class FertilizerRepository(
 
     private val _plants = MutableLiveData<NetworkResult<FertilizerPlantResponse>>()
     val plants: LiveData<NetworkResult<FertilizerPlantResponse>> = _plants
+
+    private val _searchItem = MutableLiveData<NetworkResult<SearchResultResponse>>()
+    val searchItem: LiveData<NetworkResult<SearchResultResponse>> = _searchItem
 
 
     suspend fun getTypes() {
@@ -61,6 +65,20 @@ class FertilizerRepository(
             }
         } catch (e: Exception) {
             _detailItem.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun searchItem(name: String) {
+        _searchItem.value = NetworkResult.Loading
+        try {
+            val result = apiServices.getSearchResult(name)
+            if(result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _searchItem.value = NetworkResult.Success(responseBody)
+            }
+        } catch (e: Exception) {
+            _searchItem.value = NetworkResult.Error(e.message.toString())
             Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
         }
     }
