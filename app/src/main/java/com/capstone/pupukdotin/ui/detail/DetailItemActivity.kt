@@ -101,7 +101,7 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
                         .into(ivProductImage)
 
                     tvProductTitle.text = data.item?.name ?: "Tidak Ada Nama Produk"
-                    tvProductPrice.text = getString(R.string.price, data.item?.price)
+                    tvProductPrice.text = getString(R.string.price_format, data.item?.price)
                     tvRating.text = data.item?.rating ?: "0.0"
                     tvProductSold.text =
                         getString(R.string.product_sold, data.item?.sold ?: 0)
@@ -153,7 +153,7 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
                 .into(ivProductImage)
 
             tvProductTitle.text = data.name
-            tvProductPrice.text = getString(R.string.price, data.price)
+            tvProductPrice.text = getString(R.string.price_format, data.price)
             tvRating.text = data.rating
             tvProductSold.text =
                 getString(R.string.product_sold, data.sold)
