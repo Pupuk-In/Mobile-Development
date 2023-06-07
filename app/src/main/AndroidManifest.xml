@@ -38,8 +38,11 @@
             android:name=".ui.profile.UbahProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.wishlist.WishlistActivity"
+            android:name=".ui.addproduct.AddProductActivity"
             android:exported="false"/>
+        <activity
+            android:name=".ui.wishlist.WishlistActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.store.DetailStoreActivity"
             android:exported="false" />
