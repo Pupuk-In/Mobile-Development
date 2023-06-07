@@ -56,6 +56,13 @@
     <string name="order">Pesan</string>
     <string name="chat_button">tombol chat</string>
     <string name="banner_descripption">Banner</string>
+    <string name="logo_aplikasi">Logo Aplikasi</string>
+    <string name="kata_sandi">Kata Sandi</string>
+    <string name="masuk">Masuk</string>
+    <string name="daftar">Daftar</string>
+    <string name="authtab">AuthTab</string>
+    <string name="pupuk_untuk">Pupuk Untuk</string>
+    <string name="jagung">Jagung</string>
     <string name="ubah_profil">Ubah Profil</string>
     <string name="nama_lengkap">Nama Lengkap</string>
     <string name="tanggal_lahir">Tanggal Lahir</string>
@@ -68,4 +75,6 @@
     <string name="ubah_profil_store">Ubah Profil</string>
     <string name="unggah_foto">+ Unggah Foto</string>
     <string name="selesai">Selesai</string>
+    <string name="joined_since">Bergabung Sejak %s</string>
+    <string name="gambar_produk">Gambar Produk</string>
 </resources>
