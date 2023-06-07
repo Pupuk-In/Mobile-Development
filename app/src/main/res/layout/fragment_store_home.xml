@@ -6,12 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.store.StoreHomeFragment">
 
+    <ProgressBar
+        android:id="@+id/store_home_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/button_ubah_profil_store"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/button_grey_outline"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,120 +40,161 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/grey" />
 
-        <View
-            android:id="@+id/line_24"
-            android:layout_width="1dp"
-            android:layout_height="20dp"
-            android:layout_alignParentTop="true"
-
-            android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
+            android:fontFamily="@font/inter_bold"
             android:text="@string/ubah_profil"
-            android:textColor="@color/black"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/line_24"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_store_picture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="58dp"
-        android:src="@drawable/placeholder"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_ubah_profil_store">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/nama_store"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_store_picture"
-        app:layout_constraintStart_toEndOf="@+id/profile_store_picture"
-        app:layout_constraintTop_toTopOf="@+id/profile_store_picture" />
-
-    <TextView
-        android:id="@+id/deskripsi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/deskripsi_toko"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_store_picture" />
-
-    <TextView
-        android:id="@+id/deskripsi_store"
-        android:layout_width="325dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="10dp"
-        android:text="Kami adalah sebuah team yang pada awalnya sekedar tertarik dengan bidang pertanian. Ketertarikan itu akhirnya membawa kami lebih lekat hingga menekuni usaha pertanian on-farm, serta terlibat pada program-program pendampingan pertanian baik yang diselenggarakan oleh pemerintah maupun institusi swasta."
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deskripsi" />
-
-    <TextView
-        android:id="@+id/alamat_store"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/alamat"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deskripsi_store" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/alamatEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintEnd_toEndOf="@+id/button_ubah_profil_store"
-        app:layout_constraintStart_toStartOf="@+id/alamat_store"
-        app:layout_constraintTop_toBottomOf="@+id/alamat_store">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_alamat_store"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:inputType="textLongMessage"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/pilih_alamat_dari_peta"
-        android:textColor="@color/main_green"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alamatEditTextLayout" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_store_picture"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/nama_store"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_store_picture"
+                app:layout_constraintStart_toEndOf="@+id/profile_store_picture"
+                app:layout_constraintTop_toTopOf="@+id/profile_store_picture" />
+
+            <TextView
+                android:id="@+id/deskripsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/deskripsi_toko"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_store_picture" />
+
+            <TextView
+                android:id="@+id/deskripsi_store"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/inter"
+                android:text="Kami adalah sebuah team yang pada awalnya sekedar tertarik dengan bidang pertanian. Ketertarikan itu akhirnya membawa kami lebih lekat hingga menekuni usaha pertanian on-farm, serta terlibat pada program-program pendampingan pertanian baik yang diselenggarakan oleh pemerintah maupun institusi swasta."
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/deskripsi"
+                app:layout_constraintTop_toBottomOf="@+id/deskripsi" />
+
+            <TextView
+                android:id="@+id/alamat_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/alamat"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/deskripsi"
+                app:layout_constraintTop_toBottomOf="@+id/deskripsi_store" />
+
+            <TextView
+                android:id="@+id/detail_alamat_store"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/inter"
+                android:text="Kec. Cilandak, Kota Jakarta Selatan"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/deskripsi"
+                app:layout_constraintTop_toBottomOf="@+id/alamat_store" />
+
+
+            <TextView
+                android:id="@+id/map_alamat_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/alamat_pada_peta"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/deskripsi"
+                app:layout_constraintTop_toBottomOf="@+id/detail_alamat_store" />
+
+            <TextView
+                android:id="@+id/map_detail_alamat_store"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/inter"
+                android:text="Kec. Cilandak, Kota Jakarta Selatan"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/deskripsi"
+                app:layout_constraintTop_toBottomOf="@+id/map_alamat_store" />
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/lihat_alamat_dari_peta"
+                android:textColor="@color/green_13C193"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/deskripsi"
+                app:layout_constraintTop_toBottomOf="@+id/map_detail_alamat_store" />
+
+            <fragment
+                android:id="@+id/home_store_map"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="8dp"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                app:layout_constraintEnd_toEndOf="@+id/deskripsi_store"
+                app:layout_constraintStart_toStartOf="@+id/deskripsi"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

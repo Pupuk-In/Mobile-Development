@@ -12,7 +12,12 @@
         android:icon="@drawable/baseline_product_24"/>
 
     <item
+        android:id="@+id/storePesananFragment"
+        android:title="@string/pesanan"
+        android:icon="@drawable/baseline_bookmarks_24"/>
+
+    <item
         android:id="@+id/storeSettingsFragment"
-        android:title="@string/pengaturan"
-        android:icon="@drawable/baseline_settings_24"/>
+        android:title="@string/store_profile"
+        android:icon="@drawable/baseline_account_circle_24"/>
 </menu>
