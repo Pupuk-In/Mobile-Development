@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.UbahProfileActivity">
+
+    <ProgressBar
+        android:id="@+id/lihat_profile_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <include
+        android:id="@+id/toolbar_ubah_profile"
+        layout="@layout/toolbar_ubah_profil"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_ubah_profile">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_detail_picture"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/nama_lengkap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/nama_lengkap"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_detail_picture" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nama_lengkap_textInputLayout"
+                style="@style/CustomEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/nama_lengkap">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nama_lengkap_textInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/inter"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tanggal_lahir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/tanggal_lahir"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/nama_lengkap_textInputLayout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tanggal_lahir_textInputLayout"
+                style="@style/CustomEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tanggal_lahir">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tanggal_lahir_textInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/inter"
+                    android:inputType="datetime"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/nomor_telepon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/nomor_telepon"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tanggal_lahir_textInputLayout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nomor_telepon_textInputLayout"
+                style="@style/CustomEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/nomor_telepon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nomor_telepon_textInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/inter"
+                    android:inputType="phone|number"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/alamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/alamat"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/nomor_telepon_textInputLayout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/alamat_textInputLayout"
+                style="@style/CustomEditText"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/alamat">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/alamat_textInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:paddingVertical="10dp"
+                    android:fontFamily="@font/inter"
+                    android:inputType="textMultiLine"
+                    android:gravity="top"
+                    android:scrollbars="vertical"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollHorizontally="false"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/alamat_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/alamat_dalam_peta"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/alamat_textInputLayout" />
+
+            <fragment
+                android:id="@+id/ubah_profile_map"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/alamat_map"
+                app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi_button" />
+
+            <TextView
+                android:id="@+id/pilih_lokasi_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/pilih_lokasi"
+                android:textColor="@color/green_13C193"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/alamat_map" />
+
+            <Button
+                android:id="@+id/button_simpan_edit_profil"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/inter_bold"
+                android:paddingVertical="12dp"
+                android:text="@string/simpan"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/nama_lengkap_textInputLayout"
+                app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/ubah_profile_map" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

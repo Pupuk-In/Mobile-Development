@@ -6,14 +6,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.databinding.ActivityStoreBinding
+import com.capstone.pupukdotin.ui.common.BaseActivity
 
-class StoreActivity : AppCompatActivity() {
+class StoreActivity : BaseActivity<ActivityStoreBinding>() {
+    override fun getViewBinding(): ActivityStoreBinding = ActivityStoreBinding.inflate(layoutInflater)
 
-    private lateinit var binding: ActivityStoreBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityStoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navHostFragment =
