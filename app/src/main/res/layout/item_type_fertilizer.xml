@@ -27,5 +27,6 @@
         android:minHeight="16dp"
         android:maxLines="1"
         android:textAlignment="center"
-        tools:text="Ureaddd" />
+        tools:text="Ureaddd"
+        />
 </LinearLayout>

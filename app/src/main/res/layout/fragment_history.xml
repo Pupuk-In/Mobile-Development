@@ -11,7 +11,7 @@
         android:id="@+id/HistoryConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/dropdown_background"
+        android:background="@drawable/grey_outline_background"
         android:elevation="20dp"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"

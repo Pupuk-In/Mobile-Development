@@ -1,14 +1,12 @@
-package com.capstone.pupukdotin.ui.store
+package com.capstone.pupukdotin.ui.profile
 
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.core.app.ActivityCompat
 import com.capstone.pupukdotin.R
-import com.capstone.pupukdotin.databinding.ActivityEditStoreProfileBinding
-import com.capstone.pupukdotin.databinding.ActivityLihatProfileBinding
+import com.capstone.pupukdotin.databinding.ActivityUbahProfileBinding
 import com.capstone.pupukdotin.ui.common.BaseActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -19,13 +17,13 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class EditStoreProfileActivity : BaseActivity<ActivityEditStoreProfileBinding>(),
-    OnMapReadyCallback {
+class UbahProfileActivity : BaseActivity<ActivityUbahProfileBinding>(), OnMapReadyCallback {
+
+    override fun getViewBinding(): ActivityUbahProfileBinding = ActivityUbahProfileBinding.inflate(layoutInflater)
 
     private lateinit var currentLocation: Location
     private lateinit var fusedLocationProvider: FusedLocationProviderClient
     private val permissionCode = 101
-    override fun getViewBinding(): ActivityEditStoreProfileBinding = ActivityEditStoreProfileBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +33,6 @@ class EditStoreProfileActivity : BaseActivity<ActivityEditStoreProfileBinding>()
 
         fusedLocationProvider = LocationServices.getFusedLocationProviderClient(this)
         fetchLocation()
-
     }
 
     //atur map disini
@@ -54,23 +51,13 @@ class EditStoreProfileActivity : BaseActivity<ActivityEditStoreProfileBinding>()
             if (location != null){
                 currentLocation = location
 
-                val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.ubah_profile_store_map) as
+                val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.ubah_profile_map) as
                         SupportMapFragment?)!!
                 supportMapFragment.getMapAsync(this)
             }
         }
     }
-    override fun onMapReady(p0: GoogleMap) {
-        val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
-        val markerOptions = MarkerOptions().position(latLng).title("Your Location")
-        p0.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-        p0.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5f))
-        p0.addMarker(markerOptions)
-        p0.uiSettings.isZoomControlsEnabled = true
-        p0.uiSettings.isIndoorLevelPickerEnabled = true
-        p0.uiSettings.isCompassEnabled = true
-        p0.uiSettings.isMapToolbarEnabled = true
-    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -86,9 +73,23 @@ class EditStoreProfileActivity : BaseActivity<ActivityEditStoreProfileBinding>()
         }
     }
 
+    override fun onMapReady(p0: GoogleMap) {
+        val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
+        val markerOptions = MarkerOptions().position(latLng).title("Your Location")
+        p0.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+        p0.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5f))
+        p0.addMarker(markerOptions)
+        p0.uiSettings.isZoomControlsEnabled = true
+        p0.uiSettings.isIndoorLevelPickerEnabled = true
+        p0.uiSettings.isCompassEnabled = true
+        p0.uiSettings.isMapToolbarEnabled = true
+    }
+
     private fun setUpAction() {
-        binding.toolbarUbahProfileToko.btnBack.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+        binding.apply {
+            toolbarUbahProfile.btnBack.setOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
         }
     }
 }

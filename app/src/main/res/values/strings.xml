@@ -36,7 +36,7 @@
     <string name="bergabung_sejak">Bergabung Sejak</string>
     <string name="lihat_profile">Lihat Profile</string>
     <string name="lihat_toko">Pindah ke Toko</string>
-    <string name="pengaturan">Pengaturan</string>
+    <string name="store_profile">Profile</string>
     <string name="keluar">Keluar</string>
     <string name="product_name">Nama Produk</string>
     <string name="product_store">Toko Produk</string>
@@ -70,11 +70,24 @@
     <string name="alamat_dalam_peta">Alamat dalam Peta</string>
     <string name="produk">Produk</string>
     <string name="nama_store">Nama Store</string>
-    <string name="deskripsi_toko">Deskripsi</string>
-    <string name="pilih_alamat_dari_peta">Pilih Alamat dari Peta</string>
-    <string name="ubah_profil_store">Ubah Profil</string>
+    <string name="deskripsi_toko">Tentang Toko</string>
+    <string name="lihat_alamat_dari_peta">Lihat Peta</string>
+    <string name="ubah_profil_store">Ubah Profil Toko</string>
     <string name="unggah_foto">+ Unggah Foto</string>
-    <string name="selesai">Selesai</string>
+    <string name="simpan">Simpan</string>
+    <string name="notification">Notification</string>
+    <string name="wishlist">Wishlist</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pesanan">Pesanan</string>
+    <string name="pengaturan">Pengaturan</string>
+    <string name="alamat_pada_peta">Alamat pada peta</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="pilih_lokasi">Pilih Lokasi</string>
+    <string name="beralih_sebagai_pembeli">Beralih sebagai pembeli</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="ubah_kata_sandi">Ubah kata sandi</string>
     <string name="joined_since">Bergabung Sejak %s</string>
     <string name="gambar_produk">Gambar Produk</string>
+    <string name="title_activity_profile_maps">ProfileMapsActivity</string>
 </resources>
