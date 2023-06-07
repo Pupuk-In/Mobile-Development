@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/checkoutItemCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    android:layout_margin="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/daftar_produk_image_product"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/placeholder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/daftar_produk_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/product_name"
+            android:textColor="@color/green_13C193"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/daftar_produk_image_product"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/productCheckoutPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/harga"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:fontFamily="@font/inter"
+            app:layout_constraintStart_toStartOf="@+id/daftar_produk_Name"
+            app:layout_constraintTop_toBottomOf="@+id/daftar_produk_Name" />
+
+        <ImageView
+            android:id="@+id/iv_star"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginBottom="8dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/baseline_star_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/daftar_produk_Name"
+            app:tint="@color/green_13C193" />
+
+        <TextView
+            android:id="@+id/daftar_produk_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/rating"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_star"
+            app:layout_constraintStart_toEndOf="@+id/iv_star"
+            app:layout_constraintTop_toTopOf="@+id/iv_star" />
+
+        <TextView
+            android:id="@+id/tv_stok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/stok"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/daftar_produk_Name"
+            app:layout_constraintEnd_toStartOf="@+id/daftar_produk_stok"
+            app:layout_constraintTop_toTopOf="@+id/daftar_produk_Name" />
+
+        <TextView
+            android:id="@+id/daftar_produk_stok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="10"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/daftar_produk_Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/daftar_produk_Name" />
+
+        <TextView
+            android:id="@+id/status_daftar_produk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:background="@drawable/green_background"
+            android:fontFamily="@font/inter_bold"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="2dp"
+            android:text="Aktif"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/daftar_produk_stok"
+            app:layout_constraintTop_toBottomOf="@+id/daftar_produk_stok" />
+
+        <TextView
+            android:id="@+id/button_hapus_daftar_produk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/red_background"
+            android:fontFamily="@font/inter_bold"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="2dp"
+            android:text="Hapus"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/daftar_produk_rating"
+            app:layout_constraintEnd_toEndOf="@+id/daftar_produk_stok"
+            app:layout_constraintTop_toTopOf="@+id/daftar_produk_rating" />
+
+        <TextView
+            android:id="@+id/button_ubah_daftar_produk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/green_ade1d3_background"
+            android:fontFamily="@font/inter_bold"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="2dp"
+            android:text="Ubah"
+            android:textColor="@color/green_154D3E"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/daftar_produk_rating"
+            app:layout_constraintEnd_toStartOf="@+id/button_hapus_daftar_produk"
+            app:layout_constraintTop_toTopOf="@+id/daftar_produk_rating" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

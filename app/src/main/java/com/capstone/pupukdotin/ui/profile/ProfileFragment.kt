@@ -14,6 +14,7 @@ import com.capstone.pupukdotin.data.remote.response.Profile
 import com.capstone.pupukdotin.databinding.FragmentProfileBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.authentication.AuthenticationActivity
+import com.capstone.pupukdotin.ui.checkout.CheckOutActivity
 import com.capstone.pupukdotin.ui.common.BaseFragment
 import com.capstone.pupukdotin.ui.store.StoreActivity
 import com.capstone.pupukdotin.utils.convertTime
@@ -101,6 +102,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     private fun setupAction() {
+
         binding.buttonLihatProfil.setOnClickListener {
             val intent = Intent(requireActivity(), LihatProfileActivity::class.java)
             startActivity(intent)
