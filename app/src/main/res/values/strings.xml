@@ -127,4 +127,10 @@
     <string name="rp">Rp</string>
     <string name="save">Simpan</string>
     <string name="add_product">Tambah Produk</string>
+    <string name="order_name">Nama Pesanan</string>
+    <string name="waktu_pemesanan">Waktu Pemesanan</string>
+    <string name="buyer">Pembeli</string>
+    <string name="store">Toko</string>
+    <string name="cancel_order">Batalkan Pemesanan</string>
+    <string name="accept_order">Terima Pesanan</string>
 </resources>

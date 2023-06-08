@@ -63,6 +63,7 @@ class AddProductActivity : BaseActivity<ActivityAddProductBinding>(),
         setupViewModel()
         setupAdapter()
         setupAction()
+
     }
 
     private fun setupViewModel() {
