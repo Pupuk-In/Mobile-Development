@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.payload.items.SearchItemsPayload
-import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
+import com.capstone.pupukdotin.data.remote.response.common.DataItem
 import com.capstone.pupukdotin.databinding.ActivitySearchResultBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.common.BaseActivity
@@ -77,7 +77,7 @@ class SearchResultActivity : BaseActivity<ActivitySearchResultBinding>() {
         }
     }
 
-    private fun setupResultView(item: List<SearchItemsResponse.DataItem>) {
+    private fun setupResultView(item: List<DataItem>) {
         with(binding) {
             tvTextSearch.text = getString(R.string.search_result_format, queryText)
             itemAdapter = ProductItemAdapter(item)

@@ -10,7 +10,6 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
-import com.capstone.pupukdotin.data.model.StoreModel
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.databinding.ActivityDetailBinding
@@ -65,7 +64,7 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
         }
 
         binding.edStockCount.setOnEditorActionListener { v, actionId, _ ->
-            if(actionId == EditorInfo.IME_ACTION_DONE) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 binding.edStockCount.clearFocus()
                 afterEditAction(v)
             }
@@ -75,7 +74,7 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
 
     private fun afterEditAction(v: TextView) {
         val count = v.text.toString().toInt()
-        if(count < stock)
+        if (count < stock)
             viewModel.setItemCount(count, stock)
         else
             viewModel.setItemCount(stock, stock)
@@ -155,14 +154,7 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
                     tvStoreName.setOnClickListener {
                         DetailStoreActivity.start(
                             this@DetailItemActivity,
-                            StoreModel(
-                                id = data.item?.store?.id ?: 0,
-                                name = data.item?.store?.name ?: "",
-                                address = data.item?.store?.address ?: "",
-                                rating = data.item?.store?.rating ?: "0.0",
-                                description = data.item?.store?.description ?: "",
-                                picture = data.item?.store?.picture ?: ""
-                            )
+                            data.item?.storeId ?: 0
                         )
                     }
                 }

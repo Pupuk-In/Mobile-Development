@@ -9,8 +9,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
-import com.capstone.pupukdotin.data.remote.response.FertilizerTypeResponse
 import com.capstone.pupukdotin.data.remote.response.PlantResponse
+import com.capstone.pupukdotin.data.remote.response.TypeResponse
 import com.capstone.pupukdotin.databinding.FragmentHomeBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.adapter.PlantFertilizerAdapter
@@ -103,8 +103,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun setTypesAdapter(types: FertilizerTypeResponse) {
-        typeAdapter = TypeFertilizerAdapter(types.type)
+    private fun setTypesAdapter(types: TypeResponse) {
+        typeAdapter = TypeFertilizerAdapter(types.type ?: emptyList())
         binding.rvJenisPupuk.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = typeAdapter

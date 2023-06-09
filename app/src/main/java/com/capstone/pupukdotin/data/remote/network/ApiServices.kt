@@ -3,15 +3,17 @@ package com.capstone.pupukdotin.data.remote.network
 import com.capstone.pupukdotin.data.remote.payload.LoginPayload
 import com.capstone.pupukdotin.data.remote.payload.RegisterPayload
 import com.capstone.pupukdotin.data.remote.payload.items.SearchItemsPayload
+import com.capstone.pupukdotin.data.remote.payload.store.SearchCatalogPayload
 import com.capstone.pupukdotin.data.remote.response.AuthenticationCheckResponse
 import com.capstone.pupukdotin.data.remote.response.BasicResponse
 import com.capstone.pupukdotin.data.remote.response.DetailProfileResponse
-import com.capstone.pupukdotin.data.remote.response.FertilizerTypeResponse
 import com.capstone.pupukdotin.data.remote.response.LoginResponse
 import com.capstone.pupukdotin.data.remote.response.PlantResponse
 import com.capstone.pupukdotin.data.remote.response.RegisterResponse
+import com.capstone.pupukdotin.data.remote.response.TypeResponse
 import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
+import com.capstone.pupukdotin.data.remote.response.store.StoreDetailResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -41,7 +43,7 @@ interface ApiServices {
 
     @Headers("No-Authentication: true")
     @GET("/api/home/types")
-    suspend fun getTypes() : Response<FertilizerTypeResponse>
+    suspend fun getTypes() : Response<TypeResponse>
 
     @Headers("No-Authentication: true")
     @GET("/api/home/plants")
@@ -52,6 +54,13 @@ interface ApiServices {
     suspend fun getSearchResult(
         @Body payload: SearchItemsPayload
     ) : Response<SearchItemsResponse>
+
+    @Headers("No-Authentication: true")
+    @POST("/api/stores/{id}/catalogs")
+    suspend fun getStoreDetail(
+        @Body payload: SearchCatalogPayload,
+        @Path("id") idStore: Int
+    ) : Response<StoreDetailResponse>
 
     @GET("/api/index")
     suspend fun authCheck(): Response<AuthenticationCheckResponse>

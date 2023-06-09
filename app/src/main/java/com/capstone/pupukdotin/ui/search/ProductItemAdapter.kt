@@ -6,17 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
-import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
+import com.capstone.pupukdotin.data.remote.response.common.DataItem
 import com.capstone.pupukdotin.databinding.ItemProductBinding
 import com.capstone.pupukdotin.ui.detail.DetailItemActivity
 
 class ProductItemAdapter(
-    private val list: List<SearchItemsResponse.DataItem>
+    private val list: List<DataItem>
 ) : RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding: ItemProductBinding = ItemProductBinding.bind(itemView)
-        fun bindItem(item: SearchItemsResponse.DataItem) {
+        fun bindItem(item: DataItem) {
             with(binding) {
                 Glide.with(itemView)
                     .load(item.picture?.get(0)?.picture ?:"")

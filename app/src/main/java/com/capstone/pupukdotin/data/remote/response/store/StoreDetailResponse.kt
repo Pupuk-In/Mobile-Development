@@ -1,18 +1,22 @@
-package com.capstone.pupukdotin.data.remote.response.items
+package com.capstone.pupukdotin.data.remote.response.store
 
 import com.capstone.pupukdotin.data.remote.response.common.DataItem
 import com.capstone.pupukdotin.data.remote.response.common.LinksItem
+import com.capstone.pupukdotin.data.remote.response.common.Store
 import com.google.gson.annotations.SerializedName
 
-data class SearchItemsResponse(
+data class StoreDetailResponse(
 
-	@field:SerializedName("item")
-	val item: Item? = null,
+	@field:SerializedName("catalog")
+	val catalog: Catalog? = null,
+
+	@field:SerializedName("store")
+	val store: Store? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null
 ) {
-	data class Item(
+	data class Catalog(
 
 		@field:SerializedName("per_page")
 		val perPage: Int? = null,
@@ -27,7 +31,7 @@ data class SearchItemsResponse(
 		val nextPageUrl: String? = null,
 
 		@field:SerializedName("prev_page_url")
-		val prevPageUrl: Any? = null,
+		val prevPageUrl: String? = null,
 
 		@field:SerializedName("first_page_url")
 		val firstPageUrl: String? = null,
@@ -45,7 +49,7 @@ data class SearchItemsResponse(
 		val from: Int? = null,
 
 		@field:SerializedName("links")
-		val links: List<LinksItem>? = null,
+		val links: List<LinksItem?>? = null,
 
 		@field:SerializedName("to")
 		val to: Int? = null,
@@ -54,3 +58,23 @@ data class SearchItemsResponse(
 		val currentPage: Int? = null
 	)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

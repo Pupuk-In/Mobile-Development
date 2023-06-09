@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.capstone.pupukdotin.data.remote.network.ApiServices
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.payload.items.SearchItemsPayload
-import com.capstone.pupukdotin.data.remote.response.FertilizerTypeResponse
 import com.capstone.pupukdotin.data.remote.response.PlantResponse
+import com.capstone.pupukdotin.data.remote.response.TypeResponse
 import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
 
@@ -18,8 +18,8 @@ class FertilizerRepository(
     private val _detailItem = MutableLiveData<NetworkResult<DetailItemResponse>>()
     val detailItem: LiveData<NetworkResult<DetailItemResponse>> = _detailItem
 
-    private val _types = MutableLiveData<NetworkResult<FertilizerTypeResponse>>()
-    val types: LiveData<NetworkResult<FertilizerTypeResponse>> = _types
+    private val _types = MutableLiveData<NetworkResult<TypeResponse>>()
+    val types: LiveData<NetworkResult<TypeResponse>> = _types
 
     private val _plants = MutableLiveData<NetworkResult<PlantResponse>>()
     val plants: LiveData<NetworkResult<PlantResponse>> = _plants

@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
-import com.capstone.pupukdotin.data.remote.response.TypeItem
+import com.capstone.pupukdotin.data.remote.response.common.TypeItem
+
 import com.capstone.pupukdotin.databinding.ItemTypeFertilizerBinding
 
 class TypeFertilizerAdapter(
@@ -17,7 +18,6 @@ class TypeFertilizerAdapter(
     interface OnUserItemClick {
         fun onUserItemClick()
     }
-
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemTypeFertilizerBinding.bind(itemView)
