@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
-import com.capstone.pupukdotin.data.remote.response.PlantItem
+import com.capstone.pupukdotin.data.remote.response.PlantResponse
 import com.capstone.pupukdotin.databinding.ItemPlantFertilizerBinding
 
 class PlantFertilizerAdapter(
-    private val plantList: List<PlantItem>,
+    private val plantList: List<PlantResponse.PlantItem>,
     private val listener: OnUserItemClick? = null
 ) : RecyclerView.Adapter<PlantFertilizerAdapter.ViewHolder>() {
 
@@ -20,7 +20,7 @@ class PlantFertilizerAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemPlantFertilizerBinding.bind(itemView)
-        fun bindItem(item: PlantItem) {
+        fun bindItem(item: PlantResponse.PlantItem) {
             with(binding) {
                 Glide.with(itemView)
                     .load(item.picture)

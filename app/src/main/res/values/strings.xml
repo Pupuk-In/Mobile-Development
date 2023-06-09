@@ -133,4 +133,15 @@
     <string name="store">Toko</string>
     <string name="cancel_order">Batalkan Pemesanan</string>
     <string name="accept_order">Terima Pesanan</string>
+    <string name="choose_plant">Pilih Tanaman</string>
+    <string name="detection_result">Hasil Deteksi</string>
+    <string name="error_detection_result">Maaf, sistem belum mampu mendeteksi</string>
+    <string name="upload_another_image">Unggah Gambar Lain</string>
+    <string name="deteksi_keperluan_nutrisi">Deteksi Keperluan Nutrisi</string>
+    <string name="search_result_format">\"%s\"</string>
+    <string name="search_result">Hasil Pencarian</string>
+    <string name="no_product_show">Tidak Ada Produk</string>
+    <string name="add_to_cart">Tambah Ke Keranjang</string>
+    <string name="zero_num">0</string>
+    <string name="stok_format_example">Stok : 1</string>
 </resources>

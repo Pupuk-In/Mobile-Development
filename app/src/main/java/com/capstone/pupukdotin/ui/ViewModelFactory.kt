@@ -10,6 +10,7 @@ import com.capstone.pupukdotin.ui.authentication.RegisterViewModel
 import com.capstone.pupukdotin.ui.detail.DetailItemViewModel
 import com.capstone.pupukdotin.ui.home.HomeViewModel
 import com.capstone.pupukdotin.ui.profile.ProfileViewModel
+import com.capstone.pupukdotin.ui.search.SearchResultViewModel
 
 class ViewModelFactory(private val context: Context) :
     ViewModelProvider.NewInstanceFactory() {
@@ -28,6 +29,8 @@ class ViewModelFactory(private val context: Context) :
             return HomeViewModel(Injection.getFertilizerRepo()) as T
         } else if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
             return ProfileViewModel(Injection.getAuthRepo(context)) as T
+        } else if (modelClass.isAssignableFrom(SearchResultViewModel::class.java)) {
+            return SearchResultViewModel(Injection.getFertilizerRepo()) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

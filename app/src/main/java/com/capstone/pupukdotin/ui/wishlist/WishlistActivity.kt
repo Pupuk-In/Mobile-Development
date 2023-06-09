@@ -39,7 +39,7 @@ class WishlistActivity : BaseActivity<ActivityWishlistBinding>() {
     }
 
     private fun setupAdapter() {
-        itemAdapter = ProductItemAdapter()
+        itemAdapter = ProductItemAdapter(emptyList())
 
         val manager = GridLayoutManager(this, 2)
         binding.rvListProduct.apply {

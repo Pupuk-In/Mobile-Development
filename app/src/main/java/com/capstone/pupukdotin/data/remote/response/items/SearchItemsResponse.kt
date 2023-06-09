@@ -1,8 +1,8 @@
-package com.capstone.pupukdotin.data.remote.response
+package com.capstone.pupukdotin.data.remote.response.items
 
 import com.google.gson.annotations.SerializedName
 
-data class SearchResultResponse(
+data class SearchItemsResponse(
 
 	@field:SerializedName("item")
 	val item: Item? = null,
@@ -49,97 +49,13 @@ data class SearchResultResponse(
 		val longitude: String? = null
 	)
 
-	data class PlantPartItem(
-
-		@field:SerializedName("updated_at")
-		val updatedAt: String? = null,
-
-		@field:SerializedName("name")
-		val name: String? = null,
-
-		@field:SerializedName("created_at")
-		val createdAt: String? = null,
-
-		@field:SerializedName("pivot")
-		val pivot: Pivot? = null,
-
-		@field:SerializedName("id")
-		val id: Int? = null,
-
-		@field:SerializedName("picture")
-		val picture: String? = null
-	)
-
-	data class PlantItem(
-
-		@field:SerializedName("updated_at")
-		val updatedAt: String? = null,
-
-		@field:SerializedName("name")
-		val name: String? = null,
-
-		@field:SerializedName("created_at")
-		val createdAt: String? = null,
-
-		@field:SerializedName("pivot")
-		val pivot: Pivot? = null,
-
-		@field:SerializedName("id")
-		val id: Int? = null,
-
-		@field:SerializedName("picture")
-		val picture: String? = null
-	)
-
-	data class Type(
-
-		@field:SerializedName("updated_at")
-		val updatedAt: String? = null,
-
-		@field:SerializedName("name")
-		val name: String? = null,
-
-		@field:SerializedName("created_at")
-		val createdAt: String? = null,
-
-		@field:SerializedName("id")
-		val id: Int? = null,
-
-		@field:SerializedName("picture")
-		val picture: String? = null
-	)
-
-	data class Pivot(
-
-		@field:SerializedName("plant_id")
-		val plantId: Int? = null,
-
-		@field:SerializedName("item_id")
-		val itemId: Int? = null,
-
-		@field:SerializedName("plant_part_id")
-		val plantPartId: Int? = null
-	)
-
-	data class LinksItem(
-
-		@field:SerializedName("active")
-		val active: Boolean? = null,
-
-		@field:SerializedName("label")
-		val label: String? = null,
-
-		@field:SerializedName("url")
-		val url: Any? = null
-	)
-
 	data class Item(
 
 		@field:SerializedName("per_page")
 		val perPage: Int? = null,
 
 		@field:SerializedName("data")
-		val data: List<DataItem?>? = null,
+		val data: List<DataItem>? = null,
 
 		@field:SerializedName("last_page")
 		val lastPage: Int? = null,
@@ -173,6 +89,36 @@ data class SearchResultResponse(
 
 		@field:SerializedName("current_page")
 		val currentPage: Int? = null
+	)
+
+	data class LinksItem(
+
+		@field:SerializedName("active")
+		val active: Boolean? = null,
+
+		@field:SerializedName("label")
+		val label: String? = null,
+
+		@field:SerializedName("url")
+		val url: Any? = null
+	)
+
+	data class Type(
+
+		@field:SerializedName("updated_at")
+		val updatedAt: String? = null,
+
+		@field:SerializedName("name")
+		val name: String? = null,
+
+		@field:SerializedName("created_at")
+		val createdAt: String? = null,
+
+		@field:SerializedName("id")
+		val id: Int? = null,
+
+		@field:SerializedName("picture")
+		val picture: String? = null
 	)
 
 	data class DataItem(
@@ -220,7 +166,7 @@ data class SearchResultResponse(
 		val price: Int? = null,
 
 		@field:SerializedName("plant")
-		val plant: List<PlantItem?>? = null,
+		val plant: List<Any?>? = null,
 
 		@field:SerializedName("name")
 		val name: String? = null,

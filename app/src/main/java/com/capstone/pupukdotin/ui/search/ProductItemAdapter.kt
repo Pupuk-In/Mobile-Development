@@ -4,12 +4,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
+import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
+import com.capstone.pupukdotin.databinding.ItemProductBinding
+import com.capstone.pupukdotin.ui.detail.DetailItemActivity
 
-class ProductItemAdapter: RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
+class ProductItemAdapter(
+    private val list: List<SearchItemsResponse.DataItem>
+) : RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        //        TODO("Not yet implemented")
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding: ItemProductBinding = ItemProductBinding.bind(itemView)
+        fun bindItem(item: SearchItemsResponse.DataItem) {
+            with(binding) {
+                Glide.with(itemView)
+                    .load(item.picture?.get(0)?.picture ?:"")
+                    .placeholder(R.drawable.placeholder)
+                    .into(ivProductImage)
+
+                tvProductReview.text = item.rating ?: "0"
+                tvProductTitle.text = item.name ?: "Tidak ada nama Produk"
+                tvStoreName.text = item.store?.name ?: "Tidak ada nama store"
+                tvProductPrice.text =
+                    itemView.context.getString(R.string.price_format, item.price ?: 0)
+                binding.root.setOnClickListener {
+                    DetailItemActivity.start(itemView.context, item.id ?:0)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -17,9 +40,9 @@ class ProductItemAdapter: RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() 
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = 10
+    override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        TODO("Not yet implemented")
+        holder.bindItem(list[position])
     }
 }

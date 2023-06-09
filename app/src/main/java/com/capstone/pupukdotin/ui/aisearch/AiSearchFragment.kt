@@ -1,4 +1,4 @@
-package com.capstone.pupukdotin.ui.aiSearch
+package com.capstone.pupukdotin.ui.aisearch
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

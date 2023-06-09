@@ -1,5 +1,6 @@
 package com.capstone.pupukdotin.ui.addproduct
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.databinding.ActivityAddProductBinding
 import com.capstone.pupukdotin.ui.common.BaseActivity
+import com.capstone.pupukdotin.ui.store.StoreDetailOrderActivity
 import com.capstone.pupukdotin.utils.uriToFile
 
 class AddProductActivity : BaseActivity<ActivityAddProductBinding>(),
@@ -59,7 +61,14 @@ class AddProductActivity : BaseActivity<ActivityAddProductBinding>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.topBar.tvTitleBar.text = getString(R.string.add_product)
+        setSupportActionBar(binding.topBar.root)
+        binding.topBar.apply {
+            @SuppressLint("SetTextI18n")
+            tvTitleBar.text = getString(R.string.add_product)
+            root.setNavigationOnClickListener {
+                StoreDetailOrderActivity.start(this@AddProductActivity)
+            }
+        }
         setupViewModel()
         setupAdapter()
         setupAction()

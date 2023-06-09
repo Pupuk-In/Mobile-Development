@@ -222,7 +222,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_plant"
                 app:layout_constraintTop_toTopOf="@id/tv_plant"
-                tools:itemCount="0"
+                tools:itemCount="2"
                 tools:listitem="@layout/item_plant" />
 
             <TextView
@@ -243,8 +243,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:orientation="horizontal"
                 android:minHeight="36dp"
+                android:orientation="horizontal"
                 app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_plant_part"
@@ -357,7 +357,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="48dp"
-            android:text="Stok : 21"
+            android:text="@string/stok_format_example"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ll_add_remove_stock"
@@ -365,7 +365,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Stok : 21" />
+            tools:text="@string/stok_format_example" />
 
         <LinearLayout
             android:id="@+id/ll_add_remove_stock"
@@ -394,8 +394,9 @@
                 android:inputType="number"
                 android:maxLength="3"
                 android:minWidth="48dp"
+                android:imeOptions="actionDone"
                 android:minHeight="48dp"
-                android:text="1"
+                android:text="@string/zero_num"
                 android:textColor="@color/black"
                 tools:text="1" />
 
@@ -406,12 +407,16 @@
                 android:src="@drawable/add_stock" />
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_add_to_cart"
+            style="@style/TextBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tambah Ke Keranjang"
+            android:background="@drawable/btn_box_rect_8dp"
+            android:text="@string/add_to_cart"
+            android:paddingHorizontal="24dp"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

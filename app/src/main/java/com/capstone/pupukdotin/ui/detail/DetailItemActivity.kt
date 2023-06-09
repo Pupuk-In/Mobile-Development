@@ -4,14 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
-import com.capstone.pupukdotin.data.fakesource.FakeDetailProduct
 import com.capstone.pupukdotin.data.model.StoreModel
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
-import com.capstone.pupukdotin.data.remote.response.DetailItemResponse
+import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.databinding.ActivityDetailBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.adapter.PlantSmallAdapter
@@ -20,11 +21,12 @@ import com.capstone.pupukdotin.ui.store.DetailStoreActivity
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 
+
 class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
 
     private val viewModel by viewModels<DetailItemViewModel> { ViewModelFactory(this) }
-    private val idItem by lazy { intent.getIntExtra(ID_ITEM, 10) }
-    private var itemCount = 0
+    private val idItem by lazy { intent.getIntExtra(ID_ITEM, 0) }
+    private var stock: Int = 0
 
     override fun getViewBinding(): ActivityDetailBinding =
         ActivityDetailBinding.inflate(layoutInflater)
@@ -35,7 +37,12 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
 
         binding.topBar.tvTitleBar.text = getString(R.string.detail_produk)
 
-        binding.edStockCount.setText(itemCount.toString())
+        setupAdapter()
+        setupAction()
+        setupViewModel()
+    }
+
+    private fun setupAdapter() {
         binding.rvListPlant.apply {
             adapter = PlantSmallAdapter(listOf())
             layoutManager = FlexboxLayoutManager(this@DetailItemActivity, FlexDirection.ROW)
@@ -45,25 +52,40 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
             adapter = PlantSmallAdapter(listOf())
             layoutManager = FlexboxLayoutManager(this@DetailItemActivity, FlexDirection.ROW)
         }
-        setupAction()
-        setupViewModel()
     }
 
     private fun setupAction() {
-//        setupFakeView(FakeDataSource.getFakeDetailProduct())
         viewModel.getDetailItem(idItem)
         binding.addStock.setOnClickListener {
-            itemCount++
-            binding.edStockCount.setText(itemCount.toString())
+            viewModel.addItemCount(stock)
         }
 
         binding.subtractStock.setOnClickListener {
-            if (itemCount > 0) itemCount--
-            binding.edStockCount.setText(itemCount.toString())
+            viewModel.subtractItemCount()
+        }
+
+        binding.edStockCount.setOnEditorActionListener { v, actionId, _ ->
+            if(actionId == EditorInfo.IME_ACTION_DONE) {
+                binding.edStockCount.clearFocus()
+                afterEditAction(v)
+            }
+            false
         }
     }
 
+    private fun afterEditAction(v: TextView) {
+        val count = v.text.toString().toInt()
+        if(count < stock)
+            viewModel.setItemCount(count, stock)
+        else
+            viewModel.setItemCount(stock, stock)
+    }
+
     private fun setupViewModel() {
+        viewModel.itemCount.observe(this) {
+            binding.edStockCount.setText(it.toString())
+        }
+
         viewModel.detailItem.observe(this@DetailItemActivity) { result ->
             when (result) {
                 is NetworkResult.Success -> {
@@ -94,9 +116,11 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
     private fun setupView(data: DetailItemResponse? = null, isSuccess: Boolean) {
         if (isSuccess) {
             if (data != null) {
+                stock = data.item?.stock ?: 0
+
                 with(binding) {
                     Glide.with(baseContext)
-                        .load(data.item?.picture?.get(0))
+                        .load(data.item?.picture?.get(0)?.picture ?: "")
                         .placeholder(R.drawable.placeholder)
                         .into(ivProductImage)
 
@@ -112,11 +136,14 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
                     tvStoreAddress.text = data.item?.store?.address ?: "Tidak Ada Alamat Toko"
                     tvStoreRating.text = data.item?.store?.rating ?: "0.0"
 
+                    val listPlant = data.item?.plant?.mapNotNull { it.name }
+                    val listPlantPlant = data.item?.plantPart?.mapNotNull { it.name }
+
                     rvListPlant.adapter =
-                        PlantSmallAdapter(data.item?.plant?.map { it.name } ?: emptyList())
+                        PlantSmallAdapter(listPlant ?: emptyList())
 
                     rvListPlantPart.adapter =
-                        PlantSmallAdapter(data.item?.plantPart?.map { it.name } ?: emptyList())
+                        PlantSmallAdapter(listPlantPlant ?: emptyList())
 
                     Glide.with(baseContext)
                         .load(data.item?.store?.picture)
@@ -141,37 +168,8 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
                 }
             }
         } else {
-            // TODO("Not yet implemented")
-        }
-    }
-
-    private fun setupFakeView(data: FakeDetailProduct) {
-        with(binding) {
-            Glide.with(baseContext)
-                .load(data.image)
-                .placeholder(R.drawable.placeholder)
-                .into(ivProductImage)
-
-            tvProductTitle.text = data.name
-            tvProductPrice.text = getString(R.string.price_format, data.price)
-            tvRating.text = data.rating
-            tvProductSold.text =
-                getString(R.string.product_sold, data.sold)
-            tvProductDescription.text =
-                data.description
-
-            tvStoreName.text = data.store.name
-            tvStoreAddress.text = data.store.alamat
-            tvStoreRating.text = data.store.rating
-
-            rvListPlant.adapter = PlantSmallAdapter(data.plant)
-            rvListPlantPart.adapter = PlantSmallAdapter(data.plantFor)
-
-            Glide.with(baseContext)
-                .load(data.store.image)
-                .placeholder(R.drawable.placeholder)
-                .into(ivStore)
-            tvProductStock.text = getString(R.string.product_stock, data.sold)
+            binding.svDetailItem.isVisible = false
+            binding.bottomCard.isVisible = false
         }
     }
 
