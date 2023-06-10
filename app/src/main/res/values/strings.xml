@@ -144,4 +144,13 @@
     <string name="add_to_cart">Tambah Ke Keranjang</string>
     <string name="zero_num">0</string>
     <string name="stok_format_example">Stok : 1</string>
+    <string name="apakah_anda_yakin_ingin_keluar">Apakah anda yakin ingin Keluar?</string>
+    <string name="ya_keluar">Ya, Keluar</string>
+    <string name="tidak">Tidak</string>
+    <string name="ya_simpan">Ya, Simpan</string>
+    <string name="apakah_anda_yakin_menyimpan_profil">Apakah anda yakin menyimpan Profil ?</string>
+    <string name="apakah_anda_yakin_menyimpan_profil_store">Apakah anda yakin menyimpan Profil Store ?</string>
+    <string name="data_profil_yang_sudah_disimpan_dapat_diubah_nanti">Data profil yang sudah disimpan dapat diubah nanti</string>
+    <string name="apakah_anda_yakin">Apakah anda yakin ?</string>
+    <string name="ya">Ya</string>
 </resources>

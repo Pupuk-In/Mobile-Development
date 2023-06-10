@@ -55,24 +55,45 @@ class CheckOutActivity : BaseActivity<ActivityCheckOutBinding>(), OnMapReadyCall
 
         //tombol pesan
         binding.checkoutButtonPesan.setOnClickListener {
-            val dialogBinding = layoutInflater.inflate(R.layout.pesanan_berhasil_dialog, null)
 
-            val pesananBerhasilDialog = Dialog(this)
-            pesananBerhasilDialog.setContentView(dialogBinding)
+            val dialogConfirmBinding = layoutInflater.inflate(R.layout.dialog_confirmation, null)
 
-            pesananBerhasilDialog.setCancelable(true)
-            pesananBerhasilDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            pesananBerhasilDialog.show()
+            val confirmationDialog = Dialog(this)
+            confirmationDialog.setContentView(dialogConfirmBinding)
 
-            val lihatStatusBtn = dialogBinding.findViewById<Button>(R.id.lihat_status_dialog_button)
-            lihatStatusBtn.setOnClickListener{
-                pesananBerhasilDialog.dismiss()
+            confirmationDialog.setCancelable(false)
+            confirmationDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            confirmationDialog.show()
+
+            val yaBtn = dialogConfirmBinding.findViewById<Button>(R.id.ya_button)
+            yaBtn.setOnClickListener{
+                val dialogBinding = layoutInflater.inflate(R.layout.dialog_pesanan_berhasil, null)
+
+                val pesananBerhasilDialog = Dialog(this)
+                pesananBerhasilDialog.setContentView(dialogBinding)
+
+                pesananBerhasilDialog.setCancelable(false)
+                pesananBerhasilDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                pesananBerhasilDialog.show()
+
+                val lihatStatusBtn = dialogBinding.findViewById<Button>(R.id.lihat_status_dialog_button)
+                lihatStatusBtn.setOnClickListener{
+                    //isi ini untuk pindah ke halaman status
+                }
+
+                val kembaliBtn = dialogBinding.findViewById<Button>(R.id.kembali_dialog_button)
+                kembaliBtn.setOnClickListener{
+                    pesananBerhasilDialog.dismiss()
+                    confirmationDialog.dismiss()
+                }
             }
 
-            val kembaliBtn = dialogBinding.findViewById<Button>(R.id.kembali_dialog_button)
-            kembaliBtn.setOnClickListener{
-                pesananBerhasilDialog.dismiss()
+            val tidakBtn = dialogConfirmBinding.findViewById<Button>(R.id.tidak_button)
+            tidakBtn.setOnClickListener{
+                confirmationDialog.dismiss()
             }
+
+
         }
     }
 

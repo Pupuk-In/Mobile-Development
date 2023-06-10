@@ -1,10 +1,14 @@
 package com.capstone.pupukdotin.ui.store
 
+import android.app.Dialog
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.core.app.ActivityCompat
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.databinding.ActivityEditStoreProfileBinding
@@ -89,6 +93,29 @@ class EditStoreProfileActivity : BaseActivity<ActivityEditStoreProfileBinding>()
     private fun setUpAction() {
         binding.toolbarUbahProfileToko.btnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.buttonSimpanEditProfilStore.setOnClickListener {
+            val dialogBinding = layoutInflater.inflate(R.layout.dialog_simpan_profil_store_confirmation, null)
+
+            val simpanPofilStoreDialog = Dialog(this)
+            simpanPofilStoreDialog.setContentView(dialogBinding)
+
+            simpanPofilStoreDialog.setCancelable(false)
+            simpanPofilStoreDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            simpanPofilStoreDialog.show()
+
+            val yaBtn = dialogBinding.findViewById<Button>(R.id.ya_button)
+            yaBtn.setOnClickListener{
+
+                //ganti perintah dibawah untuk menyimpan profil store
+                simpanPofilStoreDialog.dismiss()
+            }
+
+            val tidakBtn = dialogBinding.findViewById<Button>(R.id.tidak_button)
+            tidakBtn.setOnClickListener{
+                simpanPofilStoreDialog.dismiss()
+            }
         }
     }
 }
