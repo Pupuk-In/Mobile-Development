@@ -112,4 +112,11 @@
     <string name="pesanan_berhasil">PESANAN BERHASIL</string>
     <string name="lihat_status">Lihat Status</string>
     <string name="kembali">Kembali</string>
+    <string name="apakah_anda_yakin_ingin_keluar">Apakah anda yakin ingin Keluar?</string>
+    <string name="ya_keluar">Ya, Keluar</string>
+    <string name="tidak">Tidak</string>
+    <string name="ya_simpan">Ya, Simpan</string>
+    <string name="apakah_anda_yakin_menyimpan_profil">Apakah anda yakin menyimpan Profil ?</string>
+    <string name="apakah_anda_yakin_menyimpan_profil_store">Apakah anda yakin menyimpan Profil Store ?</string>
+    <string name="data_profil_yang_sudah_disimpan_dapat_diubah_nanti">Data profil yang sudah disimpan dapat diubah nanti</string>
 </resources>

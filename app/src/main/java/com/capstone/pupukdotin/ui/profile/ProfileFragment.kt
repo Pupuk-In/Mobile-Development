@@ -1,9 +1,14 @@
 package com.capstone.pupukdotin.ui.profile
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -114,9 +119,27 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }
 
         binding.keluar.setOnClickListener {
-            viewModel.logoutUser()
-            AuthenticationActivity.start(requireContext())
-            activity?.finish()
+
+            val logoutBinding = layoutInflater.inflate(R.layout.dialog_logout_confirmation, null)
+
+            val logoutDialog = Dialog(requireContext())
+            logoutDialog.setContentView(logoutBinding)
+
+            logoutDialog.setCancelable(false)
+            logoutDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            logoutDialog.show()
+
+            val yesBtn = logoutBinding.findViewById<Button>(R.id.ya_button)
+            yesBtn.setOnClickListener{
+                viewModel.logoutUser()
+                AuthenticationActivity.start(requireContext())
+                activity?.finish()
+            }
+
+            val tidakBtn = logoutBinding.findViewById<Button>(R.id.tidak_button)
+            tidakBtn.setOnClickListener{
+                logoutDialog.dismiss()
+            }
         }
 
     }

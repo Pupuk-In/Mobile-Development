@@ -1,9 +1,13 @@
 package com.capstone.pupukdotin.ui.profile
 
+import android.app.Dialog
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import androidx.core.app.ActivityCompat
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.databinding.ActivityUbahProfileBinding
@@ -89,6 +93,29 @@ class UbahProfileActivity : BaseActivity<ActivityUbahProfileBinding>(), OnMapRea
         binding.apply {
             toolbarUbahProfile.btnBack.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
+            }
+
+            buttonSimpanEditProfil.setOnClickListener {
+                val dialogBinding = layoutInflater.inflate(R.layout.dialog_simpan_profil_confirmation, null)
+
+                val simpanPofilDialog = Dialog(this@UbahProfileActivity)
+                simpanPofilDialog.setContentView(dialogBinding)
+
+                simpanPofilDialog.setCancelable(false)
+                simpanPofilDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                simpanPofilDialog.show()
+
+                val yaBtn = dialogBinding.findViewById<Button>(R.id.ya_button)
+                yaBtn.setOnClickListener{
+
+                    //ganti perintah dibawah untuk menyimpan profil
+                    simpanPofilDialog.dismiss()
+                }
+
+                val tidakBtn = dialogBinding.findViewById<Button>(R.id.tidak_button)
+                tidakBtn.setOnClickListener{
+                    simpanPofilDialog.dismiss()
+                }
             }
         }
     }

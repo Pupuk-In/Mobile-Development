@@ -55,12 +55,12 @@ class CheckOutActivity : BaseActivity<ActivityCheckOutBinding>(), OnMapReadyCall
 
         //tombol pesan
         binding.checkoutButtonPesan.setOnClickListener {
-            val dialogBinding = layoutInflater.inflate(R.layout.pesanan_berhasil_dialog, null)
+            val dialogBinding = layoutInflater.inflate(R.layout.dialog_pesanan_berhasil, null)
 
             val pesananBerhasilDialog = Dialog(this)
             pesananBerhasilDialog.setContentView(dialogBinding)
 
-            pesananBerhasilDialog.setCancelable(true)
+            pesananBerhasilDialog.setCancelable(false)
             pesananBerhasilDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             pesananBerhasilDialog.show()
 
