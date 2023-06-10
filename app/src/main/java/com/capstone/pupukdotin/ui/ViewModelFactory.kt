@@ -5,10 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.pupukdotin.MainViewModel
 import com.capstone.pupukdotin.di.Injection
+import com.capstone.pupukdotin.ui.aisearch.NutritionDetectionViewModel
 import com.capstone.pupukdotin.ui.authentication.LoginViewModel
 import com.capstone.pupukdotin.ui.authentication.RegisterViewModel
+import com.capstone.pupukdotin.ui.cart.CartViewModel
 import com.capstone.pupukdotin.ui.detail.DetailItemViewModel
 import com.capstone.pupukdotin.ui.home.HomeViewModel
+import com.capstone.pupukdotin.ui.profile.LihatProfileViewModel
 import com.capstone.pupukdotin.ui.profile.ProfileViewModel
 import com.capstone.pupukdotin.ui.search.SearchResultViewModel
 import com.capstone.pupukdotin.ui.store.DetailStoreViewModel
@@ -34,6 +37,12 @@ class ViewModelFactory(private val context: Context) :
             return SearchResultViewModel(Injection.getFertilizerRepo()) as T
         } else if (modelClass.isAssignableFrom(DetailStoreViewModel::class.java)) {
             return DetailStoreViewModel(Injection.getStoreRepo()) as T
+        } else if (modelClass.isAssignableFrom(CartViewModel::class.java)) {
+            return CartViewModel(Injection.getFertilizerRepo()) as T
+        } else if (modelClass.isAssignableFrom(LihatProfileViewModel::class.java)) {
+            return LihatProfileViewModel(Injection.getAuthRepo(context), Injection.getCommonRepo()) as T
+        } else if (modelClass.isAssignableFrom(NutritionDetectionViewModel::class.java)) {
+            return NutritionDetectionViewModel(Injection.getFertilizerRepo(), Injection.getCommonRepo()) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

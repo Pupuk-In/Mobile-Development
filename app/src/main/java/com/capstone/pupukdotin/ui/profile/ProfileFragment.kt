@@ -8,18 +8,16 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
-import com.capstone.pupukdotin.data.remote.response.Profile
+import com.capstone.pupukdotin.data.remote.response.user.ProfileDetailResponse
 import com.capstone.pupukdotin.databinding.FragmentProfileBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.authentication.AuthenticationActivity
-import com.capstone.pupukdotin.ui.checkout.CheckOutActivity
 import com.capstone.pupukdotin.ui.common.BaseFragment
 import com.capstone.pupukdotin.ui.store.StoreActivity
 import com.capstone.pupukdotin.utils.convertTime
@@ -86,15 +84,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }
     }
 
-    private fun setupProfile(data: Profile?) {
+    private fun setupProfile(data: ProfileDetailResponse.Profile?) {
         binding.apply {
             Glide.with(requireView())
                 .load(data?.picture)
                 .placeholder(R.drawable.placeholder)
                 .into(profilePicture)
-
             profileFullName.text = data?.name ?:"Tidak Ada Nama Lengkap"
-            profileUsername.text = data?.name ?:"Tidak Ada Username"
+            profileUsername.text = data?.username ?:"Tidak Ada Username"
             profileTanggalBergabung.text = getString(R.string.joined_since, data?.createdAt?.convertTime("yyyy"))
         }
     }
@@ -107,10 +104,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     private fun setupAction() {
-
         binding.buttonLihatProfil.setOnClickListener {
-            val intent = Intent(requireActivity(), LihatProfileActivity::class.java)
-            startActivity(intent)
+            LihatProfileActivity.start(requireActivity())
         }
 
         binding.buttonLihatToko.setOnClickListener {

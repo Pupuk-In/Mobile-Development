@@ -7,22 +7,21 @@
     tools:context=".ui.profile.UbahProfileActivity">
 
     <ProgressBar
-        android:id="@+id/lihat_profile_progressbar"
+        android:id="@+id/pb_loading_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/toolbar_ubah_profile"
         layout="@layout/toolbar_ubah_profil"/>
 
     <ScrollView
+        android:id="@+id/sv_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,13 +35,25 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_detail_picture"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/placeholder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_upload_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upload_image"
+                style="@style/TextMedium"
+                android:textColor="@color/green_13C193"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@id/profile_detail_picture"
+                app:layout_constraintEnd_toEndOf="@id/profile_detail_picture"
+                app:layout_constraintTop_toBottomOf="@id/profile_detail_picture"/>
 
             <TextView
                 android:id="@+id/nama_lengkap"
@@ -55,7 +66,7 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_detail_picture" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_upload_image" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nama_lengkap_textInputLayout"
@@ -76,7 +87,7 @@
                     android:fontFamily="@font/inter"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -93,29 +104,34 @@
                 app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
                 app:layout_constraintTop_toBottomOf="@+id/nama_lengkap_textInputLayout" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tanggal_lahir_textInputLayout"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_tanggal_lahir"
                 style="@style/CustomEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:minHeight="48dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#939393"
+                android:elevation="0dp"
+                android:background="@drawable/box_rect_8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
                 app:layout_constraintTop_toBottomOf="@+id/tanggal_lahir">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tanggal_lahir_textInputEditText"
+                <TextView
+                    android:id="@+id/tv_tanggal_lahir_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:fontFamily="@font/inter"
-                    android:inputType="datetime"
-                    android:textColor="@color/black"
+                    android:layout_height="match_parent"
+                    style="@style/TextRegular"
                     android:textSize="12sp"
-                    tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginHorizontal="12dp"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/tanggal_lahir"
+                    app:drawableEndCompat="@drawable/ic_edit_calendar_24"
+                    app:drawableTint="@color/black" />
+            </com.google.android.material.card.MaterialCardView>
 
 
             <TextView
@@ -128,7 +144,7 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
-                app:layout_constraintTop_toBottomOf="@+id/tanggal_lahir_textInputLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/cv_tanggal_lahir" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nomor_telepon_textInputLayout"
@@ -149,9 +165,8 @@
                     android:fontFamily="@font/inter"
                     android:inputType="phone|number"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -191,7 +206,7 @@
                     android:scrollbarStyle="insideInset"
                     android:scrollHorizontally="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -208,16 +223,18 @@
                 app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
                 app:layout_constraintTop_toBottomOf="@+id/alamat_textInputLayout" />
 
-            <fragment
+            <TextView
                 android:id="@+id/ubah_profile_map"
                 android:layout_width="0dp"
-                android:layout_height="160dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+                style="@style/TextMedium"
+                android:textSize="14sp"
+                android:text="-"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/alamat_map"
-                app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi_button" />
+                app:layout_constraintTop_toBottomOf="@+id/alamat_map" />
 
             <TextView
                 android:id="@+id/pilih_lokasi_button"
@@ -229,7 +246,7 @@
                 android:textColor="@color/green_13C193"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
-                app:layout_constraintTop_toBottomOf="@+id/alamat_map" />
+                app:layout_constraintTop_toBottomOf="@+id/ubah_profile_map" />
 
             <Button
                 android:id="@+id/button_simpan_edit_profil"
@@ -245,7 +262,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/nama_lengkap_textInputLayout"
                 app:layout_constraintStart_toStartOf="@+id/nama_lengkap"
-                app:layout_constraintTop_toBottomOf="@+id/ubah_profile_map" />
+                app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi_button" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

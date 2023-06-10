@@ -10,13 +10,15 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.capstone.pupukdotin.R
+import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.databinding.ActivityNutritionDetectionBinding
+import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.common.BaseActivity
 import com.capstone.pupukdotin.utils.uriToFile
 
 class NutritionDetectionActivity : BaseActivity<ActivityNutritionDetectionBinding>() {
 
-    private val viewModel: NutritionDetectionViewModel by viewModels()
+    private val viewModel by viewModels<NutritionDetectionViewModel> { ViewModelFactory(this) }
     private var getFile = ""
 
     // Plant
@@ -50,8 +52,9 @@ class NutritionDetectionActivity : BaseActivity<ActivityNutritionDetectionBindin
                 finish()
             }
         }
+        viewModel.getAllPlants()
         setupAction()
-        setupAdapter()
+        setupAdapter(listPlant)
         setupViewModel()
     }
 
@@ -65,12 +68,37 @@ class NutritionDetectionActivity : BaseActivity<ActivityNutritionDetectionBindin
             binding.tvUploadAnother.isVisible = isUploaded
             binding.cvChooseImage.isClickable = !isUploaded
 
-            if (isUploaded) { binding.ivImage.setImageBitmap(BitmapFactory.decodeFile(getFile)) }
+            if (isUploaded) {
+                binding.ivImage.setImageBitmap(BitmapFactory.decodeFile(getFile))
+            }
+        }
+
+        viewModel.allPlants.observe(this) { result ->
+            when (result) {
+                is NetworkResult.Loading -> {
+                    showLoading(true)
+                }
+
+                is NetworkResult.Success -> {
+                    showLoading(false)
+                    setupAdapter(result.data.plant?.mapNotNull { it.name } ?: emptyList())
+                }
+
+                is NetworkResult.Error -> {
+                    showLoading(false)
+                    showToast(result.error.toString())
+                }
+            }
         }
     }
 
-    private fun setupAdapter() {
-        spinnerPlantAdapter = ArrayAdapter(this, R.layout.item_spinner, listPlant)
+    private fun showLoading(value: Boolean) {
+        binding.pbLoadingScreen.isVisible = value
+        binding.clContent.isVisible = !value
+    }
+
+    private fun setupAdapter(list: List<String>) {
+        spinnerPlantAdapter = ArrayAdapter(this, R.layout.item_spinner, list)
         spinnerPlantAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         binding.spProductPlant.adapter = spinnerPlantAdapter
     }

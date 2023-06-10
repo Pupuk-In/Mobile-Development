@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.pupukdotin.R
 
-class TesHistoryAdapter: RecyclerView.Adapter<TesHistoryAdapter.ViewHolder>() {
+class TesHistoryAdapter(
+): RecyclerView.Adapter<TesHistoryAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
@@ -22,7 +23,7 @@ class TesHistoryAdapter: RecyclerView.Adapter<TesHistoryAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return 0
     }
 
 }

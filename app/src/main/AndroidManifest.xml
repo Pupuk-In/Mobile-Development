@@ -17,6 +17,9 @@
         android:theme="@style/Theme.PupukInMobile"
         tools:targetApi="31">
         <activity
+            android:name=".ui.maps.SelectMapsLocationActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ui.aisearch.NutritionDetectionActivity"
             android:exported="false" />
         <activity
@@ -41,7 +44,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD3MdQAHkVzALoskJohZkDfiAj-VDjIhLU" />
+            android:value="AIzaSyAyznovumVDdTSBAH2kF9Q4hthHxCKXAzk" />
 
         <activity
             android:name=".ui.profile.UbahProfileActivity"

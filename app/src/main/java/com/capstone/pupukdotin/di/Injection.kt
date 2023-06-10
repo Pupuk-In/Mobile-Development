@@ -5,6 +5,7 @@ import com.capstone.pupukdotin.data.local.pref.UserPreference
 import com.capstone.pupukdotin.data.local.pref.datastore
 import com.capstone.pupukdotin.data.remote.network.ApiConfig
 import com.capstone.pupukdotin.repository.AuthenticationRepository
+import com.capstone.pupukdotin.repository.CommonRepository
 import com.capstone.pupukdotin.repository.FertilizerRepository
 import com.capstone.pupukdotin.repository.StoreRepository
 
@@ -25,5 +26,10 @@ object Injection {
     fun getStoreRepo(): StoreRepository {
         val services = ApiConfig.getApiService()
         return StoreRepository.getInstance(services)
+    }
+
+    fun getCommonRepo(): CommonRepository {
+        val services = ApiConfig.getApiService()
+        return CommonRepository.getInstance(services)
     }
 }
