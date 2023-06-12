@@ -18,6 +18,7 @@ import com.capstone.pupukdotin.data.remote.response.carts.CartItemsResponse
 import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
 import com.capstone.pupukdotin.data.remote.response.store.OwnedStoreDetailResponse
+import com.capstone.pupukdotin.data.remote.response.store.StoreAllItemsResponse
 import com.capstone.pupukdotin.data.remote.response.store.StoreDetailResponse
 import com.capstone.pupukdotin.data.remote.response.user.ProfileDetailResponse
 import okhttp3.MultipartBody
@@ -112,4 +113,7 @@ interface ApiServices {
     suspend fun editOwnedStoreDetail(
         @Body payload: UpdateStoreDetailPayload
     ) : Response<OwnedStoreDetailResponse>
+
+    @GET("/api/stores/items/getall")
+    suspend fun getAllItems() : Response<StoreAllItemsResponse>
 }
