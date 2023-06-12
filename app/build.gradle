@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -48,6 +49,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
 
     //lifecycle scope
+    implementation 'androidx.activity:activity-ktx:1.7.2'
     implementation 'androidx.fragment:fragment-ktx:1.5.7'
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
@@ -82,4 +84,7 @@ dependencies {
 
     //Coordinator Layout
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+
+    //FlexBox
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
 }

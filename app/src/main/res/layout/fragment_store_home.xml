@@ -58,6 +58,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
@@ -79,6 +80,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/tv_nama_store"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -184,15 +186,6 @@
                 app:layout_constraintStart_toStartOf="@+id/deskripsi"
                 app:layout_constraintTop_toBottomOf="@+id/map_detail_alamat_store" />
 
-            <fragment
-                android:id="@+id/home_store_map"
-                android:layout_width="0dp"
-                android:layout_height="160dp"
-                android:layout_marginTop="8dp"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                app:layout_constraintEnd_toEndOf="@+id/deskripsi_store"
-                app:layout_constraintStart_toStartOf="@+id/deskripsi"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

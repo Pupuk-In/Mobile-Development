@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/aiSearchFragment"
-        android:name="com.capstone.pupukdotin.ui.aiSearch.AiSearchFragment"
+        android:name="com.capstone.pupukdotin.ui.aisearch.AiSearchFragment"
         android:label="fragment_ai_search"
         tools:layout="@layout/fragment_ai_search"/>
 

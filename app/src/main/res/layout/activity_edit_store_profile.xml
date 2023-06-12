@@ -22,7 +22,8 @@
         android:id="@+id/toolbar_ubah_profile_toko"
         layout="@layout/toolbar_ubah_profil_toko" />
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
+        android:id="@+id/sv_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -168,6 +169,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/alamatEditTextLayout" />
 
             <TextView
+                android:id="@+id/tv_alamat_pada_peta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Kec. Cilandak, Kota Jakarta Selatan"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/alamatEditTextLayout"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toBottomOf="@+id/alamat_pada_peta" />
+
+            <TextView
                 android:id="@+id/pilih_lokasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -175,25 +189,15 @@
                 android:fontFamily="@font/inter_medium"
                 android:text="@string/pilih_lokasi"
                 android:textColor="@color/green_13C193"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
-                app:layout_constraintTop_toBottomOf="@+id/alamat_pada_peta" />
-
-            <fragment
-                android:id="@+id/ubah_profile_store_map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="0dp"
-                android:layout_height="160dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/ed_edit_nama_toko"
-                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
-                app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_alamat_pada_peta" />
 
             <Button
                 android:id="@+id/button_simpan_edit_profil_store"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="92dp"
+                android:layout_marginTop="72dp"
                 android:layout_marginBottom="32dp"
                 android:fontFamily="@font/inter_bold"
                 android:paddingVertical="12dp"
@@ -203,8 +207,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/ed_edit_nama_toko"
                 app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
-                app:layout_constraintTop_toBottomOf="@+id/ubah_profile_store_map" />
+                app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

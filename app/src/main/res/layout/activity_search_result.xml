@@ -6,84 +6,144 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchResultActivity">
 
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/baseline_arrow_back_24"
-        app:layout_constraintBottom_toBottomOf="@id/frameLayout_search_container"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/frameLayout_search_container" />
-
-    <FrameLayout
-        android:id="@+id/frameLayout_search_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toEndOf="@id/iv_back"
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/home_search"
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:tint="@color/grey_9B9B9B" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="0.5"
             android:background="@drawable/search_background"
+            android:elevation="4dp"
             app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
             app:queryHint="Search" />
-    </FrameLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_favorite_24"
+            app:tint="@color/grey_9B9B9B" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_notifications_24"
+            app:tint="@color/grey_9B9B9B" />
+    </LinearLayout>
+
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout_search_container">
+        app:layout_constraintTop_toBottomOf="@id/top_bar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/btn_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/filter"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextMedium"
+                android:textSize="14sp"
+                app:drawableEndCompat="@drawable/baseline_filter_list_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_hasil_pencarian"
+                style="@style/TextBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:text="Hasil Pencarian"
-                android:textColor="@color/black"
+                android:layout_marginTop="16dp"
+                android:text="@string/search_result"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_text_search"
+                style="@style/TextRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="\'Pupuk\'"
+                android:text="@string/search_result_format"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@id/tv_hasil_pencarian"
-                app:layout_constraintTop_toBottomOf="@id/tv_hasil_pencarian" />
+                app:layout_constraintTop_toBottomOf="@id/tv_hasil_pencarian"
+                tools:text="Pupuk" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_product_item"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_text_search"
-                android:layout_marginHorizontal="16dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                tools:listitem="@layout/item_product"
+                android:layout_marginBottom="16dp"
+                android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:itemCount="10"
-                app:spanCount="2" />
-
-
+                app:layout_constraintTop_toBottomOf="@id/tv_text_search"
+                app:spanCount="2"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_product" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/tv_no_data"
+        android:text="@string/no_product_show"
+        android:layout_width="wrap_content"
+        style="@style/TextMedium"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/top_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pb_loading_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/green_13C193"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

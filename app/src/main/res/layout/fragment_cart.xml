@@ -35,6 +35,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
@@ -49,7 +50,7 @@
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/CartRecyclerView"
+                android:id="@+id/cartRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -71,14 +72,23 @@
                 android:textAllCaps="false"
                 android:textSize="14sp"
                 android:fontFamily="@font/inter_bold"
-                app:layout_constraintEnd_toEndOf="@+id/CartRecyclerView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/CartRecyclerView"
-                app:layout_constraintTop_toBottomOf="@+id/CartRecyclerView"
+                app:layout_constraintEnd_toEndOf="@+id/cartRecyclerView"
+                app:layout_constraintStart_toStartOf="@+id/cartRecyclerView"
+                app:layout_constraintTop_toBottomOf="@+id/cartRecyclerView"
                 app:strokeColor="@color/green_13C193"
                 app:strokeWidth="1dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/pb_loading_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/CartConstraintLayout"
+        app:layout_constraintBottom_toTopOf="@id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -131,13 +141,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="756dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,21 +4,28 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
-import com.capstone.pupukdotin.data.remote.response.DetailItemResponse
+import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.databinding.ActivityDetailBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
+import com.capstone.pupukdotin.ui.adapter.PlantSmallAdapter
 import com.capstone.pupukdotin.ui.common.BaseActivity
+import com.capstone.pupukdotin.ui.store.DetailStoreActivity
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+
 
 class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
 
     private val viewModel by viewModels<DetailItemViewModel> { ViewModelFactory(this) }
-    private val idItem by lazy { intent.getIntExtra(ID_ITEM, 10) }
-    private var itemCount = 0
+    private val idItem by lazy { intent.getIntExtra(ID_ITEM, 0) }
+    private var stock: Int = 0
 
     override fun getViewBinding(): ActivityDetailBinding =
         ActivityDetailBinding.inflate(layoutInflater)
@@ -27,27 +34,57 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.edStockCount.setText(itemCount.toString())
+        binding.topBar.tvTitleBar.text = getString(R.string.detail_produk)
 
+        setupAdapter()
         setupAction()
         setupViewModel()
     }
 
-    private fun setupAction() {
-        viewModel.getDetailItem(idItem)
-        
-        binding.addStock.setOnClickListener {
-            itemCount++
-            binding.edStockCount.setText(itemCount.toString())
+    private fun setupAdapter() {
+        binding.rvListPlant.apply {
+            adapter = PlantSmallAdapter(listOf())
+            layoutManager = FlexboxLayoutManager(this@DetailItemActivity, FlexDirection.ROW)
         }
 
-        binding.subtractStock.setOnClickListener {
-            if (itemCount > 0) itemCount--
-            binding.edStockCount.setText(itemCount.toString())
+        binding.rvListPlantPart.apply {
+            adapter = PlantSmallAdapter(listOf())
+            layoutManager = FlexboxLayoutManager(this@DetailItemActivity, FlexDirection.ROW)
         }
     }
 
+    private fun setupAction() {
+        viewModel.getDetailItem(idItem)
+        binding.addStock.setOnClickListener {
+            viewModel.addItemCount(stock)
+        }
+
+        binding.subtractStock.setOnClickListener {
+            viewModel.subtractItemCount()
+        }
+
+        binding.edStockCount.setOnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                binding.edStockCount.clearFocus()
+                afterEditAction(v)
+            }
+            false
+        }
+    }
+
+    private fun afterEditAction(v: TextView) {
+        val count = v.text.toString().toInt()
+        if (count < stock)
+            viewModel.setItemCount(count, stock)
+        else
+            viewModel.setItemCount(stock, stock)
+    }
+
     private fun setupViewModel() {
+        viewModel.itemCount.observe(this) {
+            binding.edStockCount.setText(it.toString())
+        }
+
         viewModel.detailItem.observe(this@DetailItemActivity) { result ->
             when (result) {
                 is NetworkResult.Success -> {
@@ -78,33 +115,53 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
     private fun setupView(data: DetailItemResponse? = null, isSuccess: Boolean) {
         if (isSuccess) {
             if (data != null) {
+                stock = data.item?.stock ?: 0
+
                 with(binding) {
                     Glide.with(baseContext)
-                        .load(data.item?.get(0)?.picture)
+                        .load(data.item?.picture?.get(0)?.picture ?: "")
                         .placeholder(R.drawable.placeholder)
                         .into(ivProductImage)
 
-                    tvProductTitle.text = data.item?.get(0)?.name ?: ""
-                    tvProductPrice.text = getString(R.string.price, data.item?.get(0)?.price ?: 0)
-                    tvRating.text = data.item?.get(0)?.rating ?: "0.0"
+                    tvProductTitle.text = data.item?.name ?: "Tidak Ada Nama Produk"
+                    tvProductPrice.text = getString(R.string.price_format, data.item?.price)
+                    tvRating.text = data.item?.rating ?: "0.0"
                     tvProductSold.text =
-                        getString(R.string.product_sold, data.item?.get(0)?.sold ?: 0)
+                        getString(R.string.product_sold, data.item?.sold ?: 0)
                     tvProductDescription.text =
-                        data.item?.get(0)?.description ?: "Tidak Ada Deskripsi"
+                        data.item?.description ?: "Tidak Ada Deskripsi"
 
-                    tvStoreName.text = data.item?.get(0)?.store?.name ?: "Tidak Ada Nama"
-                    tvStoreAddress.text = data.item?.get(0)?.store?.address ?: "Tidak Ada Alamat"
-                    tvStoreRating.text = data.item?.get(0)?.store?.rating ?: "0.0"
+                    tvStoreName.text = data.item?.store?.name ?: "Tidak Ada Nama Toko"
+                    tvStoreAddress.text = data.item?.store?.address ?: "Tidak Ada Alamat Toko"
+                    tvStoreRating.text = data.item?.store?.rating ?: "0.0"
+
+                    val listPlant = data.item?.plant?.mapNotNull { it.name }
+                    val listPlantPlant = data.item?.plantPart?.mapNotNull { it.name }
+
+                    rvListPlant.adapter =
+                        PlantSmallAdapter(listPlant ?: emptyList())
+
+                    rvListPlantPart.adapter =
+                        PlantSmallAdapter(listPlantPlant ?: emptyList())
 
                     Glide.with(baseContext)
-                        .load(data.item?.get(0)?.store?.picture)
+                        .load(data.item?.store?.picture)
                         .placeholder(R.drawable.placeholder)
                         .into(ivStore)
-                    tvProductStock.text = getString(R.string.product_stock, data.item?.get(0)?.stock ?: 0)
+                    tvProductStock.text =
+                        getString(R.string.product_stock, data.item?.stock ?: 0)
+
+                    tvStoreName.setOnClickListener {
+                        DetailStoreActivity.start(
+                            this@DetailItemActivity,
+                            data.item?.storeId ?: 0
+                        )
+                    }
                 }
             }
         } else {
-            // TODO("Not yet implemented")
+            binding.svDetailItem.isVisible = false
+            binding.bottomCard.isVisible = false
         }
     }
 

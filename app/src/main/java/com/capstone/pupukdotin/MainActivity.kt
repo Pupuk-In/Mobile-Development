@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.capstone.pupukdotin.data.local.pref.UserPreference
 import com.capstone.pupukdotin.databinding.ActivityMainBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
+import com.capstone.pupukdotin.ui.aisearch.NutritionDetectionActivity
 import com.capstone.pupukdotin.ui.authentication.AuthenticationActivity
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +42,10 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        binding.fab.setOnClickListener {
+            NutritionDetectionActivity.start(this)
+        }
     }
 
     companion object {

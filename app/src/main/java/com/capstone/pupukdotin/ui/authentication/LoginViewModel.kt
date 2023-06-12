@@ -1,6 +1,7 @@
 package com.capstone.pupukdotin.ui.authentication
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.pupukdotin.data.local.pref.UserModel
@@ -12,11 +13,13 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: AuthenticationRepository) : ViewModel() {
 
-    val login: LiveData<NetworkResult<LoginResponse>> = repository.login
+    private val _login = MutableLiveData<NetworkResult<LoginResponse>>()
+    val login: LiveData<NetworkResult<LoginResponse>>
+        get() = _login
 
     fun login(payload: LoginPayload) {
         viewModelScope.launch {
-            repository.login(payload)
+            repository.login(payload, _login)
         }
     }
 

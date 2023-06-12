@@ -59,4 +59,18 @@
         tools:itemCount="2"
         tools:listitem="@layout/item_history_product" />
 
+    <TextView
+        android:id="@+id/tv_no_history_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/HistoryConstraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/no_history"
+        style="@style/TextMedium"
+        android:textSize="16sp"
+        android:textColor="@color/green_13C193"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

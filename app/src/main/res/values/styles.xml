@@ -18,13 +18,16 @@
     <style name="TextBold">
         <item name="fontFamily">@font/inter_bold</item>
         <item name="android:letterSpacing">0.0125</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="TextMedium">
         <item name="fontFamily">@font/inter_medium</item>
         <item name="android:letterSpacing">0.0125</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="TextRegular">
         <item name="fontFamily">@font/inter</item>
         <item name="android:letterSpacing">0.0125</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

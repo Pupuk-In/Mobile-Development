@@ -37,7 +37,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="204dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="36dp"
                 android:contentDescription="@string/banner_descripption"
                 android:src="@drawable/pupuk_npk1"
                 app:layout_constraintEnd_toEndOf="parent"

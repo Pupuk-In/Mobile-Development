@@ -28,7 +28,7 @@
     <string name="cari_dengan_ai">Cari dengan AI</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="home_store">Home</string>
-    <string name="price">Rp%1$d</string>
+    <string name="price_format">Rp%1$d</string>
     <string name="product_sold">Terjual %1$d</string>
     <string name="description_product">Deskripsi Produk</string>
     <string name="product_stock">Stok : %1$d</string>
@@ -43,7 +43,7 @@
     <string name="harga">Harga</string>
     <string name="product_counter">1</string>
     <string name="remove_button">hapus cart</string>
-    <string name="history">Riwayat Pembelian</string>
+    <string name="history">Riwayat</string>
     <string name="order_date">12 Mei 2023</string>
     <string name="order_time">19.23</string>
     <string name="product_amount">40 Kg</string>
@@ -76,7 +76,6 @@
     <string name="unggah_foto">+ Unggah Foto</string>
     <string name="simpan">Simpan</string>
     <string name="notification">Notification</string>
-    <string name="wishlist">Wishlist</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pesanan">Pesanan</string>
@@ -112,6 +111,48 @@
     <string name="pesanan_berhasil">PESANAN BERHASIL</string>
     <string name="lihat_status">Lihat Status</string>
     <string name="kembali">Kembali</string>
+    <string name="product_for">Diperuntukan bagi</string>
+    <string name="detail_produk">Detail Produk</string>
+    <string name="store_about">Tentang Toko</string>
+    <string name="product_list">Daftar Produk</string>
+    <string name="filter">Filter</string>
+    <string name="find_wishlist_product">Cari Produk Wishlist</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="product_picture">Foto Produk</string>
+    <string name="type">Jenis</string>
+    <string name="plant">Tanaman</string>
+    <string name="plant_part">Bagian Tanaman</string>
+    <string name="stock">Stok</string>
+    <string name="price">Harga</string>
+    <string name="rp">Rp</string>
+    <string name="save">Simpan</string>
+    <string name="add_product">Tambah Produk</string>
+    <string name="order_name">Nama Pesanan</string>
+    <string name="waktu_pemesanan">Waktu Pemesanan</string>
+    <string name="buyer">Pembeli</string>
+    <string name="store">Toko</string>
+    <string name="cancel_order">Batalkan Pemesanan</string>
+    <string name="accept_order">Terima Pesanan</string>
+    <string name="choose_plant">Pilih Tanaman</string>
+    <string name="detection_result">Hasil Deteksi</string>
+    <string name="error_detection_result">Maaf, sistem belum mampu mendeteksi</string>
+    <string name="upload_another_image">Unggah Gambar Lain</string>
+    <string name="deteksi_keperluan_nutrisi">Deteksi Keperluan Nutrisi</string>
+    <string name="search_result_format">\"%s\"</string>
+    <string name="search_result">Hasil Pencarian</string>
+    <string name="no_product_show">Tidak Ada Produk</string>
+    <string name="add_to_cart">Tambah Ke Keranjang</string>
+    <string name="zero_num">0</string>
+    <string name="stok_format_example">Stok : 1</string>
+    <string name="no_history">Tidak Ada Riwayat</string>
+    <string name="address_location">Alamat Lokasi</string>
+
+    <!-- Permissions -->
+    <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>
+    <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>
+    <string name="permission_required_toast">Location permission is required for this demo.</string>
+    <string name="select_location">Pilih Lokasi</string>
+    <string name="upload_image">Unggah Gambar</string>
     <string name="apakah_anda_yakin_ingin_keluar">Apakah anda yakin ingin Keluar?</string>
     <string name="ya_keluar">Ya, Keluar</string>
     <string name="tidak">Tidak</string>

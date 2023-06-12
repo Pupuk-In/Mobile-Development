@@ -153,8 +153,7 @@ class CheckOutActivity : BaseActivity<ActivityCheckOutBinding>(), OnMapReadyCall
             metodePembayaranButton.setOnCheckedChangeListener { group, checkedId ->
                 if (checkedId == R.id.button_tunai){
                     buttonTunai.setTextColor(resources.getColor(R.color.white))
-                    buttonDompetDigital.setTextColor(resources.getColor(R.color.green_13C193))
-
+                    buttonDompetDigital.setTextColor(resources.getColor(R.color.green_13C193)) 
                 }
                 else{
                     buttonTunai.setTextColor(resources.getColor(R.color.green_13C193))
