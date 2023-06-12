@@ -1,6 +1,7 @@
 package com.capstone.pupukdotin.ui.store
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
@@ -11,11 +12,12 @@ import kotlinx.coroutines.launch
 
 class DetailStoreViewModel(private val repository: StoreRepository) : ViewModel() {
 
-    val detailStore: LiveData<NetworkResult<StoreDetailResponse>> = repository.detailStore
+    private val _detailStore = MutableLiveData<NetworkResult<StoreDetailResponse>>()
+    val detailStore: LiveData<NetworkResult<StoreDetailResponse>> = _detailStore
 
     fun getDetailStore(payload: SearchCatalogPayload, idStore: Int) {
         viewModelScope.launch {
-            repository.getDetailStore(payload, idStore)
+            repository.getDetailStore(payload, idStore, _detailStore)
         }
     }
 }

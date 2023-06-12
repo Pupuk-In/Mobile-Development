@@ -17,7 +17,7 @@ data class Store(
     val profileId: Int? = null,
 
     @field:SerializedName("latitude")
-    val latitude: String? = null,
+    val latitude: Double? = null,
 
     @field:SerializedName("name")
     val name: String? = null,
@@ -38,5 +38,5 @@ data class Store(
     val picture: String? = null,
 
     @field:SerializedName("longitude")
-    val longitude: String? = null
+    val longitude: Double? = null
 )

@@ -1,94 +1,112 @@
 package com.capstone.pupukdotin.ui.store
 
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
+import android.location.Geocoder
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
-import com.capstone.pupukdotin.databinding.FragmentProfileBinding
+import com.capstone.pupukdotin.data.remote.network.NetworkResult
+import com.capstone.pupukdotin.data.remote.response.common.Store
 import com.capstone.pupukdotin.databinding.FragmentStoreHomeBinding
+import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.common.BaseFragment
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import java.io.IOException
+import java.util.Locale
 
 
-class StoreHomeFragment : BaseFragment<FragmentStoreHomeBinding>(), OnMapReadyCallback {
+class StoreHomeFragment : BaseFragment<FragmentStoreHomeBinding>() {
 
-    private lateinit var currentLocation: Location
-    private lateinit var fusedLocationProvider: FusedLocationProviderClient
-    private val permissionCode = 101
-
-    override fun getViewBinding(): FragmentStoreHomeBinding = FragmentStoreHomeBinding.inflate(layoutInflater)
+    private val viewModel by viewModels<StoreHomeViewModel> { ViewModelFactory(requireContext()) }
+    override fun getViewBinding(): FragmentStoreHomeBinding =
+        FragmentStoreHomeBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getOwnedDetailStore()
         setUpAction()
-
-        fusedLocationProvider = LocationServices.getFusedLocationProviderClient(requireActivity())
-        fetchLocation()
-
+        setupViewModel()
     }
 
-    //atur map disini
-    private fun fetchLocation() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) !=
-            PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) !=
-            PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                permissionCode)
-            return
+    override fun onResume() {
+        super.onResume()
+        viewModel.getOwnedDetailStore()
+    }
+
+    private fun setupViewModel() {
+        viewModel.ownedDetailStore.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is NetworkResult.Loading -> {
+                    showLoading(true)
+                }
+
+                is NetworkResult.Success -> {
+                    showLoading(false)
+                    setupContentSuccess(result.data.store)
+                }
+
+                is NetworkResult.Error -> {
+                    showLoading(false)
+                    showToast(result.error.toString())
+                }
+            }
+
         }
+    }
 
-        val task = fusedLocationProvider.lastLocation
-        task.addOnSuccessListener { location ->
-            if (location != null){
-                currentLocation = location
+    private fun setupContentSuccess(data: Store?) {
+        with(binding) {
+            Glide.with(requireContext())
+                .load(data?.picture)
+                .placeholder(R.drawable.placeholder)
+                .into(profileStorePicture)
+            tvNamaStore.text = data?.name ?: "Tidak Ada Nama Toko"
+            deskripsiStore.text = data?.description ?:"Tidak ada Deskripsi"
+            detailAlamatStore.text = data?.address ?:"Tidak ada alamat"
 
-                val supportMapFragment = (childFragmentManager.findFragmentById(R.id.home_store_map) as
-                        SupportMapFragment)
-                supportMapFragment.getMapAsync(this)
+            if(data?.latitude != null && data.longitude != null) {
+                mapDetailAlamatStore.text = setupMapAddress(data.latitude, data.longitude)
+                textView.isVisible = true
+            } else {
+                mapDetailAlamatStore.text = "-"
+                textView.isVisible = false
             }
         }
     }
-    override fun onMapReady(p0: GoogleMap) {
-        val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
-        val markerOptions = MarkerOptions().position(latLng).title("Your Location")
-        p0.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-        p0.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5f))
-        p0.addMarker(markerOptions)
-        p0.uiSettings.isZoomControlsEnabled = true
-        p0.uiSettings.isIndoorLevelPickerEnabled = true
-        p0.uiSettings.isCompassEnabled = true
-        p0.uiSettings.isMapToolbarEnabled = true
-    }
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        when(requestCode){
-            permissionCode -> if(grantResults.isEmpty() && grantResults[0] ==
-                PackageManager.PERMISSION_GRANTED){
-                fetchLocation()
+    private fun setupMapAddress(latitude: Double, longitude: Double): String {
+        var addressName: String? = null
+        val geocoder = Geocoder(requireContext(), Locale("id", "ID"))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            geocoder.getFromLocation(latitude, longitude, 1) { list ->
+                if (list.size != 0) {
+                    addressName = list[0].getAddressLine(0)
+                }
+            }
+        } else {
+            try {
+                @Suppress("DEPRECATION")
+                val list = geocoder.getFromLocation(latitude, longitude, 1)
+                if (list != null && list.size != 0) {
+                    addressName = list[0].getAddressLine(0)
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
             }
         }
+        return addressName ?: ""
     }
+
+    private fun showLoading(value: Boolean) {
+        binding.storeHomeProgressbar.isVisible = value
+        binding.nsvContent.isVisible = !value
+        binding.buttonUbahProfilStore.isVisible = !value
+    }
+
 
     private fun setUpAction() {
         binding.buttonUbahProfilStore.setOnClickListener {
@@ -96,6 +114,4 @@ class StoreHomeFragment : BaseFragment<FragmentStoreHomeBinding>(), OnMapReadyCa
             startActivity(intent)
         }
     }
-
-
 }
