@@ -29,6 +29,11 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
         setupViewModel()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.editCart()
+    }
+
 
 
     private fun setupViewModel() {
@@ -56,7 +61,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
                 }
 
                 is NetworkResult.Success -> {
-                    showToast(result.data)
+                    // Do Nothing
                 }
 
                 is NetworkResult.Error -> {

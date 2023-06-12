@@ -31,5 +31,4 @@ class ProfileViewModel(private val repository: AuthenticationRepository) : ViewM
             repository.logoutUser()
         }
     }
-
 }

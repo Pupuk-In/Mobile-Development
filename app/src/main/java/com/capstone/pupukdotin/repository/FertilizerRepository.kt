@@ -29,14 +29,8 @@ class FertilizerRepository(
     private val _searchItem = MutableLiveData<NetworkResult<SearchItemsResponse>>()
     val searchItem: LiveData<NetworkResult<SearchItemsResponse>> = _searchItem
 
-    private val _cartItem = MutableLiveData<NetworkResult<CartItemsResponse>>()
-    val cartItem: LiveData<NetworkResult<CartItemsResponse>> = _cartItem
 
-    private val _editCartMessage = MutableLiveData<NetworkResult<String>>()
-    val editCartMessage: LiveData<NetworkResult<String>> get() = _editCartMessage
-
-
-    suspend fun getCartItems() {
+    suspend fun getCartItems(_cartItem : MutableLiveData<NetworkResult<CartItemsResponse>>) {
         _cartItem.value = NetworkResult.Loading
         try {
             val result = apiServices.getCartItems()
@@ -50,7 +44,7 @@ class FertilizerRepository(
         }
     }
 
-    suspend fun editCartItems(payload: AddEditCartPayload,idItem: Int) {
+    suspend fun editCartItems(payload: AddEditCartPayload,idItem: Int, _editCartMessage: MutableLiveData<NetworkResult<String>>) {
         _editCartMessage.value = NetworkResult.Loading
         try {
             val result = apiServices.editCartItems(payload, idItem)
