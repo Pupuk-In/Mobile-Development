@@ -17,6 +17,7 @@ import com.capstone.pupukdotin.ui.search.SearchResultViewModel
 import com.capstone.pupukdotin.ui.store.DetailStoreViewModel
 import com.capstone.pupukdotin.ui.store.EditStoreViewModel
 import com.capstone.pupukdotin.ui.store.StoreHomeViewModel
+import com.capstone.pupukdotin.ui.store.StoreProfileViewModel
 
 class ViewModelFactory(private val context: Context) :
     ViewModelProvider.NewInstanceFactory() {
@@ -49,6 +50,8 @@ class ViewModelFactory(private val context: Context) :
             return StoreHomeViewModel(Injection.getStoreRepo()) as T
         } else if (modelClass.isAssignableFrom(EditStoreViewModel::class.java)) {
             return EditStoreViewModel(Injection.getStoreRepo(), Injection.getCommonRepo()) as T
+        } else if (modelClass.isAssignableFrom(StoreProfileViewModel::class.java)) {
+            return StoreProfileViewModel(Injection.getStoreRepo()) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
