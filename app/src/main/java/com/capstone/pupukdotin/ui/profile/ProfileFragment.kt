@@ -19,6 +19,7 @@ import com.capstone.pupukdotin.databinding.FragmentProfileBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.authentication.AuthenticationActivity
 import com.capstone.pupukdotin.ui.common.BaseFragment
+import com.capstone.pupukdotin.ui.store.EmptyStoreActivity
 import com.capstone.pupukdotin.ui.store.StoreActivity
 import com.capstone.pupukdotin.utils.convertTime
 
@@ -109,7 +110,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }
 
         binding.buttonLihatToko.setOnClickListener {
-            val intent = Intent(requireActivity(), StoreActivity::class.java)
+            val intent = Intent(requireActivity(), EmptyStoreActivity::class.java)
             startActivity(intent)
         }
 
