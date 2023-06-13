@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PupukInMobile</string>
+    <string name="app_name">Pupuk.In</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -162,4 +162,9 @@
     <string name="data_profil_yang_sudah_disimpan_dapat_diubah_nanti">Data profil yang sudah disimpan dapat diubah nanti</string>
     <string name="apakah_anda_yakin">Apakah anda yakin ?</string>
     <string name="ya">Ya</string>
+    <string name="kamu_belum_memiliki_toko">Kamu Belum Memiliki Toko</string>
+    <string name="ciptakan_peluangmu_sekarang">Ciptakan Peluangmu Sekarang</string>
+    <string name="dapatkan_pelanggan_yang_tepat_pada_saat_yang_tepat">Dapatkan Pelanggan yang tepat pada saat yang tepat</string>
+    <string name="buka_toko_gratis">Buka Toko Gratis</string>
+    <string name="buka_toko">Buka Toko</string>
 </resources>
