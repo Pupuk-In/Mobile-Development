@@ -17,8 +17,17 @@
         android:theme="@style/Theme.PupukInMobile"
         tools:targetApi="31">
         <activity
+            android:name=".ui.store.BukaTokoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.store.EmptyStoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.splashscreen.SplashScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.maps.SelectMapsLocationActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ui.aisearch.NutritionDetectionActivity"
             android:exported="false" />
