@@ -23,6 +23,7 @@
         layout="@layout/toolbar_checkout" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
@@ -34,7 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingVertical="16dp">
-
             <TextView
                 android:id="@+id/tv_metode_pengiriman"
                 android:layout_width="wrap_content"
@@ -279,6 +279,18 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
+                    android:id="@+id/textviewAlamatPenerimaMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/alamat_pada_peta"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
+                    app:layout_constraintTop_toBottomOf="@+id/nomor_telepon_penerima_textInputLayout" />
+
+                <TextView
                     android:id="@+id/pilih_lokasi_penerima"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -288,14 +300,16 @@
                     android:textColor="@color/green_13C193"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
-                    app:layout_constraintTop_toBottomOf="@+id/nomor_telepon_penerima_textInputLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/textviewAlamatPenerimaMap" />
 
-                <fragment
+                <TextView
                     android:id="@+id/alamat_penerima_map"
                     android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="0dp"
-                    android:layout_height="160dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:minHeight="48dp"
+                    tools:text=""
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
                     app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi_penerima" />

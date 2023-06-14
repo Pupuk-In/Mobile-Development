@@ -7,6 +7,7 @@ import com.capstone.pupukdotin.data.remote.payload.items.SearchItemsPayload
 import com.capstone.pupukdotin.data.remote.payload.profile.UpdateProfilePayload
 import com.capstone.pupukdotin.data.remote.payload.store.SearchCatalogPayload
 import com.capstone.pupukdotin.data.remote.payload.store.UpdateStoreDetailPayload
+import com.capstone.pupukdotin.data.remote.payload.wishlist.AddWishlistPayload
 import com.capstone.pupukdotin.data.remote.response.AuthenticationCheckResponse
 import com.capstone.pupukdotin.data.remote.response.BasicResponse
 import com.capstone.pupukdotin.data.remote.response.LoginResponse
@@ -15,15 +16,19 @@ import com.capstone.pupukdotin.data.remote.response.RegisterResponse
 import com.capstone.pupukdotin.data.remote.response.TypeResponse
 import com.capstone.pupukdotin.data.remote.response.UploadImagesResponse
 import com.capstone.pupukdotin.data.remote.response.carts.CartItemsResponse
+import com.capstone.pupukdotin.data.remote.response.carts.EditCartItemsResponse
 import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
 import com.capstone.pupukdotin.data.remote.response.store.OwnedStoreDetailResponse
 import com.capstone.pupukdotin.data.remote.response.store.StoreAllItemsResponse
 import com.capstone.pupukdotin.data.remote.response.store.StoreDetailResponse
 import com.capstone.pupukdotin.data.remote.response.user.ProfileDetailResponse
+import com.capstone.pupukdotin.data.remote.response.wishlist.AddWishlistItemResponse
+import com.capstone.pupukdotin.data.remote.response.wishlist.WishlistResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
@@ -70,6 +75,21 @@ interface ApiServices {
         @Body payload: SearchItemsPayload
     ) : Response<SearchItemsResponse>
 
+    @POST("/api/wishlists/index")
+    suspend fun getSearchWishlist(
+        @Body payload: SearchItemsPayload
+    ) : Response<WishlistResponse>
+
+    @POST("/api/wishlists")
+    suspend fun createWishlistItem(
+        @Body payload: AddWishlistPayload
+    ) : Response<AddWishlistItemResponse>
+
+    @DELETE("/api/wishlists/{id}")
+    suspend fun deleteWishlistItem(
+        @Path("id") idItem: Int
+    ) : Response<BasicResponse>
+
     @Headers("No-Authentication: true")
     @POST("/api/stores/{id}/catalogs")
     suspend fun getStoreDetail(
@@ -83,11 +103,21 @@ interface ApiServices {
     @GET("/api/carts")
     suspend fun getCartItems(): Response<CartItemsResponse>
 
+    @POST("/api/carts")
+    suspend fun addCartItems(
+        @Body payload: AddEditCartPayload
+    ): Response<EditCartItemsResponse>
+
     @PATCH("/api/carts/{id}")
     suspend fun editCartItems(
         @Body payload: AddEditCartPayload,
         @Path("id") idItemCart: Int
-    ): Response<CartItemsResponse>
+    ): Response<EditCartItemsResponse>
+
+    @DELETE("/api/carts/{id}")
+    suspend fun deleteCartItems(
+        @Path("id") idItemCart: Int
+    ): Response<BasicResponse>
 
     @GET("/api/profile")
     suspend fun getDetailProfile(): Response<ProfileDetailResponse>

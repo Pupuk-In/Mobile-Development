@@ -8,7 +8,7 @@ data class Store(
     val address: String? = null,
 
     @field:SerializedName("distance")
-    val distance: Any? = null,
+    val distance: Double? = null,
 
     @field:SerializedName("updated_at")
     val updatedAt: String? = null,

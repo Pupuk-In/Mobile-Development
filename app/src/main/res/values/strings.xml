@@ -167,4 +167,5 @@
     <string name="dapatkan_pelanggan_yang_tepat_pada_saat_yang_tepat">Dapatkan Pelanggan yang tepat pada saat yang tepat</string>
     <string name="buka_toko_gratis">Buka Toko Gratis</string>
     <string name="buka_toko">Buka Toko</string>
+    <string name="qty_format">Jumlah: %1$d</string>
 </resources>

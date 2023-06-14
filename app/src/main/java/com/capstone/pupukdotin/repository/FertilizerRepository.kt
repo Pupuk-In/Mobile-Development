@@ -7,18 +7,21 @@ import com.capstone.pupukdotin.data.remote.network.ApiServices
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.payload.carts.AddEditCartPayload
 import com.capstone.pupukdotin.data.remote.payload.items.SearchItemsPayload
+import com.capstone.pupukdotin.data.remote.payload.wishlist.AddWishlistPayload
+import com.capstone.pupukdotin.data.remote.response.BasicResponse
 import com.capstone.pupukdotin.data.remote.response.PlantResponse
 import com.capstone.pupukdotin.data.remote.response.TypeResponse
 import com.capstone.pupukdotin.data.remote.response.carts.CartItemsResponse
 import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
+import com.capstone.pupukdotin.data.remote.response.wishlist.AddWishlistItemResponse
+import com.capstone.pupukdotin.data.remote.response.wishlist.WishlistResponse
 
 class FertilizerRepository(
     private val apiServices: ApiServices
 ) {
 
-    private val _detailItem = MutableLiveData<NetworkResult<DetailItemResponse>>()
-    val detailItem: LiveData<NetworkResult<DetailItemResponse>> = _detailItem
+
 
     private val _types = MutableLiveData<NetworkResult<TypeResponse>>()
     val types: LiveData<NetworkResult<TypeResponse>> = _types
@@ -44,6 +47,20 @@ class FertilizerRepository(
         }
     }
 
+    suspend fun addCartItems(payload: AddEditCartPayload, _addCartMessage: MutableLiveData<NetworkResult<String>>) {
+        _addCartMessage.value = NetworkResult.Loading
+        try {
+            val result = apiServices.addCartItems(payload)
+            if(result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _addCartMessage.value = NetworkResult.Success(responseBody.message ?: "")
+            }
+        } catch (e: Exception) {
+            _addCartMessage.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
     suspend fun editCartItems(payload: AddEditCartPayload,idItem: Int, _editCartMessage: MutableLiveData<NetworkResult<String>>) {
         _editCartMessage.value = NetworkResult.Loading
         try {
@@ -54,6 +71,20 @@ class FertilizerRepository(
             }
         } catch (e: Exception) {
             _editCartMessage.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun deleteCartItems(idItem: Int, _deleteCartMessage: MutableLiveData<NetworkResult<BasicResponse>>) {
+        _deleteCartMessage.value = NetworkResult.Loading
+        try {
+            val result = apiServices.deleteCartItems(idItem)
+            if(result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _deleteCartMessage.value = NetworkResult.Success(responseBody)
+            }
+        } catch (e: Exception) {
+            _deleteCartMessage.value = NetworkResult.Error(e.message.toString())
             Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
         }
     }
@@ -100,7 +131,7 @@ class FertilizerRepository(
         }
     }
 
-    suspend fun getDetailItem(id: Int) {
+    suspend fun getDetailItem(id: Int, _detailItem: MutableLiveData<NetworkResult<DetailItemResponse>>) {
         _detailItem.value = NetworkResult.Loading
         try {
             val result = apiServices.getDetailItem(id)
@@ -124,6 +155,48 @@ class FertilizerRepository(
             }
         } catch (e: Exception) {
             _searchItem.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun searchWishlistItem(payload: SearchItemsPayload, _searchWishlistItems: MutableLiveData<NetworkResult<WishlistResponse>>) {
+        _searchWishlistItems.value = NetworkResult.Loading
+        try {
+            val result = apiServices.getSearchWishlist(payload)
+            if(result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _searchWishlistItems.value = NetworkResult.Success(responseBody)
+            }
+        } catch (e: Exception) {
+            _searchWishlistItems.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun addWishlistItem(payload: AddWishlistPayload, _addedWishlistItems: MutableLiveData<NetworkResult<AddWishlistItemResponse>>) {
+        _addedWishlistItems.value = NetworkResult.Loading
+        try {
+            val result = apiServices.createWishlistItem(payload)
+            if(result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _addedWishlistItems.value = NetworkResult.Success(responseBody)
+            }
+        } catch (e: Exception) {
+            _addedWishlistItems.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun deleteWishlistItem(idItem: Int, _deletedWishlistMessage: MutableLiveData<NetworkResult<BasicResponse>>) {
+        _deletedWishlistMessage.value = NetworkResult.Loading
+        try {
+            val result = apiServices.deleteWishlistItem(idItem)
+            if(result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _deletedWishlistMessage.value = NetworkResult.Success(responseBody)
+            }
+        } catch (e: Exception) {
+            _deletedWishlistMessage.value = NetworkResult.Error(e.message.toString())
             Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
         }
     }

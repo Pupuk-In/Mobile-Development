@@ -1,6 +1,5 @@
 package com.capstone.pupukdotin.ui.cart
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -34,7 +33,10 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
         viewModel.editCart()
     }
 
-
+    override fun onPause() {
+        super.onPause()
+        viewModel.editCart()
+    }
 
     private fun setupViewModel() {
         viewModel.cartItem.observe(viewLifecycleOwner) { result ->
@@ -62,6 +64,22 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
 
                 is NetworkResult.Success -> {
                     // Do Nothing
+                }
+
+                is NetworkResult.Error -> {
+                    showToast(result.error.toString())
+                }
+            }
+        }
+
+        viewModel.deleteCartMessage.observe(viewLifecycleOwner) {result ->
+            when(result) {
+                is NetworkResult.Loading -> {
+                    // Do Nothing
+                }
+
+                is NetworkResult.Success -> {
+                    viewModel.removeItem()
                 }
 
                 is NetworkResult.Error -> {
@@ -99,15 +117,14 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
     private fun onSetUpAction() {
         binding.apply {
             cartButtonPesan.setOnClickListener {
-                val intent = Intent(requireActivity(), CheckOutActivity::class.java)
-                startActivity(intent)
+                CheckOutActivity.start(requireActivity())
             }
         }
     }
 
 
-    override fun onItemDelete(itemId: Int) {
-//        TODO("Not yet implemented")
+    override fun onItemDelete(position: Int) {
+        viewModel.deleteCartItemFromServer(position)
     }
 
     override fun addQuantity(position: Int) {

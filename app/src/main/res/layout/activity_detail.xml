@@ -140,7 +140,7 @@
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@id/ll_product_rating"
                 app:layout_constraintTop_toTopOf="@id/ll_product_rating"
-                app:tint="@color/black" />
+                app:tint="@color/green_13C193" />
 
             <View
                 android:id="@+id/wv_breakline"

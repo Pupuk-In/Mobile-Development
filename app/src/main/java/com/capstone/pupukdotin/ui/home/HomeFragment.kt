@@ -17,6 +17,7 @@ import com.capstone.pupukdotin.ui.adapter.PlantFertilizerAdapter
 import com.capstone.pupukdotin.ui.adapter.TypeFertilizerAdapter
 import com.capstone.pupukdotin.ui.common.BaseFragment
 import com.capstone.pupukdotin.ui.search.SearchResultActivity
+import com.capstone.pupukdotin.ui.wishlist.WishlistActivity
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
@@ -48,6 +49,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             override fun onQueryTextChange(newText: String?): Boolean = false
         })
+
+        binding.wishlistButton.setOnClickListener {
+            WishlistActivity.start(requireActivity())
+        }
     }
 
     private fun setupViewModel() {
