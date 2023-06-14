@@ -9,6 +9,7 @@ import com.capstone.pupukdotin.ui.aisearch.NutritionDetectionViewModel
 import com.capstone.pupukdotin.ui.authentication.LoginViewModel
 import com.capstone.pupukdotin.ui.authentication.RegisterViewModel
 import com.capstone.pupukdotin.ui.cart.CartViewModel
+import com.capstone.pupukdotin.ui.checkout.CheckOutViewModel
 import com.capstone.pupukdotin.ui.detail.DetailItemViewModel
 import com.capstone.pupukdotin.ui.home.HomeViewModel
 import com.capstone.pupukdotin.ui.profile.LihatProfileViewModel
@@ -17,7 +18,9 @@ import com.capstone.pupukdotin.ui.search.SearchResultViewModel
 import com.capstone.pupukdotin.ui.store.DetailStoreViewModel
 import com.capstone.pupukdotin.ui.store.EditStoreViewModel
 import com.capstone.pupukdotin.ui.store.StoreHomeViewModel
+import com.capstone.pupukdotin.ui.store.StoreProdukViewModel
 import com.capstone.pupukdotin.ui.store.StoreProfileViewModel
+import com.capstone.pupukdotin.ui.wishlist.WishlistViewModel
 
 class ViewModelFactory(private val context: Context) :
     ViewModelProvider.NewInstanceFactory() {
@@ -52,6 +55,12 @@ class ViewModelFactory(private val context: Context) :
             return EditStoreViewModel(Injection.getStoreRepo(), Injection.getCommonRepo()) as T
         } else if (modelClass.isAssignableFrom(StoreProfileViewModel::class.java)) {
             return StoreProfileViewModel(Injection.getStoreRepo()) as T
+        } else if (modelClass.isAssignableFrom(StoreProdukViewModel::class.java)) {
+            return StoreProdukViewModel(Injection.getStoreRepo()) as T
+        } else if (modelClass.isAssignableFrom(WishlistViewModel::class.java)) {
+            return WishlistViewModel(Injection.getFertilizerRepo()) as T
+        } else if (modelClass.isAssignableFrom(CheckOutViewModel::class.java)) {
+            return CheckOutViewModel(Injection.getFertilizerRepo()) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

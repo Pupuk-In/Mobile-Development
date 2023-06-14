@@ -11,10 +11,11 @@ import com.capstone.pupukdotin.databinding.ItemProductBinding
 import com.capstone.pupukdotin.ui.detail.DetailItemActivity
 
 class ProductItemAdapter(
-    private val list: List<DataItem>
+    private val list: List<DataItem>,
+    private val state: String? = null
 ) : RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding: ItemProductBinding = ItemProductBinding.bind(itemView)
         fun bindItem(item: DataItem) {
             with(binding) {
@@ -29,7 +30,11 @@ class ProductItemAdapter(
                 tvProductPrice.text =
                     itemView.context.getString(R.string.price_format, item.price ?: 0)
                 binding.root.setOnClickListener {
-                    DetailItemActivity.start(itemView.context, item.id ?:0)
+                    if(state == "wishlist") {
+                        DetailItemActivity.start(itemView.context, item.id ?:0, true)
+                    } else {
+                        DetailItemActivity.start(itemView.context, item.id ?:0)
+                    }
                 }
             }
         }

@@ -1,38 +1,20 @@
-package com.capstone.pupukdotin.data.remote.response.carts
+package com.capstone.pupukdotin.data.remote.response.store
 
 import com.capstone.pupukdotin.data.remote.response.common.PictureItem
+import com.capstone.pupukdotin.data.remote.response.common.PlantItem
+import com.capstone.pupukdotin.data.remote.response.common.PlantPartItem
 import com.capstone.pupukdotin.data.remote.response.common.Store
+import com.capstone.pupukdotin.data.remote.response.common.TypeItem
 import com.google.gson.annotations.SerializedName
 
+data class StoreAllItemsResponse(
 
-data class CartItemsResponse(
+	@field:SerializedName("item")
+	val item: List<Item>? = null,
+
 	@field:SerializedName("message")
-	val message: String? = null,
-
-	@field:SerializedName("cart")
-	val cart: Cart? = null
-) {
-	data class Cart(
-
-		@field:SerializedName("total")
-		val total: Int? = null,
-
-		@field:SerializedName("updated_at")
-		val updatedAt: String? = null,
-
-		@field:SerializedName("profile_id")
-		val profileId: Int? = null,
-
-		@field:SerializedName("created_at")
-		val createdAt: String? = null,
-
-		@field:SerializedName("id")
-		val id: Int? = null,
-
-		@field:SerializedName("cart_item")
-		val cartItem: List<CartItem>? = null
-	)
-
+	val message: String? = null
+){
 	data class Item(
 
 		@field:SerializedName("store_id")
@@ -43,6 +25,9 @@ data class CartItemsResponse(
 
 		@field:SerializedName("type_id")
 		val typeId: Int? = null,
+
+		@field:SerializedName("plant_part")
+		val plantPart: List<PlantPartItem?>? = null,
 
 		@field:SerializedName("rating")
 		val rating: String? = null,
@@ -55,6 +40,9 @@ data class CartItemsResponse(
 
 		@field:SerializedName("store")
 		val store: Store? = null,
+
+		@field:SerializedName("type")
+		val type: TypeItem? = null,
 
 		@field:SerializedName("deleted_at")
 		val deletedAt: String? = null,
@@ -71,6 +59,9 @@ data class CartItemsResponse(
 		@field:SerializedName("price")
 		val price: Int? = null,
 
+		@field:SerializedName("plant")
+		val plant: List<PlantItem>? = null,
+
 		@field:SerializedName("name")
 		val name: String? = null,
 
@@ -83,34 +74,9 @@ data class CartItemsResponse(
 		@field:SerializedName("brand")
 		val brand: String? = null
 	)
-
-	data class CartItem(
-
-		@field:SerializedName("cart_id")
-		val cartId: Int? = null,
-
-		@field:SerializedName("item")
-		val item: Item? = null,
-
-		@field:SerializedName("quantity")
-		var quantity: Int? = null,
-
-		@field:SerializedName("updated_at")
-		val updatedAt: String? = null,
-
-		@field:SerializedName("item_id")
-		val itemId: Int? = null,
-
-		@field:SerializedName("price")
-		var price: Int? = null,
-
-		@field:SerializedName("created_at")
-		val createdAt: String? = null,
-
-		@field:SerializedName("id")
-		val id: Int? = null
-	)
 }
+
+
 
 
 

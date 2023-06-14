@@ -7,10 +7,14 @@ import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.capstone.pupukdotin.MainActivity
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
+import com.capstone.pupukdotin.data.remote.payload.wishlist.AddWishlistPayload
 import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.databinding.ActivityDetailBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
@@ -25,6 +29,7 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
 
     private val viewModel by viewModels<DetailItemViewModel> { ViewModelFactory(this) }
     private val idItem by lazy { intent.getIntExtra(ID_ITEM, 0) }
+    private var isWishlist = false
     private var stock: Int = 0
 
     override fun getViewBinding(): ActivityDetailBinding =
@@ -35,6 +40,7 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
         setContentView(binding.root)
 
         binding.topBar.tvTitleBar.text = getString(R.string.detail_produk)
+        isWishlist = intent.getBooleanExtra(IS_WISHLIST, false)
 
         setupAdapter()
         setupAction()
@@ -63,12 +69,24 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
             viewModel.subtractItemCount()
         }
 
+        binding.btnAddToCart.setOnClickListener {
+            viewModel.addItemToCart(idItem)
+        }
+
         binding.edStockCount.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 binding.edStockCount.clearFocus()
                 afterEditAction(v)
             }
             false
+        }
+
+        binding.ivProductIsWishlist.setOnClickListener {
+            if(isWishlist) {
+                viewModel.deleteWishlistItem(idItem)
+            } else {
+                viewModel.createWishlistItem(AddWishlistPayload(idItem))
+            }
         }
     }
 
@@ -105,6 +123,80 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
                 }
             }
         }
+
+        viewModel.addCartMessage.observe(this) { result ->
+            when (result) {
+                is NetworkResult.Loading -> {
+                    showAddToCartLoading(true)
+                }
+
+                is NetworkResult.Success -> {
+                    showAddToCartLoading(false)
+                    showToast(result.data)
+                    moveToFragment()
+                }
+
+
+                is NetworkResult.Error -> {
+                    showAddToCartLoading(false)
+                    val errorResult = result.error
+                    showToast(errorResult.toString())
+                    Log.d("ini_log_login", errorResult.toString())
+                }
+            }
+        }
+
+        viewModel.createWishlistItem.observe(this)  { result ->
+            when (result) {
+                is NetworkResult.Loading -> {
+                }
+
+                is NetworkResult.Success -> {
+                    isWishlist = true
+                    setupFavoriteDrawable()
+                    showToast(result.data.message ?:"")
+                }
+
+
+                is NetworkResult.Error -> {
+                    val errorResult = result.error
+                    showToast(errorResult.toString())
+                    Log.d("ini_log_login", errorResult.toString())
+                }
+            }
+        }
+
+        viewModel.deleteItemMessage.observe(this)  { result ->
+            when (result) {
+                is NetworkResult.Loading -> {
+                }
+
+                is NetworkResult.Success -> {
+                    isWishlist = false
+                    setupFavoriteDrawable()
+                    showToast(result.data.message)
+                }
+
+
+                is NetworkResult.Error -> {
+                    val errorResult = result.error
+                    showToast(errorResult.toString())
+                    Log.d("ini_log_login", errorResult.toString())
+                }
+            }
+        }
+    }
+
+    private fun moveToFragment() {
+        MainActivity.start(this)
+        val navController = findNavController(R.id.dashboard_navigation)
+        navController.navigateUp()
+        navController.navigate(R.id.cartFragment)
+        finish()
+    }
+
+    private fun showAddToCartLoading(value: Boolean) {
+        binding.btnAddToCart.isEnabled = !value
     }
 
     private fun showLoading(value: Boolean) {
@@ -134,6 +226,8 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
                     tvStoreName.text = data.item?.store?.name ?: "Tidak Ada Nama Toko"
                     tvStoreAddress.text = data.item?.store?.address ?: "Tidak Ada Alamat Toko"
                     tvStoreRating.text = data.item?.store?.rating ?: "0.0"
+
+                    setupFavoriteDrawable()
 
                     val listPlant = data.item?.plant?.mapNotNull { it.name }
                     val listPlantPlant = data.item?.plantPart?.mapNotNull { it.name }
@@ -165,14 +259,36 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
         }
     }
 
+    private fun setupFavoriteDrawable() {
+        binding.ivProductIsWishlist.apply {
+            if(isWishlist) {
+                setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this@DetailItemActivity,
+                        R.drawable.baseline_favorite_24
+                    )
+                )
+            } else {
+                setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this@DetailItemActivity,
+                        R.drawable.baseline_favorite_border_24
+                    )
+                )
+            }
+        }
+    }
+
     companion object {
         @JvmStatic
-        fun start(context: Context, idItems: Int) {
+        fun start(context: Context, idItems: Int, isWishlist: Boolean = false) {
             val starter = Intent(context, DetailItemActivity::class.java)
                 .putExtra(ID_ITEM, idItems)
+                .putExtra(IS_WISHLIST, isWishlist)
             context.startActivity(starter)
         }
 
         private const val ID_ITEM = "id"
+        private const val IS_WISHLIST = "is_wishlist"
     }
 }

@@ -7,6 +7,7 @@ import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.payload.store.SearchCatalogPayload
 import com.capstone.pupukdotin.data.remote.payload.store.UpdateStoreDetailPayload
 import com.capstone.pupukdotin.data.remote.response.store.OwnedStoreDetailResponse
+import com.capstone.pupukdotin.data.remote.response.store.StoreAllItemsResponse
 import com.capstone.pupukdotin.data.remote.response.store.StoreDetailResponse
 
 class StoreRepository(
@@ -61,6 +62,19 @@ class StoreRepository(
         }
     }
 
+    suspend fun getAllItems(_allItems: MutableLiveData<NetworkResult<StoreAllItemsResponse>>){
+        _allItems.value = NetworkResult.Loading
+        try {
+            val result = apiServices.getAllItems()
+            if (result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _allItems.value = NetworkResult.Success(responseBody)
+            }
+        } catch (e: Exception) {
+            _allItems.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
 
     companion object {
         @Volatile

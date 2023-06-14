@@ -15,7 +15,7 @@ class TesCartAdapter(
 ) : RecyclerView.Adapter<TesCartAdapter.ViewHolder>() {
 
     interface OnItemChecked {
-        fun onItemDelete(itemId: Int)
+        fun onItemDelete(position: Int)
         fun addQuantity(position: Int)
         fun subtractQuantity(position: Int)
     }
@@ -41,6 +41,11 @@ class TesCartAdapter(
                 binding.plusProductCart.setOnClickListener {
                     listener?.addQuantity(adapterPosition)
                 }
+
+                binding.itemCartDelete.setOnClickListener {
+                    listener?.onItemDelete(adapterPosition)
+                }
+
             }
         }
     }

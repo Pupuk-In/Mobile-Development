@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.payload.carts.AddEditCartPayload
+import com.capstone.pupukdotin.data.remote.response.BasicResponse
 import com.capstone.pupukdotin.data.remote.response.carts.CartItemsResponse
 import com.capstone.pupukdotin.repository.FertilizerRepository
 import kotlinx.coroutines.launch
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
 class CartViewModel(private val repository: FertilizerRepository) : ViewModel() {
 
     private val mlistItem = mutableListOf<CartItemsResponse.CartItem>()
+
     private val _listItem = MutableLiveData<List<CartItemsResponse.CartItem>>()
     val listItem: LiveData<List<CartItemsResponse.CartItem>> get() = _listItem
 
@@ -25,6 +27,11 @@ class CartViewModel(private val repository: FertilizerRepository) : ViewModel() 
     private val _editCartMessage = MutableLiveData<NetworkResult<String>>()
     val editCartMessage: LiveData<NetworkResult<String>> get() = _editCartMessage
 
+    private val _deleteCartMessage = MutableLiveData<NetworkResult<BasicResponse>>()
+    val deleteCartMessage: LiveData<NetworkResult<BasicResponse>> get() = _deleteCartMessage
+
+    private val _positionItemSelected = MutableLiveData(-1)
+
     fun getCartItems() {
         reset()
         viewModelScope.launch {
@@ -32,9 +39,17 @@ class CartViewModel(private val repository: FertilizerRepository) : ViewModel() 
         }
     }
 
+
     private fun editCartItems(payload: AddEditCartPayload, idItem: Int) {
         viewModelScope.launch {
             repository.editCartItems(payload, idItem, _editCartMessage)
+        }
+    }
+
+    fun deleteCartItemFromServer(position: Int) {
+        _positionItemSelected.value = position
+        viewModelScope.launch {
+            repository.deleteCartItems(mlistItem[position].id ?: 0, _deleteCartMessage)
         }
     }
 
@@ -54,6 +69,15 @@ class CartViewModel(private val repository: FertilizerRepository) : ViewModel() 
         mlistItem.addAll(listData)
         _listItem.value = mlistItem
         setTotalPrice()
+    }
+
+    fun removeItem() {
+        val currentPosition = _positionItemSelected.value ?:-1
+        if(currentPosition < mlistItem.size && currentPosition > 0) {
+            mlistItem.removeAt(currentPosition)
+            setTotalPrice()
+            _positionItemSelected.value = -1
+        }
     }
 
     fun addQuantity(position: Int) {
