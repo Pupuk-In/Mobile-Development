@@ -17,14 +17,18 @@ Product Based Capstone Bangkit 2022
 ### Seller Application
 
 - Splash Screen
+- Login & Register
 - Profile Customization
-- 
+- Search Product
 
 ### Buyer Application
 
 - Splash Screen
+- Login & Register
 - Profile Customization
-- 
+- Search Product
+- Upload Image
+- Plant nutrient detection
 
 
 ## Build With
