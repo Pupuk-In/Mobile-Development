@@ -10,23 +10,27 @@ import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.databinding.ItemPlantInputBinding
 
 
-data class InputPlantModel(
+data class InputPlantOrTypeOrPartModel(
+    val name: String,
+    val id: Int
+)
+
+data class PlantOrTypeOrPartModel(
     val name: String
 )
 
 class InputPlantPartAdapter(
     private val listener: OnItemDeleteListener? = null,
     private val input: String
-) : ListAdapter<InputPlantModel, InputPlantPartAdapter.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<PlantOrTypeOrPartModel, InputPlantPartAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemDeleteListener {
         fun deleteItemSelected(position: Int, input: String)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         private val binding = ItemPlantInputBinding.bind(itemView)
-        fun bindItem(item: InputPlantModel) {
+        fun bindItem(item: PlantOrTypeOrPartModel) {
 
             with(binding) {
                 tvName.text = item.name
@@ -49,16 +53,16 @@ class InputPlantPartAdapter(
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<InputPlantModel>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<PlantOrTypeOrPartModel>() {
             override fun areItemsTheSame(
-                oldItem: InputPlantModel,
-                newItem: InputPlantModel
+                oldItem: PlantOrTypeOrPartModel,
+                newItem: PlantOrTypeOrPartModel
             ): Boolean =
                 oldItem == newItem
 
             override fun areContentsTheSame(
-                oldItem: InputPlantModel,
-                newItem: InputPlantModel
+                oldItem: PlantOrTypeOrPartModel,
+                newItem: PlantOrTypeOrPartModel
             ): Boolean =
                 oldItem.name == newItem.name
         }

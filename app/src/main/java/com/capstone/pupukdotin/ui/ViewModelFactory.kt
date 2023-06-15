@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.pupukdotin.MainViewModel
 import com.capstone.pupukdotin.di.Injection
+import com.capstone.pupukdotin.ui.addproduct.AddProductViewModel
 import com.capstone.pupukdotin.ui.aisearch.NutritionDetectionViewModel
 import com.capstone.pupukdotin.ui.authentication.LoginViewModel
 import com.capstone.pupukdotin.ui.authentication.RegisterViewModel
@@ -15,11 +16,13 @@ import com.capstone.pupukdotin.ui.home.HomeViewModel
 import com.capstone.pupukdotin.ui.profile.LihatProfileViewModel
 import com.capstone.pupukdotin.ui.profile.ProfileViewModel
 import com.capstone.pupukdotin.ui.search.SearchResultViewModel
+import com.capstone.pupukdotin.ui.store.BukaTokoViewModel
 import com.capstone.pupukdotin.ui.store.DetailStoreViewModel
 import com.capstone.pupukdotin.ui.store.EditStoreViewModel
 import com.capstone.pupukdotin.ui.store.StoreHomeViewModel
 import com.capstone.pupukdotin.ui.store.StoreProdukViewModel
 import com.capstone.pupukdotin.ui.store.StoreProfileViewModel
+import com.capstone.pupukdotin.ui.store.StoreViewModel
 import com.capstone.pupukdotin.ui.wishlist.WishlistViewModel
 
 class ViewModelFactory(private val context: Context) :
@@ -48,7 +51,7 @@ class ViewModelFactory(private val context: Context) :
         } else if (modelClass.isAssignableFrom(LihatProfileViewModel::class.java)) {
             return LihatProfileViewModel(Injection.getAuthRepo(context), Injection.getCommonRepo()) as T
         } else if (modelClass.isAssignableFrom(NutritionDetectionViewModel::class.java)) {
-            return NutritionDetectionViewModel(Injection.getFertilizerRepo(), Injection.getCommonRepo()) as T
+            return NutritionDetectionViewModel(Injection.getFertilizerRepo(), Injection.getMLRepo()) as T
         }  else if (modelClass.isAssignableFrom(StoreHomeViewModel::class.java)) {
             return StoreHomeViewModel(Injection.getStoreRepo()) as T
         } else if (modelClass.isAssignableFrom(EditStoreViewModel::class.java)) {
@@ -61,6 +64,12 @@ class ViewModelFactory(private val context: Context) :
             return WishlistViewModel(Injection.getFertilizerRepo()) as T
         } else if (modelClass.isAssignableFrom(CheckOutViewModel::class.java)) {
             return CheckOutViewModel(Injection.getFertilizerRepo()) as T
+        } else if (modelClass.isAssignableFrom(StoreViewModel::class.java)) {
+            return StoreViewModel(Injection.getStoreRepo()) as T
+        } else if (modelClass.isAssignableFrom(BukaTokoViewModel::class.java)) {
+            return BukaTokoViewModel(Injection.getStoreRepo(), Injection.getCommonRepo()) as T
+        } else if (modelClass.isAssignableFrom(AddProductViewModel::class.java)) {
+            return AddProductViewModel(Injection.getFertilizerRepo(), Injection.getCommonRepo()) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

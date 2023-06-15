@@ -2,14 +2,14 @@ package com.capstone.pupukdotin.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.capstone.pupukdotin.data.remote.network.ApiServices
+import com.capstone.pupukdotin.data.remote.network.CommonServices
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.response.BasicResponse
 import com.capstone.pupukdotin.data.remote.response.UploadImagesResponse
 import com.google.gson.Gson
 import okhttp3.MultipartBody
 
-class CommonRepository(private val apiServices: ApiServices) {
+class CommonRepository(private val apiServices: CommonServices) {
 
     suspend fun uploadImage(file: MultipartBody.Part, _fileUploaded: MutableLiveData<NetworkResult<UploadImagesResponse>>) {
         _fileUploaded.value = NetworkResult.Loading
@@ -43,7 +43,7 @@ class CommonRepository(private val apiServices: ApiServices) {
         private var instance: CommonRepository? = null
 
         fun getInstance(
-            apiServices: ApiServices
+            apiServices: CommonServices
         ): CommonRepository =
             instance ?: synchronized(this) {
                 CommonRepository(apiServices).apply {

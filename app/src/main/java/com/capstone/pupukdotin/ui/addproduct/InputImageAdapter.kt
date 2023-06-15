@@ -1,13 +1,12 @@
 package com.capstone.pupukdotin.ui.addproduct
 
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.setPadding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.databinding.ItemListImageBinding
 
@@ -28,13 +27,12 @@ class InputImageAdapter(
         fun bindItem(item: InputImageModel) {
 
             with(binding) {
-//                Glide.with(itemView)
-//                    .load(item.url)
-//                    .placeholder(R.drawable.placeholder)
-//                    .into(ivProductImage)
-
-                ivProductImage.setImageBitmap(BitmapFactory.decodeFile(item.url))
-                ivProductImage.setPadding(0)
+                Glide.with(itemView)
+                    .load(item.url)
+                    .placeholder(R.drawable.placeholder)
+                    .into(ivProductImage)
+//                ivProductImage.setImageBitmap(BitmapFactory.decodeFile(item.url))
+//                ivProductImage.setPadding(0)
                 ivDeleteImage.setOnClickListener {
                     listener?.deleteItemSelected(adapterPosition)
                 }

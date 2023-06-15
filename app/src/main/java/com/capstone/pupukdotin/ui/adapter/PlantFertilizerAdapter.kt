@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.data.remote.response.PlantResponse
 import com.capstone.pupukdotin.databinding.ItemPlantFertilizerBinding
+import com.capstone.pupukdotin.ui.search.SearchResultActivity
 
 class PlantFertilizerAdapter(
     private val plantList: List<PlantResponse.PlantItem>,
@@ -28,6 +29,9 @@ class PlantFertilizerAdapter(
                     .into(ivPlant)
 
                 tvPlant.text = item.name
+                root.setOnClickListener {
+                    SearchResultActivity.start(itemView.context, item.name, plantId = item.id)
+                }
             }
         }
     }

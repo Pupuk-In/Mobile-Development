@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.payload.store.UpdateStoreDetailPayload
 import com.capstone.pupukdotin.data.remote.response.UploadImagesResponse
-import com.capstone.pupukdotin.data.remote.response.store.OwnedStoreDetailResponse
 import com.capstone.pupukdotin.repository.CommonRepository
 import com.capstone.pupukdotin.repository.StoreRepository
 import com.capstone.pupukdotin.utils.reduceFileImage
@@ -17,25 +16,15 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
-class EditStoreViewModel(
+class BukaTokoViewModel(
     private val repository: StoreRepository,
     private val commonRepository: CommonRepository
 ) : ViewModel() {
-
     private val _fileUploaded = MutableLiveData<NetworkResult<UploadImagesResponse>>()
     val fileUploaded: LiveData<NetworkResult<UploadImagesResponse>> = _fileUploaded
 
-    private val _ownedDetailStore = MutableLiveData<NetworkResult<OwnedStoreDetailResponse>>()
-    val ownedDetailStore: LiveData<NetworkResult<OwnedStoreDetailResponse>> = _ownedDetailStore
-
-    private val _editStoreMessage = MutableLiveData<NetworkResult<String>>()
-    val editStoreMessage: LiveData<NetworkResult<String>> get() = _editStoreMessage
-
-    fun getOwnedDetailStore() {
-        viewModelScope.launch {
-            repository.getOwnedDetailStore(_ownedDetailStore)
-        }
-    }
+    private val _createNewStoreMessage = MutableLiveData<NetworkResult<String>>()
+    val createNewStoreMessage: LiveData<NetworkResult<String>> get() = _createNewStoreMessage
 
     fun uploadImage(file: File) {
         viewModelScope.launch {
@@ -52,7 +41,7 @@ class EditStoreViewModel(
 
     fun editOwnedDetailStore(payload: UpdateStoreDetailPayload) {
         viewModelScope.launch {
-            repository.editOwnedDetailStore(payload, _editStoreMessage)
+            repository.addNewOwnedStore(payload, _createNewStoreMessage)
         }
     }
 }

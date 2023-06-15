@@ -3,6 +3,7 @@ package com.capstone.pupukdotin.data.remote.network
 import com.capstone.pupukdotin.data.remote.payload.LoginPayload
 import com.capstone.pupukdotin.data.remote.payload.RegisterPayload
 import com.capstone.pupukdotin.data.remote.payload.carts.AddEditCartPayload
+import com.capstone.pupukdotin.data.remote.payload.items.CreateNewItemPayload
 import com.capstone.pupukdotin.data.remote.payload.items.SearchItemsPayload
 import com.capstone.pupukdotin.data.remote.payload.profile.UpdateProfilePayload
 import com.capstone.pupukdotin.data.remote.payload.store.SearchCatalogPayload
@@ -11,6 +12,7 @@ import com.capstone.pupukdotin.data.remote.payload.wishlist.AddWishlistPayload
 import com.capstone.pupukdotin.data.remote.response.AuthenticationCheckResponse
 import com.capstone.pupukdotin.data.remote.response.BasicResponse
 import com.capstone.pupukdotin.data.remote.response.LoginResponse
+import com.capstone.pupukdotin.data.remote.response.PlantPartResponse
 import com.capstone.pupukdotin.data.remote.response.PlantResponse
 import com.capstone.pupukdotin.data.remote.response.RegisterResponse
 import com.capstone.pupukdotin.data.remote.response.TypeResponse
@@ -22,6 +24,7 @@ import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
 import com.capstone.pupukdotin.data.remote.response.store.OwnedStoreDetailResponse
 import com.capstone.pupukdotin.data.remote.response.store.StoreAllItemsResponse
 import com.capstone.pupukdotin.data.remote.response.store.StoreDetailResponse
+import com.capstone.pupukdotin.data.remote.response.store.StoreItemResponse
 import com.capstone.pupukdotin.data.remote.response.user.ProfileDetailResponse
 import com.capstone.pupukdotin.data.remote.response.wishlist.AddWishlistItemResponse
 import com.capstone.pupukdotin.data.remote.response.wishlist.WishlistResponse
@@ -68,6 +71,14 @@ interface ApiServices {
     @Headers("No-Authentication: true")
     @GET("/api/plants")
     suspend fun getAllPlants() : Response<PlantResponse>
+
+    @Headers("No-Authentication: true")
+    @GET("/api/types")
+    suspend fun getAllTypes() : Response<TypeResponse>
+
+    @Headers("No-Authentication: true")
+    @GET("/api/plant-parts")
+    suspend fun getAllPlantPart() : Response<PlantPartResponse>
 
     @Headers("No-Authentication: true")
     @POST("/api/search/items")
@@ -144,6 +155,16 @@ interface ApiServices {
         @Body payload: UpdateStoreDetailPayload
     ) : Response<OwnedStoreDetailResponse>
 
+    @POST("/api/stores")
+    suspend fun createNewOwnedStore(
+        @Body payload: UpdateStoreDetailPayload
+    ) : Response<OwnedStoreDetailResponse>
+
     @GET("/api/stores/items/getall")
     suspend fun getAllItems() : Response<StoreAllItemsResponse>
+
+    @POST("/api/stores/items")
+    suspend fun createNewItem(
+        @Body payload: CreateNewItemPayload
+    ) : Response<StoreItemResponse>
 }

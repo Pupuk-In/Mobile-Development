@@ -9,6 +9,7 @@ import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.data.remote.response.common.TypeItem
 
 import com.capstone.pupukdotin.databinding.ItemTypeFertilizerBinding
+import com.capstone.pupukdotin.ui.search.SearchResultActivity
 
 class TypeFertilizerAdapter(
     private val typeList: List<TypeItem>,
@@ -29,6 +30,9 @@ class TypeFertilizerAdapter(
                     .into(ivLogoJenis)
 
                 tvNamaJenis.text = item.name
+                root.setOnClickListener {
+                    SearchResultActivity.start(itemView.context, item.name, typeId = item.id)
+                }
             }
         }
     }

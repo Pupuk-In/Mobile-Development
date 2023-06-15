@@ -168,4 +168,8 @@
     <string name="buka_toko_gratis">Buka Toko Gratis</string>
     <string name="buka_toko">Buka Toko</string>
     <string name="qty_format">Jumlah: %1$d</string>
+    <string name="image_process_loading">Memproses Gambar...</string>
+    <string name="find_here">Cari Pupuk Disini</string>
+    <string name="reset">Reset</string>
+    <string name="error_detection_message">Maaf, sistem belum mampu mendeteksi</string>
 </resources>

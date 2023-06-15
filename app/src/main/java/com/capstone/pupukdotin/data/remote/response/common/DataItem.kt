@@ -38,7 +38,7 @@ data class DataItem(
     val relevance: Any? = null,
 
     @field:SerializedName("picture")
-    val picture: List<PictureItem?>? = null,
+    val picture: List<PictureItem>? = null,
 
     @field:SerializedName("updated_at")
     val updatedAt: String? = null,

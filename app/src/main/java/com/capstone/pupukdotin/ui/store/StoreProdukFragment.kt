@@ -9,6 +9,7 @@ import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.databinding.FragmentStoreProdukBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.adapter.TesDaftarProdukStoreAdapter
+import com.capstone.pupukdotin.ui.addproduct.AddProductActivity
 import com.capstone.pupukdotin.ui.common.BaseFragment
 
 class StoreProdukFragment : BaseFragment<FragmentStoreProdukBinding>() {
@@ -19,12 +20,17 @@ class StoreProdukFragment : BaseFragment<FragmentStoreProdukBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel.getAllItems()
-
         setupViewModel()
         setupAdapter()
+        setupAction()
 
+    }
+
+    private fun setupAction() {
+        binding.buttonTambahProduk.setOnClickListener {
+            AddProductActivity.start(requireActivity())
+        }
     }
 
     private fun setupAdapter() {
