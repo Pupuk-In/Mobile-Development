@@ -66,6 +66,7 @@ class CartViewModel(private val repository: FertilizerRepository) : ViewModel() 
     }
 
     fun addAll(listData: List<CartItemsResponse.CartItem>) {
+        mlistItem.clear()
         mlistItem.addAll(listData)
         _listItem.value = mlistItem
         setTotalPrice()

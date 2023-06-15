@@ -76,7 +76,6 @@
                 android:id="@+id/daftar_pesanan_recycleview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintTop_toBottomOf="@id/tv_belum_diproses"
                 tools:itemCount="2"

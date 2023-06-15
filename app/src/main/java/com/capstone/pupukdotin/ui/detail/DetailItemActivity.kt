@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.capstone.pupukdotin.MainActivity
 import com.capstone.pupukdotin.R
@@ -132,10 +131,8 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
 
                 is NetworkResult.Success -> {
                     showAddToCartLoading(false)
-                    showToast(result.data)
                     moveToFragment()
                 }
-
 
                 is NetworkResult.Error -> {
                     showAddToCartLoading(false)
@@ -189,9 +186,6 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
 
     private fun moveToFragment() {
         MainActivity.start(this)
-        val navController = findNavController(R.id.dashboard_navigation)
-        navController.navigateUp()
-        navController.navigate(R.id.cartFragment)
         finish()
     }
 

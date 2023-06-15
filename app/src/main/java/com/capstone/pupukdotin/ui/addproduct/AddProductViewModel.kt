@@ -89,7 +89,18 @@ class AddProductViewModel(
 
     fun createNewItem(payload: CreateNewItemPayload) {
         viewModelScope.launch {
-            repository.createNewItem(payload, _createProduct)
+            repository.createNewItem(
+                CreateNewItemPayload(
+                    name = payload.name,
+                    description = payload.description,
+                    typeId = payload.typeId,
+                    price = payload.price,
+                    picture = mlistImageUploaded,
+                    stock = payload.stock,
+                    plantId = payload.plantId,
+                    plantPartId = payload.plantPartId
+                ), _createProduct
+            )
         }
     }
 }
