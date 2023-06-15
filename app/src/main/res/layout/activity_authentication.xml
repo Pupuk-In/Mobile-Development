@@ -20,7 +20,7 @@
                 android:layout_gravity="center|bottom"
                 android:layout_marginTop="48dp"
                 android:contentDescription="@string/logo_aplikasi"
-                android:src="@drawable/logo_app"
+                android:src="@drawable/logo_text_bottom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
