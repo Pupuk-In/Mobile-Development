@@ -7,6 +7,7 @@ import com.capstone.pupukdotin.data.remote.network.ApiConfig
 import com.capstone.pupukdotin.repository.AuthenticationRepository
 import com.capstone.pupukdotin.repository.CommonRepository
 import com.capstone.pupukdotin.repository.FertilizerRepository
+import com.capstone.pupukdotin.repository.MachineLearningRepository
 import com.capstone.pupukdotin.repository.StoreRepository
 
 object Injection {
@@ -29,7 +30,12 @@ object Injection {
     }
 
     fun getCommonRepo(): CommonRepository {
-        val services = ApiConfig.getApiService()
+        val services = ApiConfig.getCommonServices()
         return CommonRepository.getInstance(services)
+    }
+
+    fun getMLRepo(): MachineLearningRepository {
+        val services = ApiConfig.getTfService()
+        return MachineLearningRepository.getInstance(services)
     }
 }

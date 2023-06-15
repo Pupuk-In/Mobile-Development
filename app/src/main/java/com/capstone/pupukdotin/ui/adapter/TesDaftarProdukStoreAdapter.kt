@@ -26,7 +26,10 @@ class TesDaftarProdukStoreAdapter(
         fun bindItem(item: StoreAllItemsResponse.Item) {
             with(binding) {
                 Glide.with(itemView)
-                    .load(item.picture?.get(0)?.picture ?: "")
+                    .load(
+                        if (item.picture?.isNotEmpty() == true) item.picture[0].picture ?: ""
+                        else ""
+                    )
                     .placeholder(R.drawable.placeholder)
                     .into(daftarProdukImageProduct)
 
@@ -37,7 +40,6 @@ class TesDaftarProdukStoreAdapter(
                 daftarProdukStok.text = item.stock.toString()
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

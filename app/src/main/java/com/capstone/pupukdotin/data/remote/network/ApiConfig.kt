@@ -75,14 +75,14 @@ object ApiConfig {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(Constant.BASE_URL)
+            .baseUrl(Constant.TF_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
         return retrofit.create(TfServices::class.java)
     }
 
-    fun getProdService(): TfServices {
+    fun getProdService(): ApiServices {
         val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
 
         val client = OkHttpClient.Builder()
@@ -96,6 +96,23 @@ object ApiConfig {
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-        return retrofit.create(TfServices::class.java)
+        return retrofit.create(ApiServices::class.java)
+    }
+
+    fun getCommonServices(): CommonServices {
+        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(getHeaderInterceptor())
+            .addInterceptor(getAuthInterceptor())
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(Constant.PROD_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        return retrofit.create(CommonServices::class.java)
     }
 }

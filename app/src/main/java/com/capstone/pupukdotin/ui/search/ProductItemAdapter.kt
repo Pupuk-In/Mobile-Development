@@ -20,7 +20,10 @@ class ProductItemAdapter(
         fun bindItem(item: DataItem) {
             with(binding) {
                 Glide.with(itemView)
-                    .load(item.picture?.get(0)?.picture ?:"")
+                    .load(
+                        if (item.picture?.isNotEmpty() == true) item.picture[0].picture ?: ""
+                        else ""
+                    )
                     .placeholder(R.drawable.placeholder)
                     .into(ivProductImage)
 

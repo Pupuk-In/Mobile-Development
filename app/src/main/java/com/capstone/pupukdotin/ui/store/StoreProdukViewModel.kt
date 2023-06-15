@@ -14,6 +14,8 @@ class StoreProdukViewModel(private val repository: StoreRepository) : ViewModel(
     private val _allItems = MutableLiveData<NetworkResult<StoreAllItemsResponse>>()
     val allItems: LiveData<NetworkResult<StoreAllItemsResponse>> = _allItems
 
+
+
     fun getAllItems() {
         viewModelScope.launch {
             repository.getAllItems(_allItems)

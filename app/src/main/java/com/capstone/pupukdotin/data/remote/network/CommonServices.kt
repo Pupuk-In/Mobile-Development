@@ -1,16 +1,16 @@
 package com.capstone.pupukdotin.data.remote.network
 
-import com.capstone.pupukdotin.data.remote.response.ai.NutritionDetectionResponse
+import com.capstone.pupukdotin.data.remote.response.UploadImagesResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 
-interface TfServices {
+interface CommonServices {
     @Multipart
-    @POST("/predict")
-    suspend fun createNutritionDetection(
+    @POST("/api/images")
+    suspend fun uploadImagesToServer(
         @Part file: MultipartBody.Part
-    ): Response<NutritionDetectionResponse>
+    ): Response<UploadImagesResponse>
 }

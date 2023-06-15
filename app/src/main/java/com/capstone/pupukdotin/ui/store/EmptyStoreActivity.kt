@@ -1,9 +1,9 @@
 package com.capstone.pupukdotin.ui.store
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.capstone.pupukdotin.R
+import com.capstone.pupukdotin.MainActivity
 import com.capstone.pupukdotin.databinding.ActivityEmptyStoreBinding
 import com.capstone.pupukdotin.ui.common.BaseActivity
 
@@ -21,7 +21,7 @@ class EmptyStoreActivity : BaseActivity<ActivityEmptyStoreBinding>() {
     private fun setUpAction() {
         binding.apply {
             btnBack.setOnClickListener {
-                onBackPressedDispatcher.onBackPressed()
+                MainActivity.start(this@EmptyStoreActivity)
             }
 
             buttonBukaToko.setOnClickListener {
@@ -31,4 +31,11 @@ class EmptyStoreActivity : BaseActivity<ActivityEmptyStoreBinding>() {
         }
     }
 
+    companion object {
+        @JvmStatic
+        fun start(context: Context) {
+            val starter = Intent(context, EmptyStoreActivity::class.java)
+            context.startActivity(starter)
+        }
+    }
 }

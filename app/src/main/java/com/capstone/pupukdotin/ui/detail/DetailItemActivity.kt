@@ -211,7 +211,10 @@ class DetailItemActivity : BaseActivity<ActivityDetailBinding>() {
 
                 with(binding) {
                     Glide.with(baseContext)
-                        .load(data.item?.picture?.get(0)?.picture ?: "")
+                        .load(
+                            if (data.item?.picture?.isNotEmpty() == true) data.item.picture[0].picture ?: ""
+                            else ""
+                        )
                         .placeholder(R.drawable.placeholder)
                         .into(ivProductImage)
 

@@ -47,7 +47,6 @@ class SearchResultActivity : BaseActivity<ActivitySearchResultBinding>() {
                     true
                 }
             }
-
             override fun onQueryTextChange(newText: String?): Boolean = false
         })
         setupAdapter()

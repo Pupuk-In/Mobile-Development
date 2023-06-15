@@ -8,12 +8,15 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
+import com.capstone.pupukdotin.data.remote.response.ai.NutritionDetectionResponse
 import com.capstone.pupukdotin.databinding.ActivityNutritionDetectionBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.common.BaseActivity
+import com.capstone.pupukdotin.ui.search.SearchResultActivity
 import com.capstone.pupukdotin.utils.uriToFile
 
 class NutritionDetectionActivity : BaseActivity<ActivityNutritionDetectionBinding>() {
@@ -32,7 +35,7 @@ class NutritionDetectionActivity : BaseActivity<ActivityNutritionDetectionBindin
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
                 val myFile = uriToFile(uri, this@NutritionDetectionActivity)
-                viewModel.putUrl(myFile.path)
+                viewModel.putFile(myFile)
             }
         }
     }
@@ -53,6 +56,8 @@ class NutritionDetectionActivity : BaseActivity<ActivityNutritionDetectionBindin
             }
         }
         viewModel.getAllPlants()
+        binding.spProductPlant.isEnabled = false
+
         setupAction()
         setupAdapter(listPlant)
         setupViewModel()
@@ -60,13 +65,14 @@ class NutritionDetectionActivity : BaseActivity<ActivityNutritionDetectionBindin
 
     private fun setupViewModel() {
         viewModel.imageUploaded.observe(this) { url ->
-            getFile = url
+            getFile = url.path
 
             val isUploaded = getFile.isNotBlank()
             binding.ivImage.isVisible = isUploaded
             binding.ivEmpty.isVisible = !isUploaded
             binding.tvUploadAnother.isVisible = isUploaded
             binding.cvChooseImage.isClickable = !isUploaded
+            binding.btnSave.isVisible = true
 
             if (isUploaded) {
                 binding.ivImage.setImageBitmap(BitmapFactory.decodeFile(getFile))
@@ -90,6 +96,63 @@ class NutritionDetectionActivity : BaseActivity<ActivityNutritionDetectionBindin
                 }
             }
         }
+
+        viewModel.detectionResult.observe(this) { result ->
+            when (result) {
+                is NetworkResult.Loading -> {
+                    showDetectionLoading(true)
+                }
+
+                is NetworkResult.Success -> {
+                    showDetectionLoading(false)
+                    setupDetectionResult(result.data)
+                }
+
+                is NetworkResult.Error -> {
+                    showDetectionLoading(false)
+                    setupErrorDetectionResult()
+                }
+            }
+        }
+    }
+
+    private fun showDetectionLoading(value: Boolean) {
+        binding.btnSave.apply {
+            isEnabled = !value
+            text = if (value) getString(R.string.image_process_loading)
+            else getString(R.string.save)
+        }
+    }
+
+    private fun setupDetectionResult(data: NutritionDetectionResponse) {
+        with(binding) {
+            tvDetectionResult.isVisible = true
+            tvResultDetail.apply {
+                isVisible = true
+                text = data.description
+            }
+            btnSave.isInvisible = true
+            btnFindItem.isVisible = true
+
+            btnFindItem.setOnClickListener {
+                SearchResultActivity.start(
+                    this@NutritionDetectionActivity,
+                    query = data.jsonMemberClass
+                )
+            }
+        }
+    }
+
+    private fun setupErrorDetectionResult() {
+        with(binding) {
+            tvDetectionResult.isVisible = true
+            tvResultDetail.apply {
+                isVisible = true
+                text = getString(R.string.error_detection_message)
+            }
+            btnSave.isVisible = false
+            btnFindItem.isVisible = false
+        }
     }
 
     private fun showLoading(value: Boolean) {
@@ -106,9 +169,8 @@ class NutritionDetectionActivity : BaseActivity<ActivityNutritionDetectionBindin
     private fun setupAction() {
         with(binding) {
             cvChooseImage.setOnClickListener { openGallery() }
-            tvUploadAnother.setOnClickListener {
-                reset()
-            }
+            tvUploadAnother.setOnClickListener { reset() }
+            btnSave.setOnClickListener { viewModel.startDetection() }
         }
     }
 
@@ -123,10 +185,13 @@ class NutritionDetectionActivity : BaseActivity<ActivityNutritionDetectionBindin
 
     private fun reset() {
         binding.apply {
-            viewModel.removeUrl()
+            viewModel.removeFile()
             ivImage.isVisible = false
             ivEmpty.isVisible = true
             cvChooseImage.isClickable = true
+            btnFindItem.isVisible = false
+            tvResultDetail.isVisible = false
+            tvDetectionResult.isVisible = false
             btnSave.text = getString(R.string.save)
         }
     }

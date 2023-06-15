@@ -6,22 +6,23 @@ import androidx.lifecycle.MutableLiveData
 import com.capstone.pupukdotin.data.remote.network.ApiServices
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.payload.carts.AddEditCartPayload
+import com.capstone.pupukdotin.data.remote.payload.items.CreateNewItemPayload
 import com.capstone.pupukdotin.data.remote.payload.items.SearchItemsPayload
 import com.capstone.pupukdotin.data.remote.payload.wishlist.AddWishlistPayload
 import com.capstone.pupukdotin.data.remote.response.BasicResponse
+import com.capstone.pupukdotin.data.remote.response.PlantPartResponse
 import com.capstone.pupukdotin.data.remote.response.PlantResponse
 import com.capstone.pupukdotin.data.remote.response.TypeResponse
 import com.capstone.pupukdotin.data.remote.response.carts.CartItemsResponse
 import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
+import com.capstone.pupukdotin.data.remote.response.store.StoreItemResponse
 import com.capstone.pupukdotin.data.remote.response.wishlist.AddWishlistItemResponse
 import com.capstone.pupukdotin.data.remote.response.wishlist.WishlistResponse
 
 class FertilizerRepository(
     private val apiServices: ApiServices
 ) {
-
-
 
     private val _types = MutableLiveData<NetworkResult<TypeResponse>>()
     val types: LiveData<NetworkResult<TypeResponse>> = _types
@@ -124,9 +125,46 @@ class FertilizerRepository(
             if(result.isSuccessful) {
                 val responseBody = result.body()
                 if (responseBody != null) _allPlants.value = NetworkResult.Success(responseBody)
+            } else {
+                _allPlants.value = NetworkResult.Error(result.message())
+                Log.d("ini_log_nullMessage", "onFailure: ${result.message()}")
             }
         } catch (e: Exception) {
             _allPlants.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun getAllTypes(_allTypes: MutableLiveData<NetworkResult<TypeResponse>>) {
+        _allTypes.value = NetworkResult.Loading
+        try {
+            val result = apiServices.getAllTypes()
+            if(result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _allTypes.value = NetworkResult.Success(responseBody)
+            } else {
+                _allTypes.value = NetworkResult.Error(result.message())
+                Log.d("ini_log_nullMessage", "onFailure: ${result.message()}")
+            }
+        } catch (e: Exception) {
+            _allTypes.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun getAllPlantParts(_allPlantParts: MutableLiveData<NetworkResult<PlantPartResponse>>) {
+        _allPlantParts.value = NetworkResult.Loading
+        try {
+            val result = apiServices.getAllPlantPart()
+            if(result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _allPlantParts.value = NetworkResult.Success(responseBody)
+            } else {
+                _allPlantParts.value = NetworkResult.Error(result.message())
+                Log.d("ini_log_nullMessage", "onFailure: ${result.message()}")
+            }
+        } catch (e: Exception) {
+            _allPlantParts.value = NetworkResult.Error(e.message.toString())
             Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
         }
     }
@@ -197,6 +235,23 @@ class FertilizerRepository(
             }
         } catch (e: Exception) {
             _deletedWishlistMessage.value = NetworkResult.Error(e.message.toString())
+            Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun createNewItem(payload: CreateNewItemPayload, _createProduct: MutableLiveData<NetworkResult<StoreItemResponse>>) {
+        _createProduct.value = NetworkResult.Loading
+        try {
+            val result = apiServices.createNewItem(payload)
+            if(result.isSuccessful) {
+                val responseBody = result.body()
+                if (responseBody != null) _createProduct.value = NetworkResult.Success(responseBody)
+            } else {
+                _createProduct.value = NetworkResult.Error(result.message())
+                Log.d("ini_log_nullMessage", "onFailure: ${result.message()}")
+            }
+        } catch (e: Exception) {
+            _createProduct.value = NetworkResult.Error(e.message.toString())
             Log.d("ini_log_exception", "onFailure: ${e.message.toString()}")
         }
     }
