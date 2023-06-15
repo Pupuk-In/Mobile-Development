@@ -9,6 +9,7 @@ import com.capstone.pupukdotin.repository.CommonRepository
 import com.capstone.pupukdotin.repository.FertilizerRepository
 import com.capstone.pupukdotin.repository.MachineLearningRepository
 import com.capstone.pupukdotin.repository.StoreRepository
+import com.capstone.pupukdotin.repository.TransactionRepository
 
 object Injection {
 
@@ -32,6 +33,11 @@ object Injection {
     fun getCommonRepo(): CommonRepository {
         val services = ApiConfig.getCommonServices()
         return CommonRepository.getInstance(services)
+    }
+
+    fun getTransactionRepo(): TransactionRepository {
+        val services = ApiConfig.getApiService()
+        return TransactionRepository.getInstance(services)
     }
 
     fun getMLRepo(): MachineLearningRepository {

@@ -22,7 +22,9 @@ class LihatProfileViewModel(
     private val commonRepository: CommonRepository
 ) : ViewModel() {
 
-    val profile: LiveData<NetworkResult<ProfileDetailResponse>> = repository.profileDetail
+    private val _profileDetail = MutableLiveData<NetworkResult<ProfileDetailResponse>>()
+    val profile: LiveData<NetworkResult<ProfileDetailResponse>>
+        get() = _profileDetail
 
     // YG BENER
     private val _editProfile = MutableLiveData<NetworkResult<ProfileDetailResponse>>()
@@ -33,7 +35,7 @@ class LihatProfileViewModel(
 
     fun getProfile() {
         viewModelScope.launch {
-            repository.getProfile()
+            repository.getProfile(_profileDetail)
         }
     }
 

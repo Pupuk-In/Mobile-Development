@@ -22,17 +22,6 @@ class AuthenticationRepository(
     private val apiServices: ApiServices,
     private val userPreference: UserPreference
 ) {
-
-
-    private val _authCheck = MutableLiveData<NetworkResult<AuthenticationCheckResponse>>()
-    val authCheck: LiveData<NetworkResult<AuthenticationCheckResponse>>
-        get() = _authCheck
-
-    private val _profileDetail = MutableLiveData<NetworkResult<ProfileDetailResponse>>()
-    val profileDetail: LiveData<NetworkResult<ProfileDetailResponse>>
-        get() = _profileDetail
-
-
     private val _logout = MutableLiveData<NetworkResult<BasicResponse>>()
     val logout: LiveData<NetworkResult<BasicResponse>>
         get() = _logout
@@ -97,7 +86,7 @@ class AuthenticationRepository(
 
     fun getUser(): Flow<UserModel> = userPreference.getUser()
 
-    suspend fun authCheck() {
+    suspend fun authCheck(_authCheck: MutableLiveData<NetworkResult<AuthenticationCheckResponse>>) {
         _authCheck.value = NetworkResult.Loading
         try {
             val result = apiServices.authCheck()
@@ -117,7 +106,7 @@ class AuthenticationRepository(
     }
 
 
-    suspend fun getProfile() {
+    suspend fun getProfile(_profileDetail: MutableLiveData<NetworkResult<ProfileDetailResponse>>) {
         _profileDetail.value = NetworkResult.Loading
         try {
             val result = apiServices.getDetailProfile()

@@ -3,16 +3,11 @@ package com.capstone.pupukdotin
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.capstone.pupukdotin.data.local.pref.UserPreference
 import com.capstone.pupukdotin.databinding.ActivityMainBinding
-import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.aisearch.NutritionDetectionActivity
-import com.capstone.pupukdotin.ui.authentication.AuthenticationActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,17 +22,19 @@ class MainActivity : AppCompatActivity() {
             menu.getItem(2).isEnabled = false
         }
 
-        val mainViewModel by viewModels<MainViewModel> { ViewModelFactory(this@MainActivity) }
-        mainViewModel.getUser().observe(this) { model ->
-            if(!model.isLogin) {
-                AuthenticationActivity.start(this@MainActivity)
-                finish()
-            } else {
-                UserPreference.setToken(model.tokenAuth)
-                setContentView(binding.root)
-                Log.d("ini_log", model.tokenAuth)
-            }
-        }
+        setContentView(binding.root)
+
+//        val mainViewModel by viewModels<MainViewModel> { ViewModelFactory(this@MainActivity) }
+//        mainViewModel.getUser().observe(this) { model ->
+//            if(!model.isLogin) {
+//                AuthenticationActivity.start(this@MainActivity)
+//                finish()
+//            } else {
+//                UserPreference.setToken(model.tokenAuth)
+//                setContentView(binding.root)
+//                Log.d("ini_log", model.tokenAuth)
+//            }
+//        }
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment

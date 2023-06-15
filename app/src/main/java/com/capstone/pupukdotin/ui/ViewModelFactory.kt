@@ -12,6 +12,8 @@ import com.capstone.pupukdotin.ui.authentication.RegisterViewModel
 import com.capstone.pupukdotin.ui.cart.CartViewModel
 import com.capstone.pupukdotin.ui.checkout.CheckOutViewModel
 import com.capstone.pupukdotin.ui.detail.DetailItemViewModel
+import com.capstone.pupukdotin.ui.detail.DetailOrderViewModel
+import com.capstone.pupukdotin.ui.history.HistoryViewModel
 import com.capstone.pupukdotin.ui.home.HomeViewModel
 import com.capstone.pupukdotin.ui.profile.LihatProfileViewModel
 import com.capstone.pupukdotin.ui.profile.ProfileViewModel
@@ -63,13 +65,17 @@ class ViewModelFactory(private val context: Context) :
         } else if (modelClass.isAssignableFrom(WishlistViewModel::class.java)) {
             return WishlistViewModel(Injection.getFertilizerRepo()) as T
         } else if (modelClass.isAssignableFrom(CheckOutViewModel::class.java)) {
-            return CheckOutViewModel(Injection.getFertilizerRepo()) as T
+            return CheckOutViewModel(Injection.getFertilizerRepo(), Injection.getAuthRepo(context), Injection.getTransactionRepo()) as T
         } else if (modelClass.isAssignableFrom(StoreViewModel::class.java)) {
             return StoreViewModel(Injection.getStoreRepo()) as T
         } else if (modelClass.isAssignableFrom(BukaTokoViewModel::class.java)) {
             return BukaTokoViewModel(Injection.getStoreRepo(), Injection.getCommonRepo()) as T
         } else if (modelClass.isAssignableFrom(AddProductViewModel::class.java)) {
             return AddProductViewModel(Injection.getFertilizerRepo(), Injection.getCommonRepo()) as T
+        } else if (modelClass.isAssignableFrom(HistoryViewModel::class.java)) {
+            return HistoryViewModel(Injection.getTransactionRepo()) as T
+        } else if (modelClass.isAssignableFrom(DetailOrderViewModel::class.java)) {
+            return DetailOrderViewModel(Injection.getTransactionRepo()) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

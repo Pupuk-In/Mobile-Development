@@ -1,6 +1,7 @@
 package com.capstone.pupukdotin.ui.profile
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
@@ -11,12 +12,14 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel(private val repository: AuthenticationRepository) : ViewModel() {
 
-    val profile: LiveData<NetworkResult<ProfileDetailResponse>> = repository.profileDetail
+    private val _profileDetail = MutableLiveData<NetworkResult<ProfileDetailResponse>>()
+    val profile: LiveData<NetworkResult<ProfileDetailResponse>>
+        get() = _profileDetail
     val logout: LiveData<NetworkResult<BasicResponse>> = repository.logout
 
     fun getProfile() {
         viewModelScope.launch {
-            repository.getProfile()
+            repository.getProfile(_profileDetail)
         }
     }
 

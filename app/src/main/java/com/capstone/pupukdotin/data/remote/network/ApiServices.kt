@@ -8,6 +8,7 @@ import com.capstone.pupukdotin.data.remote.payload.items.SearchItemsPayload
 import com.capstone.pupukdotin.data.remote.payload.profile.UpdateProfilePayload
 import com.capstone.pupukdotin.data.remote.payload.store.SearchCatalogPayload
 import com.capstone.pupukdotin.data.remote.payload.store.UpdateStoreDetailPayload
+import com.capstone.pupukdotin.data.remote.payload.transaction.CreateTransactionPayload
 import com.capstone.pupukdotin.data.remote.payload.wishlist.AddWishlistPayload
 import com.capstone.pupukdotin.data.remote.response.AuthenticationCheckResponse
 import com.capstone.pupukdotin.data.remote.response.BasicResponse
@@ -25,6 +26,9 @@ import com.capstone.pupukdotin.data.remote.response.store.OwnedStoreDetailRespon
 import com.capstone.pupukdotin.data.remote.response.store.StoreAllItemsResponse
 import com.capstone.pupukdotin.data.remote.response.store.StoreDetailResponse
 import com.capstone.pupukdotin.data.remote.response.store.StoreItemResponse
+import com.capstone.pupukdotin.data.remote.response.transaction.CreateTransactionResponse
+import com.capstone.pupukdotin.data.remote.response.transaction.GetAllTransactionResponse
+import com.capstone.pupukdotin.data.remote.response.transaction.GetDetailTransactionResponse
 import com.capstone.pupukdotin.data.remote.response.user.ProfileDetailResponse
 import com.capstone.pupukdotin.data.remote.response.wishlist.AddWishlistItemResponse
 import com.capstone.pupukdotin.data.remote.response.wishlist.WishlistResponse
@@ -167,4 +171,17 @@ interface ApiServices {
     suspend fun createNewItem(
         @Body payload: CreateNewItemPayload
     ) : Response<StoreItemResponse>
+
+    @POST("/api/transactions")
+    suspend fun createNewTransaction(
+        @Body payload: CreateTransactionPayload
+    ) : Response<CreateTransactionResponse>
+
+    @GET("/api/transactions")
+    suspend fun getAllTransaction() : Response<GetAllTransactionResponse>
+
+    @GET("/api/transactions/{id}")
+    suspend fun getDetailTransaction(
+        @Path("id") idTransaction: Int
+    ) : Response<GetDetailTransactionResponse>
 }

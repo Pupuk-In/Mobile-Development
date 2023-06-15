@@ -6,13 +6,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.pupukdotin.databinding.ActivityStoreDetailOrderBinding
-import com.capstone.pupukdotin.ui.adapter.DummyOrderModel
 import com.capstone.pupukdotin.ui.adapter.ListOrderAdapter
 import com.capstone.pupukdotin.ui.common.BaseActivity
 
 class StoreDetailOrderActivity : BaseActivity<ActivityStoreDetailOrderBinding>() {
 
-    private val listOrder = mutableListOf<DummyOrderModel>()
     private lateinit var orderAdapter: ListOrderAdapter
 
     override fun getViewBinding(): ActivityStoreDetailOrderBinding =
@@ -49,7 +47,7 @@ class StoreDetailOrderActivity : BaseActivity<ActivityStoreDetailOrderBinding>()
     }
 
     private fun setupAdapter() {
-        orderAdapter = ListOrderAdapter(listOrder)
+        orderAdapter = ListOrderAdapter(emptyList())
         binding.rvOrderListDetail.apply {
             adapter = orderAdapter
             layoutManager = LinearLayoutManager(

@@ -35,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingVertical="16dp">
+
             <TextView
                 android:id="@+id/tv_metode_pengiriman"
                 android:layout_width="wrap_content"
@@ -309,10 +310,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:minHeight="48dp"
-                    tools:text=""
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
-                    app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi_penerima" />
+                    app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi_penerima"
+                    tools:text="" />
 
                 <TextView
                     android:id="@+id/textviewAlamatPenerima"
@@ -342,15 +343,15 @@
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:fontFamily="@font/inter"
+                        android:gravity="top"
                         android:inputType="textMultiLine"
+                        android:overScrollMode="always"
+                        android:paddingVertical="10dp"
+                        android:scrollbarStyle="insideInset"
+                        android:scrollbars="vertical"
+                        android:scrollHorizontally="false"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:paddingVertical="10dp"
-                        android:gravity="top"
-                        android:scrollbars="vertical"
-                        android:overScrollMode="always"
-                        android:scrollbarStyle="insideInset"
-                        android:scrollHorizontally="false"
                         tools:ignore="SpeakableTextPresentCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -389,7 +390,8 @@
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/subtotal_pesanan_jumlah_produk" />
 
                 <TextView
                     android:id="@+id/subtotal_pesanan"
@@ -424,7 +426,8 @@
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/subtotal_pesanan" />
+                    app:layout_constraintTop_toBottomOf="@+id/subtotal_pesanan"
+                    tools:text="Rp30000" />
 
                 <TextView
                     android:id="@+id/tv_total_pembayaran"
@@ -470,10 +473,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/inter_medium"
             android:text="@string/total_harga"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:fontFamily="@font/inter_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -482,10 +485,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/inter_bold"
             android:text="@string/harga"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:fontFamily="@font/inter_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_checkout_jumlah_items" />
 
@@ -494,12 +497,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:paddingVertical="8dp"
-            android:paddingHorizontal="27dp"
-            android:text="@string/order"
             android:fontFamily="@font/inter_bold"
-            android:textSize="16sp"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="8dp"
+            android:text="@string/order"
             android:textAllCaps="false"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
