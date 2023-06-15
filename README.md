@@ -60,4 +60,5 @@ Product Based Capstone Bangkit 2022
 
 ## Architecture
 This app uses [This]() architecture.
+
 ![Architecture Image](https://via.placeholder.com/468x300?text=Architecture+Image+Here)
