@@ -183,4 +183,5 @@
     <string name="telah_diproses">Telah Diproses</string>
     <string name="done">Selesai</string>
     <string name="cancelled">Dibatalkan</string>
+    <string name="no_cart_items">Tidak Ada Keranjang</string>
 </resources>

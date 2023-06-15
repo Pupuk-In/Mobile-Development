@@ -32,6 +32,11 @@ class LihatProfileActivity : BaseActivity<ActivityLihatProfileBinding>() {
         setupViewModel()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getProfile()
+    }
+
     private fun setupViewModel() {
         viewModel.profile.observe(this) { result ->
             when (result) {

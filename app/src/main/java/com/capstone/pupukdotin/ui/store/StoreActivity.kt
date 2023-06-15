@@ -41,7 +41,6 @@ class StoreActivity : BaseActivity<ActivityStoreBinding>() {
 
                 is NetworkResult.Error -> {
                     val errorResult = result.error.toString()
-                    showToast(errorResult)
                     if(errorResult.contains("Store Not Found", true)){
                         EmptyStoreActivity.start(this@StoreActivity)
                         finish()
@@ -56,6 +55,7 @@ class StoreActivity : BaseActivity<ActivityStoreBinding>() {
         @JvmStatic
         fun start(context: Context) {
             val starter = Intent(context, StoreActivity::class.java)
+            starter.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             context.startActivity(starter)
         }
     }

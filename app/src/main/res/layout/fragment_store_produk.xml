@@ -47,36 +47,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout_search_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/search_background_corners_8"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/daftarPesananConstraintLayout">
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/daftar_produk_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:iconifiedByDefault="false"
-            app:queryHint="Cari Pesanan" />
-    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/button_tambah_produk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_margin="16dp"
         android:background="@drawable/button_grey_outline"
         android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/frameLayout_search_container"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout_search_container">
+        app:layout_constraintEnd_toEndOf="@+id/daftarPesananConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/daftarPesananConstraintLayout">
 
         <ImageView
             android:id="@+id/imageView4"

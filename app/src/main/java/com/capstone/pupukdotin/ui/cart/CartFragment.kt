@@ -40,7 +40,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
 
     private fun setupViewModel() {
         viewModel.cartItem.observe(viewLifecycleOwner) { result ->
-            when(result) {
+            when (result) {
                 is NetworkResult.Loading -> {
                     showLoading(true)
                 }
@@ -56,8 +56,8 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
             }
         }
 
-        viewModel.editCartMessage.observe(viewLifecycleOwner) {result ->
-            when(result) {
+        viewModel.editCartMessage.observe(viewLifecycleOwner) { result ->
+            when (result) {
                 is NetworkResult.Loading -> {
                     // Do Nothing
                 }
@@ -72,8 +72,8 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
             }
         }
 
-        viewModel.deleteCartMessage.observe(viewLifecycleOwner) {result ->
-            when(result) {
+        viewModel.deleteCartMessage.observe(viewLifecycleOwner) { result ->
+            when (result) {
                 is NetworkResult.Loading -> {
                     // Do Nothing
                 }
@@ -88,8 +88,9 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
             }
         }
 
-        viewModel.listItem.observe(viewLifecycleOwner) { list->
+        viewModel.listItem.observe(viewLifecycleOwner) { list ->
             binding.constraintLayout.isVisible = list.isNotEmpty()
+            binding.tvNoCartProduct.isVisible = list.isNullOrEmpty()
             binding.cartRecyclerView.adapter = TesCartAdapter(list, this)
         }
 

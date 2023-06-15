@@ -33,6 +33,11 @@ class StoreProfileFragment : BaseFragment<FragmentStoreProfileBinding>() {
         viewModel.getProfile()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getProfile()
+    }
+
     private fun setupViewModel() {
         viewModel.getprofile.observe(viewLifecycleOwner) { result ->
             when(result) {

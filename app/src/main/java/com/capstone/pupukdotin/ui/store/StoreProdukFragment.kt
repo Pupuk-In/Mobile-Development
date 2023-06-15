@@ -24,7 +24,11 @@ class StoreProdukFragment : BaseFragment<FragmentStoreProdukBinding>() {
         setupViewModel()
         setupAdapter()
         setupAction()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllItems()
     }
 
     private fun setupAction() {
@@ -61,7 +65,6 @@ class StoreProdukFragment : BaseFragment<FragmentStoreProdukBinding>() {
 
     private fun showLoading(value: Boolean) {
         binding.daftarPesananProgressbar.isVisible = value
-        binding.frameLayoutSearchContainer.isVisible = !value
         binding.buttonTambahProduk.isVisible = !value
         binding.nsvContent.isVisible = !value
     }

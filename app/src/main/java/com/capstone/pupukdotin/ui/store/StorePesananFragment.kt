@@ -28,6 +28,11 @@ class StorePesananFragment : BaseFragment<FragmentStorePesananBinding>() {
         setupViewModel()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllTransactionStore()
+    }
+
     private fun setupViewModel() {
         viewModel.getAllTransactionStoreResponse.observe(viewLifecycleOwner) { result ->
             when(result) {

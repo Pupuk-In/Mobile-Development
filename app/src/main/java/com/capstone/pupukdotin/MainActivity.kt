@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
 
+
+
         binding.fab.setOnClickListener {
             NutritionDetectionActivity.start(this)
         }
@@ -53,5 +55,7 @@ class MainActivity : AppCompatActivity() {
             starter.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             context.startActivity(starter)
         }
+
+        private const val NAVIGATE_FRAGMENT = "fragment_navigate"
     }
 }
