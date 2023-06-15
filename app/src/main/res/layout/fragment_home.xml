@@ -1,145 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".ui.home.HomeFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/white"
+            app:expandedTitleMarginBottom="20dp"
+            app:expandedTitleMarginStart="16dp"
+            app:layout_scrollFlags="scroll">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/white"
+                android:elevation="8dp"
+                app:layout_collapseMode="pin">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/logo_bar"
+                        android:layout_width="120dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="16dp"
+                        android:importantForAccessibility="no"
+                        android:minHeight="24dp"
+                        android:src="@drawable/logo_text_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/iv_wishlist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:importantForAccessibility="no"
+                        android:minHeight="24dp"
+                        android:src="@drawable/ic_favorite_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/iv_notification"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/grey_main" />
+
+                    <ImageView
+                        android:id="@+id/iv_notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:importantForAccessibility="no"
+                        android:minHeight="24dp"
+                        android:src="@drawable/ic_notifications_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/grey_main" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ProgressBar
         android:id="@+id/pb_loading_screen"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="84dp"
-        android:fillViewport="true"
-        tools:context=".ui.home.HomeFragment">
-
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
             tools:context=".ui.home.HomeFragment">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="204dp"
-                android:layout_marginTop="36dp"
-                android:contentDescription="@string/banner_descripption"
-                android:src="@drawable/pupuk_npk1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <FrameLayout
-                android:id="@+id/frameLayout_search_container"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/home_search"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/search_background"
-                android:elevation="10dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                android:elevation="4dp"
+                app:iconifiedByDefault="false"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="Search" />
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/home_search"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:iconifiedByDefault="false"
-                    app:queryHint="Search" />
-            </FrameLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_banner"
+            <TextView
+                android:id="@+id/tv_find_with_type"
+                style="@style/TextBold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/imageView"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/recommendation_type"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="24dp"
-                app:cardCornerRadius="20dp">
-                <ImageView
-                    android:id="@+id/iv_banner_promotion"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@string/banner_descripption"
-                    android:src="@drawable/placeholder"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.cardview.widget.CardView>
-
-
-            <ImageButton
-                android:id="@+id/wishlist_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:backgroundTint="@color/white"
-                android:contentDescription="@string/wishlist"
-                android:minHeight="48dp"
-                android:src="@drawable/baseline_favorite_24"
-                app:tint = "@color/grey"
-                app:layout_constraintBottom_toBottomOf="@+id/frameLayout_search_container"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toTopOf="@+id/frameLayout_search_container" />
-
-            <ImageButton
-                android:id="@+id/notification_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/white"
-                android:contentDescription="@string/notification"
-                android:minHeight="48dp"
-                android:src="@drawable/baseline_notifications_24"
-                app:layout_constraintBottom_toBottomOf="@+id/frameLayout_search_container"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/wishlist_button"
-                app:layout_constraintTop_toTopOf="@+id/frameLayout_search_container"
-                app:tint="@color/grey" />
+                app:layout_constraintTop_toBottomOf="@id/home_search" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_jenis_pupuk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cv_banner"
+                app:layout_constraintTop_toBottomOf="@id/tv_find_with_type"
                 tools:listitem="@layout/item_type_fertilizer" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_banner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_jenis_pupuk">
+
+                <ImageView
+                    android:id="@+id/iv_banner_promotion"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:contentDescription="@string/banner_descripption"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pupuk_npk1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_find_with_plant"
+                style="@style/TextBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/find_item_with_plant"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv_banner" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_jenis_tanaman"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="32dp"
-                tools:listitem="@layout/item_plant_fertilizer"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_jenis_pupuk" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_find_with_plant"
+                tools:listitem="@layout/item_plant_fertilizer" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline4"
@@ -148,32 +198,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.37549406" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="299dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="10dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_end="673dp" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.core.widget.NestedScrollView>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

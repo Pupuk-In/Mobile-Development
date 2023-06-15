@@ -38,10 +38,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_add_24"
+        android:src="@drawable/ic_add_a_photo_24"
         app:backgroundTint="@color/green_13C193"
         app:layout_anchor="@id/bottom_app_bar"
-        app:maxImageSize="36dp"
+        app:maxImageSize="30dp"
         app:tint="@color/white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
