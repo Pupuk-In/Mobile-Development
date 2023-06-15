@@ -38,6 +38,11 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
         viewModel.editCart()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getCartItems()
+    }
+
     private fun setupViewModel() {
         viewModel.cartItem.observe(viewLifecycleOwner) { result ->
             when(result) {
@@ -90,6 +95,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), TesCartAdapter.OnItemC
 
         viewModel.listItem.observe(viewLifecycleOwner) { list->
             binding.constraintLayout.isVisible = list.isNotEmpty()
+            binding.tvNoCartProduct.isVisible = list.isNullOrEmpty()
             binding.cartRecyclerView.adapter = TesCartAdapter(list, this)
         }
 

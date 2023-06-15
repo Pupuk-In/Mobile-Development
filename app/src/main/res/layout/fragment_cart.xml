@@ -39,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:fillViewport="true"
         android:paddingVertical="24dp"
         app:layout_constraintBottom_toTopOf="@id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,22 +59,23 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:itemCount="10"
+                tools:itemCount="0"
                 tools:listitem="@layout/item_cart_product" />
 
-            <Button
-                android:id="@+id/btn_add_product"
+            <TextView
+                android:id="@+id/tv_no_cart_product"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:paddingVertical="16dp"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/tambah_produk_lain"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:paddingVertical="16dp"
+                android:text="@string/no_cart_items"
                 android:textAllCaps="false"
-                android:textSize="14sp"
-                android:fontFamily="@font/inter_bold"
-                app:layout_constraintEnd_toEndOf="@+id/cartRecyclerView"
-                app:layout_constraintStart_toStartOf="@+id/cartRecyclerView"
+                android:visibility="gone"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cartRecyclerView"
                 app:strokeColor="@color/green_13C193"
                 app:strokeWidth="1dp" />
@@ -84,11 +86,11 @@
         android:id="@+id/pb_loading_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/CartConstraintLayout"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/constraintLayout"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CartConstraintLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -106,10 +108,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/inter_medium"
             android:text="@string/total_harga"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:fontFamily="@font/inter_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -118,10 +120,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/inter_bold"
             android:text="@string/harga"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:fontFamily="@font/inter_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_jumlah_items" />
 
@@ -130,12 +132,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:paddingVertical="8dp"
-            android:paddingHorizontal="27dp"
-            android:text="@string/order"
             android:fontFamily="@font/inter_bold"
-            android:textSize="16sp"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="8dp"
+            android:text="@string/order"
             android:textAllCaps="false"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

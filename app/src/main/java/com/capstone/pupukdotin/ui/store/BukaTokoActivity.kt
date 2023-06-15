@@ -96,8 +96,8 @@ class BukaTokoActivity : BaseActivity<ActivityBukaTokoBinding>() {
 
                 is NetworkResult.Success -> {
                     showLoading(false)
-                    showToast("Profil Berhasil Diubah")
-                    onBackPressedDispatcher.onBackPressed()
+                    StoreActivity.start(this)
+                    finish()
                 }
 
                 is NetworkResult.Error -> {

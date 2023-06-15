@@ -49,7 +49,7 @@ object ApiConfig {
     }
 
     fun getApiService(): ApiServices {
-        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
 
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
@@ -58,7 +58,7 @@ object ApiConfig {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(Constant.BASE_URL)
+            .baseUrl(Constant.PROD_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -100,7 +100,7 @@ object ApiConfig {
     }
 
     fun getCommonServices(): CommonServices {
-        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
 
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
