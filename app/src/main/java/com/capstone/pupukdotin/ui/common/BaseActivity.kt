@@ -64,16 +64,12 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
             yaButton.text = btnPositiveMesssage
             tidakButton.text = btnNegativeMesssage
             yaButton.setOnClickListener {
-                if (onYesClickBtnClicked != null) {
-                    onYesClickBtnClicked.invoke()
-                    dialog.dismiss()
-                }
+                onYesClickBtnClicked?.invoke()
+                dialog.dismiss()
             }
             tidakButton.setOnClickListener {
-                if(onNoClickBtnClicked != null) {
-                    onNoClickBtnClicked.invoke()
-                    dialog.dismiss()
-                }
+                onNoClickBtnClicked?.invoke()
+                dialog.dismiss()
             }
         }
         dialog.show()
@@ -105,16 +101,12 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
             yaButton.text = btnPositiveMesssage
             tidakButton.text = btnNegativeMesssage
             yaButton.setOnClickListener {
-                if (onYesClickBtnClicked != null) {
-                    onYesClickBtnClicked.invoke()
-                    dialog.dismiss()
-                }
+                onYesClickBtnClicked?.invoke()
+                dialog.dismiss()
             }
             tidakButton.setOnClickListener {
-                if(onNoClickBtnClicked != null) {
-                    onNoClickBtnClicked.invoke()
-                    dialog.dismiss()
-                }
+                onNoClickBtnClicked?.invoke()
+                dialog.dismiss()
             }
         }
         dialog.show()
@@ -145,10 +137,8 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
             tvDesc.text = bodyMessage
             yaButton.text = btnPositiveMesssage
             yaButton.setOnClickListener {
-                if (onYesClickBtnClicked != null) {
-                    onYesClickBtnClicked.invoke()
-                    dialog.dismiss()
-                }
+                onYesClickBtnClicked?.invoke()
+                dialog.dismiss()
             }
         }
         dialog.show()
@@ -177,10 +167,8 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
             tvTitle.text = message
             yaButton.text = btnPositiveMesssage
             yaButton.setOnClickListener {
-                if (onYesClickBtnClicked != null) {
-                    onYesClickBtnClicked.invoke()
-                    dialog.dismiss()
-                }
+                onYesClickBtnClicked?.invoke()
+                dialog.dismiss()
             }
         }
         dialog.show()

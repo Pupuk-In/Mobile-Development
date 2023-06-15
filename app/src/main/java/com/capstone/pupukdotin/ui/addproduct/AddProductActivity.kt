@@ -19,7 +19,6 @@ import com.capstone.pupukdotin.data.remote.response.common.TypeItem
 import com.capstone.pupukdotin.databinding.ActivityAddProductBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.common.BaseActivity
-import com.capstone.pupukdotin.ui.store.StoreDetailOrderActivity
 import com.capstone.pupukdotin.utils.uriToFile
 
 class AddProductActivity : BaseActivity<ActivityAddProductBinding>(),
@@ -72,9 +71,10 @@ class AddProductActivity : BaseActivity<ActivityAddProductBinding>(),
         binding.topBar.apply {
             tvTitleBar.text = getString(R.string.add_product)
             root.setNavigationOnClickListener {
-                StoreDetailOrderActivity.start(this@AddProductActivity)
+                onBackPressedDispatcher.onBackPressed()
             }
         }
+
 
         viewModel.getAllTypes()
         viewModel.getAllPlants()

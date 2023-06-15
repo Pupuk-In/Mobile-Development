@@ -178,4 +178,9 @@
     <string name="gagal">Gagal</string>
     <string name="tunai">Tunai</string>
     <string name="total_harga_format_produk">Total Harga (%1$d Produk)</string>
+    <string name="no_order_left">Tidak Ada Pemesanan</string>
+    <string name="belum_diproses">Belum Diproses</string>
+    <string name="telah_diproses">Telah Diproses</string>
+    <string name="done">Selesai</string>
+    <string name="cancelled">Dibatalkan</string>
 </resources>

@@ -9,6 +9,7 @@ import com.capstone.pupukdotin.data.remote.payload.profile.UpdateProfilePayload
 import com.capstone.pupukdotin.data.remote.payload.store.SearchCatalogPayload
 import com.capstone.pupukdotin.data.remote.payload.store.UpdateStoreDetailPayload
 import com.capstone.pupukdotin.data.remote.payload.transaction.CreateTransactionPayload
+import com.capstone.pupukdotin.data.remote.payload.transaction.UpdateTransactionPayload
 import com.capstone.pupukdotin.data.remote.payload.wishlist.AddWishlistPayload
 import com.capstone.pupukdotin.data.remote.response.AuthenticationCheckResponse
 import com.capstone.pupukdotin.data.remote.response.BasicResponse
@@ -22,6 +23,7 @@ import com.capstone.pupukdotin.data.remote.response.carts.CartItemsResponse
 import com.capstone.pupukdotin.data.remote.response.carts.EditCartItemsResponse
 import com.capstone.pupukdotin.data.remote.response.items.DetailItemResponse
 import com.capstone.pupukdotin.data.remote.response.items.SearchItemsResponse
+import com.capstone.pupukdotin.data.remote.response.store.GetAllTransactionStoreResponse
 import com.capstone.pupukdotin.data.remote.response.store.OwnedStoreDetailResponse
 import com.capstone.pupukdotin.data.remote.response.store.StoreAllItemsResponse
 import com.capstone.pupukdotin.data.remote.response.store.StoreDetailResponse
@@ -29,6 +31,7 @@ import com.capstone.pupukdotin.data.remote.response.store.StoreItemResponse
 import com.capstone.pupukdotin.data.remote.response.transaction.CreateTransactionResponse
 import com.capstone.pupukdotin.data.remote.response.transaction.GetAllTransactionResponse
 import com.capstone.pupukdotin.data.remote.response.transaction.GetDetailTransactionResponse
+import com.capstone.pupukdotin.data.remote.response.transaction.UpdateTransactionResponse
 import com.capstone.pupukdotin.data.remote.response.user.ProfileDetailResponse
 import com.capstone.pupukdotin.data.remote.response.wishlist.AddWishlistItemResponse
 import com.capstone.pupukdotin.data.remote.response.wishlist.WishlistResponse
@@ -184,4 +187,18 @@ interface ApiServices {
     suspend fun getDetailTransaction(
         @Path("id") idTransaction: Int
     ) : Response<GetDetailTransactionResponse>
+
+    @GET("/api/transactions/stores/all")
+    suspend fun getAllTransactionStore() : Response<GetAllTransactionStoreResponse>
+
+    @GET("/api/transactions/stores/{id}")
+    suspend fun getDetailTransactionStore(
+        @Path("id") idTransaction: Int
+    ) : Response<GetDetailTransactionResponse>
+
+    @PATCH("/api/transactions/stores/{id}")
+    suspend fun updateStatusTransactionStore(
+        @Body payload: UpdateTransactionPayload,
+        @Path("id") idTransaction: Int
+    ) : Response<UpdateTransactionResponse>
 }
