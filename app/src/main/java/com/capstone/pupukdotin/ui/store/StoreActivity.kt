@@ -37,7 +37,6 @@ class StoreActivity : BaseActivity<ActivityStoreBinding>() {
 
                 is NetworkResult.Success -> {
                     setContentView(binding.root)
-                    showToast(result.data.message ?:"")
                 }
 
                 is NetworkResult.Error -> {

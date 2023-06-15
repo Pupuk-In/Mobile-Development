@@ -34,8 +34,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daftar_pesanan"
             android:fontFamily="@font/inter_bold"
+            android:text="@string/daftar_pesanan"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -47,50 +47,93 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout_search_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/search_background_corners_8"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/daftarPesananConstraintLayout">
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/daftar_pesanan_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:iconifiedByDefault="false"
-            app:queryHint="Cari Pesanan" />
-    </FrameLayout>
-
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout_search_container">
+        app:layout_constraintTop_toBottomOf="@id/daftarPesananConstraintLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingBottom="84dp">
+
+            <TextView
+                android:id="@+id/tv_belum_diproses"
+                style="@style/TextBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/belum_diproses"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/daftar_pesanan_recycleview"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:minHeight="48dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/tv_belum_diproses"
                 tools:itemCount="2"
                 tools:listitem="@layout/item_daftar_pesanan_product" />
 
+            <TextView
+                android:id="@+id/tidak_ada_pesanan_onprogress"
+                style="@style/TextMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:visibility="gone"
+                android:text="@string/no_order_left"
+                android:textColor="@color/green_13C193"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/daftar_pesanan_recycleview" />
+
+            <TextView
+                android:id="@+id/tv_sudah_diproses"
+                style="@style/TextBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/telah_diproses"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tidak_ada_pesanan_onprogress" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/daftar_pesanan_done_recycleview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/tv_sudah_diproses"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_daftar_pesanan_product" />
+
+            <TextView
+                android:id="@+id/tidak_ada_pesanan_ondone"
+                style="@style/TextMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:visibility="gone"
+                android:text="@string/no_order_left"
+                android:textColor="@color/green_13C193"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/daftar_pesanan_done_recycleview" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

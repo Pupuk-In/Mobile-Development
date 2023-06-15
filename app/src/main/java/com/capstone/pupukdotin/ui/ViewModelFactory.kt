@@ -21,7 +21,9 @@ import com.capstone.pupukdotin.ui.search.SearchResultViewModel
 import com.capstone.pupukdotin.ui.store.BukaTokoViewModel
 import com.capstone.pupukdotin.ui.store.DetailStoreViewModel
 import com.capstone.pupukdotin.ui.store.EditStoreViewModel
+import com.capstone.pupukdotin.ui.store.StoreDetailOrderViewModel
 import com.capstone.pupukdotin.ui.store.StoreHomeViewModel
+import com.capstone.pupukdotin.ui.store.StorePesananViewModel
 import com.capstone.pupukdotin.ui.store.StoreProdukViewModel
 import com.capstone.pupukdotin.ui.store.StoreProfileViewModel
 import com.capstone.pupukdotin.ui.store.StoreViewModel
@@ -76,6 +78,10 @@ class ViewModelFactory(private val context: Context) :
             return HistoryViewModel(Injection.getTransactionRepo()) as T
         } else if (modelClass.isAssignableFrom(DetailOrderViewModel::class.java)) {
             return DetailOrderViewModel(Injection.getTransactionRepo()) as T
+        } else if (modelClass.isAssignableFrom(StoreDetailOrderViewModel::class.java)) {
+            return StoreDetailOrderViewModel(Injection.getTransactionRepo()) as T
+        } else if (modelClass.isAssignableFrom(StorePesananViewModel::class.java)) {
+            return StorePesananViewModel(Injection.getTransactionRepo()) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

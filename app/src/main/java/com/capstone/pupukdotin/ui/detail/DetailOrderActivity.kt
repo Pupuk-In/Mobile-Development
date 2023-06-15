@@ -7,7 +7,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.capstone.pupukdotin.MainActivity
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
 import com.capstone.pupukdotin.data.remote.response.transaction.GetDetailTransactionResponse
@@ -15,12 +14,9 @@ import com.capstone.pupukdotin.databinding.ActivityDetailOrderBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.adapter.ListOrderAdapter
 import com.capstone.pupukdotin.ui.common.BaseActivity
-import com.capstone.pupukdotin.ui.store.StoreDetailOrderActivity
 import com.capstone.pupukdotin.utils.convertTime
 
 class DetailOrderActivity : BaseActivity<ActivityDetailOrderBinding>() {
-
-
 
     private val viewModel by viewModels<DetailOrderViewModel> { ViewModelFactory(this) }
 
@@ -38,9 +34,10 @@ class DetailOrderActivity : BaseActivity<ActivityDetailOrderBinding>() {
             @SuppressLint("SetTextI18n")
             tvTitleBar.text = "Detail Pemesanan"
             root.setNavigationOnClickListener {
-                StoreDetailOrderActivity.start(this@DetailOrderActivity)
+                onBackPressedDispatcher.onBackPressed()
             }
         }
+        binding.btnCancelOrder.isVisible = false
         viewModel.getDetailTransaction(idTransaction)
 
         setupViewModel()
@@ -94,8 +91,7 @@ class DetailOrderActivity : BaseActivity<ActivityDetailOrderBinding>() {
                 "Tidak",
                 onYesClickBtnClicked = {
                     showOneActionDialog("Pesanan Berhasil Dibatalkan", "Okay") {
-                        MainActivity.start(this@DetailOrderActivity)
-                        finish()
+
                     }
                 }
             )
