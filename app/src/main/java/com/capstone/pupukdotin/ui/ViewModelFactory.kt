@@ -57,7 +57,7 @@ class ViewModelFactory(private val context: Context) :
         } else if (modelClass.isAssignableFrom(EditStoreViewModel::class.java)) {
             return EditStoreViewModel(Injection.getStoreRepo(), Injection.getCommonRepo()) as T
         } else if (modelClass.isAssignableFrom(StoreProfileViewModel::class.java)) {
-            return StoreProfileViewModel(Injection.getStoreRepo()) as T
+            return StoreProfileViewModel(Injection.getStoreRepo(), Injection.getAuthRepo(context)) as T
         } else if (modelClass.isAssignableFrom(StoreProdukViewModel::class.java)) {
             return StoreProdukViewModel(Injection.getStoreRepo()) as T
         } else if (modelClass.isAssignableFrom(WishlistViewModel::class.java)) {

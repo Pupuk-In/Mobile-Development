@@ -46,11 +46,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 SearchResultActivity.start(requireActivity(), query = query)
                 return true
             }
-
             override fun onQueryTextChange(newText: String?): Boolean = false
         })
 
-        binding.wishlistButton.setOnClickListener {
+        binding.ivWishlist.setOnClickListener {
             WishlistActivity.start(requireActivity())
         }
     }

@@ -172,4 +172,6 @@
     <string name="find_here">Cari Pupuk Disini</string>
     <string name="reset">Reset</string>
     <string name="error_detection_message">Maaf, sistem belum mampu mendeteksi</string>
+    <string name="recommendation_type">Mungkin anda mencari jenis pupuk ini</string>
+    <string name="find_item_with_plant">Cari pupuk sesuai tanamanmu</string>
 </resources>
