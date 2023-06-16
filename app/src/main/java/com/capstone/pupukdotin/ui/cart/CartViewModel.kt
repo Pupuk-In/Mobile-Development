@@ -82,25 +82,33 @@ class CartViewModel(private val repository: FertilizerRepository) : ViewModel() 
     }
 
     fun addQuantity(position: Int) {
-        val prevQuantity = mlistItem[position].quantity ?: 0
+        var prevQuantity = mlistItem[position].quantity ?: 0
         val itemPrice = mlistItem[position].item?.price ?: 0
 
-        mlistItem[position].quantity = (prevQuantity + 1)
-        mlistItem[position].price = (prevQuantity + 1) * itemPrice
+        if (prevQuantity >= 0) {
+            mlistItem[position].quantity = (prevQuantity + 1)
+            mlistItem[position].price = (prevQuantity + 1) * itemPrice
 
-        _listItem.value = mlistItem
-        setTotalPrice()
+            _listItem.value = mlistItem
+            setTotalPrice()
+        }
+        else{
+            // Do nothing
+        }
+
     }
 
     fun subtractQuantity(position: Int) {
         val prevQuantity = mlistItem[position].quantity ?: 0
         val itemPrice = mlistItem[position].item?.price ?: 0
 
-        mlistItem[position].quantity = (prevQuantity - 1)
-        mlistItem[position].price = (prevQuantity - 1) * itemPrice
+        if (prevQuantity > 0) {
+            mlistItem[position].quantity = (prevQuantity - 1)
+            mlistItem[position].price = (prevQuantity - 1) * itemPrice
 
-        _listItem.value = mlistItem
-        setTotalPrice()
+            _listItem.value = mlistItem
+            setTotalPrice()
+        }
     }
 
     private fun setTotalPrice() {
