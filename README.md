@@ -6,8 +6,7 @@ Product Based Capstone Bangkit 2022
 
 ## Screenshots
 ### Buyer Application Interface
-
-![App Screenshot](https://drive.google.com/file/d/19c4Cj76KUN3-YLDfkl7lyhrj_05hbN76/view?usp=sharing)
+<img width="1665" alt="user  interface" src="https://github.com/Pupuk-In/Mobile-Development/assets/85721463/b12670b4-1ebc-47d2-80ee-d2b5f4a470e7">
 
 ### Seller Application Interface
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
