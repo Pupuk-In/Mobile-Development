@@ -3,6 +3,8 @@
 
 Product Based Capstone Bangkit 2022
 
+##File APK
+To use the application please download the .apk file at the following [link](https://drive.google.com/drive/folders/1vT2bQjC_puNxYGeWPbBN_3A9roVxuBJm?usp=sharing)
 
 ## Screenshots
 ### Buyer Application Interface
