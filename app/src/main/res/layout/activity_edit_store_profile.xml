@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.store.EditStoreProfileActivity">
+
+    <ProgressBar
+        android:id="@+id/ubah_profil_toko_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <include
+        android:id="@+id/toolbar_ubah_profile_toko"
+        layout="@layout/toolbar_ubah_profil_toko" />
+
+    <ScrollView
+        android:id="@+id/sv_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_ubah_profile_toko">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/edit_profile_store_picture"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/ed_edit_nama_toko"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_grey_outline"
+                android:fontFamily="@font/inter_medium"
+                android:hint="Nama Toko"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_profile_store_picture"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toTopOf="@+id/edit_profile_store_picture" />
+
+            <TextView
+                android:id="@+id/button_unggah_foto_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_grey_outline"
+                android:fontFamily="@font/inter_medium"
+                android:padding="8dp"
+                android:text="@string/unggah_foto"
+                android:textColor="@color/black"
+                android:textSize="8sp"
+                app:layout_constraintEnd_toEndOf="@+id/edit_profile_store_picture"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toBottomOf="@+id/edit_profile_store_picture" />
+
+            <TextView
+                android:id="@+id/tvDeskripsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/deskripsi"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toBottomOf="@+id/button_unggah_foto_store" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/deskripsiEditTextLayout"
+                style="@style/CustomEditText"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/ed_edit_nama_toko"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toBottomOf="@+id/tvDeskripsi">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_edit_deskripsi_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:fontFamily="@font/inter"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:paddingVertical="10dp"
+                    android:gravity="top"
+                    android:scrollbars="vertical"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollHorizontally="false"
+                    tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textviewAlamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/alamat"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toBottomOf="@+id/deskripsiEditTextLayout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/alamatEditTextLayout"
+                style="@style/CustomEditText"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/ed_edit_nama_toko"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toBottomOf="@+id/textviewAlamat">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_edit_alamat_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:fontFamily="@font/inter"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:paddingVertical="10dp"
+                    android:gravity="top"
+                    android:scrollbars="vertical"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollHorizontally="false"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/alamat_pada_peta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/alamat_pada_peta"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toBottomOf="@+id/alamatEditTextLayout" />
+
+            <TextView
+                android:id="@+id/tv_alamat_pada_peta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Kec. Cilandak, Kota Jakarta Selatan"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/alamatEditTextLayout"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toBottomOf="@+id/alamat_pada_peta" />
+
+            <TextView
+                android:id="@+id/pilih_lokasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/pilih_lokasi"
+                android:textColor="@color/green_13C193"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toBottomOf="@+id/tv_alamat_pada_peta" />
+
+            <Button
+                android:id="@+id/button_simpan_edit_profil_store"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="72dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/inter_bold"
+                android:paddingVertical="12dp"
+                android:text="@string/simpan"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ed_edit_nama_toko"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile_store_picture"
+                app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

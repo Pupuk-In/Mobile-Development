@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.checkout.CheckOutActivity">
+
+    <ProgressBar
+        android:id="@+id/checkout_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <include
+        android:id="@+id/toolbar_checkout"
+        layout="@layout/toolbar_checkout" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_checkout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="16dp">
+
+            <TextView
+                android:id="@+id/tv_metode_pengiriman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/metode_pengiriman"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/metode_pengiriman_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_metode_pengiriman"
+                app:layout_constraintTop_toBottomOf="@+id/tv_metode_pengiriman">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/button_dikirim"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button_left_selector"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:fontFamily="@font/inter_bold"
+                    android:gravity="center"
+                    android:text="@string/dikirim"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/button_ambil_sendiri"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button_right_selector"
+                    android:button="@android:color/transparent"
+                    android:checked="false"
+                    android:fontFamily="@font/inter_bold"
+                    android:gravity="center"
+                    android:text="@string/ambil_sendiri"
+                    android:textColor="@color/green_13C193"
+                    android:textSize="12sp" />
+
+            </RadioGroup>
+
+            <View
+                android:id="@+id/spacer1"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/grey_F3F3F3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/metode_pengiriman_button" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_checkout_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spacer1"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_checkout_product" />
+
+            <View
+                android:id="@+id/spacer2"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/grey_F3F3F3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_checkout_items" />
+
+            <TextView
+                android:id="@+id/tv_metode_pembayaran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/metode_pembayaran"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_metode_pengiriman"
+                app:layout_constraintTop_toBottomOf="@+id/spacer2" />
+
+            <RadioGroup
+                android:id="@+id/metode_pembayaran_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_metode_pengiriman"
+                app:layout_constraintTop_toBottomOf="@+id/tv_metode_pembayaran">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/button_tunai"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button_left_selector"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:fontFamily="@font/inter_bold"
+                    android:gravity="center"
+                    android:text="@string/tunai_cod"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/button_dompet_digital"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button_right_selector"
+                    android:button="@android:color/transparent"
+                    android:checked="false"
+                    android:fontFamily="@font/inter_bold"
+                    android:gravity="center"
+                    android:text="@string/dompet_digital"
+                    android:textColor="@color/green_13C193"
+                    android:textSize="12sp" />
+
+            </RadioGroup>
+
+            <View
+                android:id="@+id/spacer3"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/grey_F3F3F3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/metode_pembayaran_button" />
+
+            <TextView
+                android:id="@+id/tv_detail_pengiriman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/detail_pengiriman"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_metode_pengiriman"
+                app:layout_constraintTop_toBottomOf="@+id/spacer3" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/detail_pengriman_constraint_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_grey_outline"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/metode_pengiriman_button"
+                app:layout_constraintStart_toStartOf="@+id/tv_metode_pengiriman"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_pengiriman">
+
+                <TextView
+                    android:id="@+id/tv_nama_penerima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/nama_penerima"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nama_penerima_textInputLayout"
+                    style="@style/CustomEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nama_penerima">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nama_penerima_textInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="@font/inter"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/nomor_telepon_penerima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/nomor_telepon"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
+                    app:layout_constraintTop_toBottomOf="@+id/nama_penerima_textInputLayout" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nomor_telepon_penerima_textInputLayout"
+                    style="@style/CustomEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
+                    app:layout_constraintTop_toBottomOf="@+id/nomor_telepon_penerima">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nomor_telepon_penerima_textInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="@font/inter"
+                        android:inputType="phone|number"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textviewAlamatPenerimaMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/alamat_pada_peta"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
+                    app:layout_constraintTop_toBottomOf="@+id/nomor_telepon_penerima_textInputLayout" />
+
+                <TextView
+                    android:id="@+id/pilih_lokasi_penerima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/pilih_lokasi"
+                    android:textColor="@color/green_13C193"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
+                    app:layout_constraintTop_toBottomOf="@+id/textviewAlamatPenerimaMap" />
+
+                <TextView
+                    android:id="@+id/alamat_penerima_map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:minHeight="48dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
+                    app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi_penerima"
+                    tools:text="" />
+
+                <TextView
+                    android:id="@+id/textviewAlamatPenerima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/alamat_penerima"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
+                    app:layout_constraintTop_toBottomOf="@+id/alamat_penerima_map" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/alamatPenerimaEditTextLayout"
+                    style="@style/CustomEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/nama_penerima_textInputLayout"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nama_penerima"
+                    app:layout_constraintTop_toBottomOf="@+id/textviewAlamatPenerima">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ed_alamat_penerima"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:fontFamily="@font/inter"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:overScrollMode="always"
+                        android:paddingVertical="10dp"
+                        android:scrollbarStyle="insideInset"
+                        android:scrollbars="vertical"
+                        android:scrollHorizontally="false"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_ringkasan_pembayaran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/ringkasan_pembayaran"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_metode_pengiriman"
+                app:layout_constraintTop_toBottomOf="@+id/detail_pengriman_constraint_layout" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ringkasan_pembayaran_constraint_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_grey_outline"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/metode_pengiriman_button"
+                app:layout_constraintStart_toStartOf="@+id/tv_metode_pengiriman"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ringkasan_pembayaran">
+
+                <TextView
+                    android:id="@+id/tv_subtotal_pesanan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/subtotal_pesanan_jumlah_produk"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/subtotal_pesanan_jumlah_produk" />
+
+                <TextView
+                    android:id="@+id/subtotal_pesanan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/harga"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_ongkos_kirim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/ongkos_pengiriman"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_subtotal_pesanan" />
+
+                <TextView
+                    android:id="@+id/subtotal_ongkos_kirim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/harga"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/subtotal_pesanan"
+                    tools:text="Rp30000" />
+
+                <TextView
+                    android:id="@+id/tv_total_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/total_harga"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_ongkos_kirim" />
+
+                <TextView
+                    android:id="@+id/subtotal_harga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/harga"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/subtotal_ongkos_kirim" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dropdown_background"
+        android:elevation="5dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_checkout_jumlah_items"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/total_harga"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/checkout_total_harga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/harga"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_checkout_jumlah_items" />
+
+        <Button
+            android:id="@+id/checkout_button_pesan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/inter_bold"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="8dp"
+            android:text="@string/order"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

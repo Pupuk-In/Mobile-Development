@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.LihatProfileActivity">
+
+    <ProgressBar
+        android:id="@+id/lihat_profile_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_lihat_profil" />
+
+    <ScrollView
+        android:id="@+id/sv_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:clipToPadding="false">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_detail_picture"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_nama_lengkap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/nama_lengkap"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_detail_picture" />
+
+            <TextView
+                android:id="@+id/tv_nama_lengkap_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter"
+                android:text="Agus Setiabudi"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_lengkap" />
+
+            <TextView
+                android:id="@+id/tv_tanggal_lahir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/tanggal_lahir"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_lengkap_detail" />
+
+            <TextView
+                android:id="@+id/tv_tanggal_lahir_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter"
+                android:text="17 - 07 - 2002"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tanggal_lahir" />
+
+            <TextView
+                android:id="@+id/tv_nomor_telepon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/nomor_telepon"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tanggal_lahir_detail" />
+
+            <TextView
+                android:id="@+id/tv_nomor_telepon_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter"
+                android:text="0812345678910"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nomor_telepon" />
+
+            <TextView
+                android:id="@+id/tv_alamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/alamat"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nomor_telepon_detail" />
+
+
+            <TextView
+                android:id="@+id/tv_alamat_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/inter"
+                android:text="Jl. Lebak Bulus Raya No.168, RT.8/RW.2, Lb. Bulus, Kec. Cilandak, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12440"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_alamat" />
+
+
+            <TextView
+                android:id="@+id/tv_alamat_maps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/alamat_dalam_peta"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_alamat_detail" />
+
+            <TextView
+                android:id="@+id/tv_alamat_maps_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/inter"
+                android:text="Jl. Lebak Bulus Raya No.168, RT.8/RW.2, Lb. Bulus, Kec. Cilandak, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12440"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_alamat_maps" />
+
+            <TextView
+                android:id="@+id/tv_lihat_peta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/lihat_alamat_dari_peta"
+                android:textColor="@color/green_13C193"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_alamat_maps_detail" />
+
+            <TextView
+                android:id="@+id/ubah_kata_sandi_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/ubah_kata_sandi"
+                android:textColor="@color/green_13C193"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lengkap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_lihat_peta" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

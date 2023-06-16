@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/store_navigation"
+    app:startDestination="@id/storeHomeFragment">
+
+    <fragment
+        android:id="@+id/storeHomeFragment"
+        android:name="com.capstone.pupukdotin.ui.store.StoreHomeFragment"
+        android:label="fragment_store_home"
+        tools:layout="@layout/fragment_store_home" />
+    <fragment
+        android:id="@+id/storeProdukFragment"
+        android:name="com.capstone.pupukdotin.ui.store.StoreProdukFragment"
+        android:label="fragment_store_produk"
+        tools:layout="@layout/fragment_store_produk" />
+
+    <fragment
+        android:id="@+id/storePesananFragment"
+        android:name="com.capstone.pupukdotin.ui.store.StorePesananFragment"
+        android:label="fragment_store_pesanan"
+        tools:layout="@layout/fragment_store_pesanan"/>
+
+    <fragment
+        android:id="@+id/storeSettingsFragment"
+        android:name="com.capstone.pupukdotin.ui.store.StoreProfileFragment"
+        android:label="fragment_store_settings"
+        tools:layout="@layout/fragment_store_profile" />
+</navigation>
