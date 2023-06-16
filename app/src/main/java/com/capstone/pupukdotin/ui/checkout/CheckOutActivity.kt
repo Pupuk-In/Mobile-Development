@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.pupukdotin.R
 import com.capstone.pupukdotin.data.remote.network.NetworkResult
@@ -225,7 +226,8 @@ class CheckOutActivity : BaseActivity<ActivityCheckOutBinding>() {
 
         val lihatStatusBtn = dialogBinding.findViewById<Button>(R.id.lihat_status_dialog_button)
         lihatStatusBtn.setOnClickListener {
-            //isi ini untuk pindah ke halaman status
+            val navController = Navigation.findNavController(this, R.id.fragmentContainerView)
+            navController.navigate(R.id.cartFragment)
         }
 
         val kembaliBtn = dialogBinding.findViewById<Button>(R.id.kembali_dialog_button)
@@ -233,7 +235,6 @@ class CheckOutActivity : BaseActivity<ActivityCheckOutBinding>() {
             pesananBerhasilDialog.dismiss()
         }
     }
-
 
     private fun setUpMetodePembayaran() {
         binding.apply {
