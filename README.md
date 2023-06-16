@@ -24,7 +24,7 @@ Product Based Capstone Bangkit 2022
 - View incoming orders
 - View order details
 
-### Buyer Application
+### Customer Application
 
 - Splash Screen
 - Login & Register
