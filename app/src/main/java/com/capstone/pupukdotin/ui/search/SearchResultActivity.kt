@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.capstone.pupukdotin.R
@@ -16,6 +19,7 @@ import com.capstone.pupukdotin.data.remote.response.common.DataItem
 import com.capstone.pupukdotin.databinding.ActivitySearchResultBinding
 import com.capstone.pupukdotin.ui.ViewModelFactory
 import com.capstone.pupukdotin.ui.common.BaseActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class SearchResultActivity : BaseActivity<ActivitySearchResultBinding>() {
 
@@ -51,6 +55,29 @@ class SearchResultActivity : BaseActivity<ActivitySearchResultBinding>() {
         })
         setupAdapter()
         setupViewModel()
+        setUpAction()
+    }
+
+    private fun setUpAction() {
+        binding.btnFilter.setOnClickListener {
+            val bottomSheetDialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
+
+            val bottomSheetView = LayoutInflater.from(applicationContext).inflate(
+                R.layout.dialog_bottom_sheet_layout,
+                findViewById<ConstraintLayout>(R.id.bottomSheet)
+            )
+
+            bottomSheetView.findViewById<View>(R.id.close_btn).setOnClickListener{
+                bottomSheetDialog.dismiss()
+            }
+
+            bottomSheetDialog.setContentView(bottomSheetView)
+            bottomSheetDialog.show()
+        }
+
+        binding.btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun setupViewModel() {
