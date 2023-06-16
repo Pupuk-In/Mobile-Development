@@ -3,7 +3,7 @@
 
 Product Based Capstone Bangkit 2022
 
-##File APK
+## File APK
 To use the application please download the .apk file at the following [link](https://drive.google.com/drive/folders/1vT2bQjC_puNxYGeWPbBN_3A9roVxuBJm?usp=sharing)
 
 ## Screenshots
@@ -74,6 +74,6 @@ To use the application please download the .apk file at the following [link](htt
 
 
 ## Architecture
-This app uses [This]() architecture.
+This app uses [MVVM (Model View View-Model)](https://developer.android.com/topic/architecture#recommended-app-arch) architecture.
 
 ![Architecture Image](https://media.discordapp.net/attachments/1094934906167107685/1119299119182262313/AAC.PupukIn.png)
