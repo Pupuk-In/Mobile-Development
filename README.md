@@ -9,7 +9,7 @@ Product Based Capstone Bangkit 2022
 <img width="1665" alt="user  interface" src="https://github.com/Pupuk-In/Mobile-Development/assets/85721463/b12670b4-1ebc-47d2-80ee-d2b5f4a470e7">
 
 ### Seller Application Interface
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+<img width="1665" alt="buyer interface" src="https://github.com/Pupuk-In/Mobile-Development/assets/85721463/8fa1502f-329e-47a2-b12a-d4f89fb48287">
 
 ## Features
 
@@ -19,6 +19,10 @@ Product Based Capstone Bangkit 2022
 - Login & Register
 - Profile Customization
 - Search Product
+- Upload Image
+- Post product image, description, price, and stock
+- View incoming orders
+- View order details
 
 ### Buyer Application
 
@@ -28,6 +32,9 @@ Product Based Capstone Bangkit 2022
 - Search Product
 - Upload Image
 - Plant nutrient detection
+- Wishlist for desired fertilizers
+- Fertilizer categorization by crop 
+- View the list of available fertilizers
 
 
 ## Build With
@@ -56,9 +63,12 @@ Product Based Capstone Bangkit 2022
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
 | Primary Color | ![#13C193](https://via.placeholder.com/10/13C193?text=+) #13C193 |
-| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
-| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
-| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
+| Primary Variant | ![#154D3E](https://via.placeholder.com/10/154D3E?text=+) #154D3E |
+| Secondary Color | ![#B56031](https://via.placeholder.com/10/B56031?text=+) #B56031 |
+| Secondary Variant | ![#4B2D1C](https://via.placeholder.com/10/4B2D1C?text=+) #4B2D1C |
+| White | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) #FFFFFF |
+| Black | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000 |
+| Red | ![#B00020](https://via.placeholder.com/10/B00020?text=+) #B00020 |
 
 
 ## Architecture
